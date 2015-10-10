@@ -1,0 +1,21 @@
+# src/Site/Bundle/MainBundle/Resources/config/validation.yml
+Site\MainBundle\Entity\Page:
+    properties:
+        title:
+            - NotBlank:
+                message: "Заголовок страницы не может быть пустым"
+Site\MainBundle\Entity\Company:
+    properties:
+        title:
+            - NotBlank:
+                message: "Название компании не может быть пустым"
+Site\MainBundle\Entity\Director:
+    properties:
+        title:
+            - NotBlank:
+                message: "ФИО руководителя не может быть пустым"
+Site\MainBundle\Entity\Page:
+    properties:
+        title:
+            - NotBlank:
+                message: "Название компании не может быть пустым"

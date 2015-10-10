@@ -1,0 +1,24 @@
+{% extends 'SiteMainBundle:Backend:layout.html.twig' %}
+
+{% block content -%}
+    <h1>{{ 'backend.group_company.h1_edit'|trans({}, 'menu') }}</h1>
+
+    {{ form(delete_form) }}
+
+    {{ form_start(edit_form, { 'style': 'horizontal' , attr: {novalidate: 'novalidate'} }) }}
+    {{ form_row(edit_form.title) }}
+    {{ form_row(edit_form.metaTitle) }}
+    {{ form_row(edit_form.metaDescription) }}
+    {{ form_row(edit_form.metaKeywords) }}
+    {{ form_row(edit_form.description) }}
+    {{ form_row(edit_form.text) }}
+    {{ form_end(edit_form) }}
+
+    <ul class="record_actions nav nav-pills">
+        <li>
+            <a href="{{ path('backend_group_company_index') }}">
+                {{ 'backend.group_company.back_to_list'|trans({}, 'menu') }}
+            </a>
+        </li>
+    </ul>
+{% endblock %}
