@@ -33,10 +33,16 @@ class FrontendMenuBuilder extends ContainerAware
                     'route' => 'frontend_group_company_index'
                 ));
             } else{
-                $menu->addChild($m->getTitle(), array(
-                    'route' => 'frontend_page_index',
-                    'routeParameters' => array('slug' => $m->getSlug())
-                ));
+                if($m->getSlug() == 'glavnaia'){
+                    $menu->addChild($m->getTitle(), array(
+                        'route' => 'frontend_homepage'
+                    ));
+                } else {
+                    $menu->addChild($m->getTitle(), array(
+                        'route' => 'frontend_page_index',
+                        'routeParameters' => array('slug' => $m->getSlug())
+                    ));
+                }
             }
         }
 

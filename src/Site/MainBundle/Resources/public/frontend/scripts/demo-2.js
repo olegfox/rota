@@ -168,8 +168,11 @@ var demo = (function(window, jQuery, undefined) {
           'visibility': 'visible'
         });
         jQuery('body,html').scrollTop(0);
-        jQuery('.nav-main').prependTo(jQuery('.card__container').eq(id));
+        jQuery('.nav-main').prependTo(jQuery('.card__container .wrap-svg').eq(id));
         jQuery('.nav-main').removeClass('revealOnScroll animated');
+        jQuery('.nav-main').css({
+          'position': 'absolute'
+        });
         jQuery('.card__container').eq(id).find('.wrap-svg').addClass('wrap-svg-show');
       }, 3000);
 
@@ -187,11 +190,15 @@ var demo = (function(window, jQuery, undefined) {
           hexagonPrev = jQuery('.hexagon').eq(jQuery('.hexagon').length - 1);
         }
         if(hexagonPrev.parent().parent().index() == hexagonOpen.parent().parent().index()){
+          var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
           hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
+          navMain.prependTo(hexagonOpen.find('.wrap-svg'));
           hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
         }else{
+          var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
           hexagonOpen.find('.wrap-svg').html(hexagonPrev.find('.wrap-svg').html());
           hexagonOpen.find('.card__content').html(hexagonPrev.find('.card__content').html());
+          navMain.prependTo(hexagonOpen.find('.wrap-svg'));
         }
 
         hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
@@ -205,11 +212,15 @@ var demo = (function(window, jQuery, undefined) {
           hexagonNext = jQuery('.hexagon').eq(0);
         }
         if(hexagonNext.parent().parent().index() == hexagonOpen.parent().parent().index()){
+          var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
           hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
           hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
+          navMain.prependTo(hexagonOpen.find('.wrap-svg'));
         } else{
+          var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
           hexagonOpen.find('.wrap-svg').html(hexagonNext.find('.wrap-svg').html());
           hexagonOpen.find('.card__content').html(hexagonNext.find('.card__content').html());
+          navMain.prependTo(hexagonOpen.find('.wrap-svg'));
         }
 
         hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
@@ -261,7 +272,10 @@ var demo = (function(window, jQuery, undefined) {
       jQuery('.card__container').eq(id).find('.card__caption').css({
         'visibility': 'hidden'
       });
-      jQuery('.card__container').eq(id).find('.nav-main').prependTo(jQuery('body'));
+      jQuery('.card__container .wrap-svg').eq(id).find('.nav-main').prependTo(jQuery('body'));
+      jQuery('.nav-main').css({
+        'position': 'relative'
+      });
       jQuery('.card__container').eq(id).find('.wrap-svg').removeClass('wrap-svg-show');
 
       // end Show all

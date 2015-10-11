@@ -47,7 +47,7 @@
   position: relative;
   height: auto;
   margin: 0 auto;
-  padding: 40px 85px 22px;
+  padding: 96px 115px 22px;
   color: #888;
   background: #fff;
 }
@@ -104,6 +104,7 @@
 	right: 0;
 	padding: 36px;
 	cursor: pointer;
+  display: none;
 }
 
 .card__container--closed .card__btn-close {

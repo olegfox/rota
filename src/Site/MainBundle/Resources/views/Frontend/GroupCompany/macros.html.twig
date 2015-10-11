@@ -34,6 +34,7 @@
                                         </div>
                                         <div class="wrap-h1">
                                             <h1>{{ g.title }}</h1>
+                                            <p>{{ g.description }}</p>
                                         </div>
                                         <div class="nv-left"></div>
                                         <div class="nv-right"></div>
@@ -45,9 +46,9 @@
                                                 {% for company in g.companies %}
                                                     <div class="wrap-company">
                                                         <div class="company">
-                                                            <div class="image">
-                                                                <img src="{{ image(company.webPath).zoomCrop(500, 500) }}" alt=""/>
-                                                            </div>
+                                                            {#<div class="image">#}
+                                                                {#<img src="{{ image(company.webPath).zoomCrop(500, 500) }}" alt=""/>#}
+                                                            {#</div>#}
                                                             <div class="info">
                                                                 <h2>{{ company.title }}</h2>
                                                                 <p>{{ company.description }}</p>

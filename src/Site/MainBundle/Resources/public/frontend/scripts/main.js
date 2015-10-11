@@ -116,33 +116,33 @@ jQuery(function () {
     });
   });
 
-  /* Стрелка для переключения слайдера */
-  if(!Modernizr.touch){
-    jQuery(".CursorAnimateRotate").on("mousemove", function (e) {
-      jQuery('.cursor').addClass('isVisible');
-      if (e.pageX > jQuery(window).width() / 2) {
-        jQuery(".CursorAnimateRotate").addClass('right');
-      } else {
-        jQuery(".CursorAnimateRotate").removeClass('right');
-      }
-      jQuery('.cursor').css({'left': e.pageX - 35, 'top': e.pageY - 75 - jQuery(window).scrollTop()});
-    });
-
-    jQuery(".CursorAnimateRotate").on("mouseout", function (e) {
-      jQuery('.cursor').removeClass('isVisible');
-    });
-
-    jQuery(".icon-arrow").on("mousemove", function (e) {
-      jQuery('.cursor').removeClass('isVisible');
-    });
-
-    jQuery('.slider').click(function () {
-      if (jQuery(".CursorAnimateRotate").hasClass('right')) {
-        jQuery('.slider').slick('slickNext');
-      } else {
-        jQuery('.slider').slick('slickPrev');
-      }
-    });
-  }
+  ///* Стрелка для переключения слайдера */
+  //if(!Modernizr.touch){
+  //  jQuery(".CursorAnimateRotate").on("mousemove", function (e) {
+  //    jQuery('.cursor').addClass('isVisible');
+  //    if (e.pageX > jQuery(window).width() / 2) {
+  //      jQuery(".CursorAnimateRotate").addClass('right');
+  //    } else {
+  //      jQuery(".CursorAnimateRotate").removeClass('right');
+  //    }
+  //    jQuery('.cursor').css({'left': e.pageX - 35, 'top': e.pageY - 75 - jQuery(window).scrollTop()});
+  //  });
+  //
+  //  jQuery(".CursorAnimateRotate").on("mouseout", function (e) {
+  //    jQuery('.cursor').removeClass('isVisible');
+  //  });
+  //
+  //  jQuery(".icon-arrow").on("mousemove", function (e) {
+  //    jQuery('.cursor').removeClass('isVisible');
+  //  });
+  //
+  //  jQuery('.slider').click(function () {
+  //    if (jQuery(".CursorAnimateRotate").hasClass('right')) {
+  //      jQuery('.slider').slick('slickNext');
+  //    } else {
+  //      jQuery('.slider').slick('slickPrev');
+  //    }
+  //  });
+  //}
 
 });
