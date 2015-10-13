@@ -1,0 +1,30 @@
+backend_social_activities_index:
+    path:     /
+    defaults: { _controller: "SiteMainBundle:Backend/SocialActivities:index" }
+
+backend_social_activities_show:
+    path:     /{id}/show
+    defaults: { _controller: "SiteMainBundle:Backend/SocialActivities:show" }
+
+backend_social_activities_new:
+    path:     /new
+    defaults: { _controller: "SiteMainBundle:Backend/SocialActivities:new" }
+
+backend_social_activities_create:
+    path:     /create
+    defaults: { _controller: "SiteMainBundle:Backend/SocialActivities:create" }
+    methods:  POST
+
+backend_social_activities_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SiteMainBundle:Backend/SocialActivities:edit" }
+
+backend_social_activities_update:
+    path:     /{id}/update
+    defaults: { _controller: "SiteMainBundle:Backend/SocialActivities:update" }
+    methods:  [POST, PUT]
+
+backend_social_activities_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SiteMainBundle:Backend/SocialActivities:delete" }
+    methods:  [POST, DELETE]

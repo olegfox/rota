@@ -21,7 +21,7 @@
                                                     <polygon class="clip" points="0,560 0,0 1920,0 1920,560"></polygon>
                                                 </clipPath>
                                             </defs>
-                                            <image clip-path="url(#clipPath1)" width="1920" height="560" xlink:href="{{ image(g.webPath).zoomCrop(1920, 500) }}"></image>
+                                            <image clip-path="url(#clipPath1)" width="1920" height="560" xlink:href="{{ image(g.webPath).zoomCrop(1920, 560) }}"></image>
                                         </svg>
                                         <div class="submenu">
                                             <ul>
@@ -34,7 +34,7 @@
                                         </div>
                                         <div class="wrap-h1">
                                             <h1>{{ g.title }}</h1>
-                                            <p>{{ g.description }}</p>
+                                            {{ g.text|raw }}
                                         </div>
                                         <div class="nv-left"></div>
                                         <div class="nv-right"></div>
@@ -51,7 +51,7 @@
                                                             {#</div>#}
                                                             <div class="info">
                                                                 <h2>{{ company.title }}</h2>
-                                                                <p>{{ company.description }}</p>
+                                                                {{ company.text|raw }}
                                                             </div>
                                                         </div>
                                                     </div>

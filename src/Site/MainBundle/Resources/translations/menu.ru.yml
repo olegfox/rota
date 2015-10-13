@@ -34,6 +34,20 @@ backend:
         img: Изображение
         text: Текст
         not_found: Слайд не существует
+    social_activities:
+        h1_show: Слайд
+        h1_list: Список слайдов
+        h1_edit: Редактирование слайда
+        h1_create: Добавление слайда
+        back_to_list: Назад к списку слайдов
+        empty_list: Нет слайдов
+        main: Отображать на главной?
+        main_yes: Да
+        main_no: Нет
+        video: Видео
+        img: Изображение
+        text: Текст
+        not_found: Слайд не существует
     news:
         h1_show: Новость
         h1_list: Список новостей

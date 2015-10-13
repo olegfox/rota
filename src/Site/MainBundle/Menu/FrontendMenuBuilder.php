@@ -32,6 +32,10 @@ class FrontendMenuBuilder extends ContainerAware
                 $menu->addChild($m->getTitle(), array(
                     'route' => 'frontend_group_company_index'
                 ));
+            } elseif ($m->getSlug() == 'sotsial-naia-dieiatiel-nost'){
+                $menu->addChild($m->getTitle(), array(
+                    'route' => 'frontend_social_activities_index'
+                ));
             } else{
                 if($m->getSlug() == 'glavnaia'){
                     $menu->addChild($m->getTitle(), array(

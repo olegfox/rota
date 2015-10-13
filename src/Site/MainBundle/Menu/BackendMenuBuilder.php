@@ -14,6 +14,7 @@ class BackendMenuBuilder extends ContainerAware
         $menu->setCurrent($this->container->get('request')->getRequestUri());
 
         $menu->addChild('Слайдер', array('route' => 'backend_background_index'));
+        $menu->addChild('Социальная деятельсность', array('route' => 'backend_social_activities_index'));
         $menu->addChild('Страницы', array('route' => 'backend_page_index'));
         $menu->addChild('Группы компаний', array('route' => 'backend_group_company_index'));
         $menu->addChild('Компании', array('route' => 'backend_company_index'));

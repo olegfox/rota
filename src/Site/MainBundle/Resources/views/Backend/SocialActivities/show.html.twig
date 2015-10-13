@@ -1,0 +1,46 @@
+{% extends 'SiteMainBundle:Backend:layout.html.twig' %}
+
+{% block content -%}
+    <h1>{{ 'backend.social_activities.h1_show'|trans({}, 'menu') }}</h1>
+
+    {{ form(delete_form) }}
+
+    <table class="record_properties table table-striped table-bordered">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'backend.social_activities.video'|trans({}, 'menu') }}</th>
+            <td>{% if entity.video|length > 0 %}<video src="{{ asset('uploads/social_activities/' ~ entity.video) }}" width="300px" controls></video>{% endif %}</td>
+        </tr>
+        <tr>
+            <th>{{ 'backend.social_activities.img'|trans({}, 'menu') }}</th>
+            <td>{% if entity.webPath|length > 0 %}<a href="{{ asset(entity.webPath) }}" target="_blank"><img src="{{ image(entity.webPath).resize(150) }}" alt="{{ image(entity.webPath).resize(150) }}" width="150px"/></a>{% endif %}</td>
+        </tr>
+        <tr>
+            <th>{{ 'backend.social_activities.main'|trans({}, 'menu') }}</th>
+            <td>{{ (entity.main ? 'backend.social_activities.main_yes' : 'backend.social_activities.main_no')|trans({}, 'menu') }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="record_actions nav nav-pills">
+        <li>
+            <a href="{{ path('backend_social_activities_index') }}">
+                {{ 'backend.social_activities.back_to_list'|trans({}, 'menu') }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('backend_social_activities_edit', { 'id': entity.id }) }}">
+                {{ 'backend.edit'|trans({}, 'menu') }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('backend_social_activities_new') }}">
+                {{ 'backend.create'|trans({}, 'menu') }}
+            </a>
+        </li>
+    </ul>
+{% endblock %}

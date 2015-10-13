@@ -19,6 +19,10 @@ frontend_group_company:
     resource: "@SiteMainBundle/Resources/config/routing/frontend/group_company.yml"
     prefix: /struktura
 
+frontend_group_social_activities:
+    resource: "@SiteMainBundle/Resources/config/routing/frontend/social_activities.yml"
+    prefix: /sotsial-naia-dieiatiel-nost
+
 frontend_page_index:
     path:     /{slug}
     defaults: { _controller: "SiteMainBundle:Frontend/Main:index" }
