@@ -203,6 +203,7 @@ var demo = (function(window, jQuery, undefined) {
 
         hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
         hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
+        hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
         hexagonCurrent = hexagonPrev;
       };
       var nvClickRight = function(){
@@ -225,10 +226,39 @@ var demo = (function(window, jQuery, undefined) {
 
         hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
         hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
+        hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
         hexagonCurrent = hexagonNext;
       };
-      jQuery('.hexagon').eq(id).find('.nv-left').click(nvClickLeft);
-      jQuery('.hexagon').eq(id).find('.nv-right').click(nvClickRight);
+      /**
+       *  Обработка нажатия ссылок для переключения между направлениями компании
+       */
+      var nvClickLink = function(e){
+        e.preventDefault();
+
+        var id = jQuery(this).attr('href'),
+            hexagonNext = jQuery('.hexagon' + id);
+
+        if(hexagonNext.parent().parent().index() == hexagonOpen.parent().parent().index()){
+          var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
+          hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
+          navMain.prependTo(hexagonOpen.find('.wrap-svg')); 
+          hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
+        }else{
+          var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
+          hexagonOpen.find('.wrap-svg').html(hexagonNext.find('.wrap-svg').html());
+          hexagonOpen.find('.card__content').html(hexagonNext.find('.card__content').html());
+          navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+        }
+
+
+        hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
+        hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
+        hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
+        hexagonCurrent = hexagonNext;
+      };
+      jQuery('.hexagon').eq(id).find('.nv-left').unbind('click').click(nvClickLeft);
+      jQuery('.hexagon').eq(id).find('.nv-right').unbind('click').click(nvClickRight);
+      jQuery('.hexagon').eq(id).find('.submenu ul li a').unbind('click').click(nvClickLink);
 
       // end Hide all
 

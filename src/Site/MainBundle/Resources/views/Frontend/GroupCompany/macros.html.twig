@@ -11,7 +11,7 @@
                 {% for g in groupCompanies %}
                     <li class="revealOnScroll" data-animation="fadeIn">
                         <div class="wrap">
-                            <div class="hexagon card">
+                            <div class="hexagon card" id="{{ g.slug }}">
                                 <img src="{{ image(g.webPath).zoomCrop(700, 500) }}" alt=""/>
                                 <div class="card__container card__container_radius card__container--closed">
                                     <div class="wrap-svg">
@@ -27,7 +27,7 @@
                                             <ul>
                                                 {% for group in groupCompanies %}
                                                     <li>
-                                                        <a href="#" {% if g.id == group.id %}class="current"{% endif %}>{{ group.title }}</a>
+                                                        <a href="#{{ group.slug }}" {% if g.id == group.id %}class="current"{% endif %}>{{ group.title }}</a>
                                                     </li>
                                                 {% endfor %}
                                             </ul>

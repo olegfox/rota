@@ -17,7 +17,7 @@
     <section class="main">
         <div class="CursorAnimateRotate">
             <div class="slider">
-                {% for slider in sliders %}
+                {% for slider in socialActivities %}
                     <div {% if slider.webPath|length > 0 %}style="background: url('{{ asset(slider.webPath) }}') center center no-repeat; background-size: cover;"{% endif %} {% if slider.video|length > 0 %}data-video='{{ asset('uploads/background/' ~ slider.video) }}' class="video"{% endif %}>
                         <div class="wrap-sticker">
                             <div class="sticker revealOnScroll" data-animation="fadeInRight">
@@ -33,84 +33,15 @@
             <div class="cursor"><div class="cursorIcon"></div></div>
         </div>
 
-        <a href="#{{ pages[1].slug }}" class="icon-arrow revealOnScroll" data-animation="fadeInUp"></a>
+        <a href="#posts" class="icon-arrow revealOnScroll" data-animation="fadeInUp"></a>
     </section>
     <!-- end Main -->
 
-    <!-- Posts -->
-    {#<section class="page" >#}
-        {#<section class="posts-block bg-posts-block" id="posts">#}
-            {#{{ listTabGroup(groupCompanies) }}#}
-        {#</section>#}
-    {#</section>#}
-    <!-- end Posts -->
-
-    <!-- News -->
-    {#<section class="news-block">#}
-        {#<div class="inner-news-block">#}
-            {#<h2 class="revealOnScroll" data-animation="fadeInLeft">Новости группы компаний</h2>#}
-
-            {#{{ listSidebarNews(news) }}#}
-        {#</div>#}
-    {#</section>#}
-    <!-- end News -->
-
-    {# О нас #}
-    <section class="page" id="{{ pages[1].slug }}">
-        {{ render(url('frontend_group_company_index')) }}
+    <!-- Text -->
+    <section class="text">
+        <div class="content">
+            {{ page.text|raw }}
+        </div>
     </section>
-
-    {# Структура #}
-    <section class="page" id="{{ pages[2].slug }}">
-        {#{{ render(url('frontend_page_index', {slug: pages[1].slug})) }}#}
-    </section>
-
-    {# Руководство #}
-    <section class="page" id="{{ pages[3].slug }}">
-        {{ render(url('frontend_director_index')) }}
-    </section>
-
-    {# Социальная деятельность #}
-    <section class="page" id="{{ pages[4].slug }}">
-        {{ render(url('frontend_social_activities_index')) }}
-    </section>
-
-    {# Новости #}
-    <section class="page" id="{{ pages[5].slug }}">
-        {{ render(url('frontend_content_index', {slug: pages[5].slug})) }}
-    </section>
-
-    {# Контакты #}
-    <section class="page" id="{{ pages[6].slug }}">
-        {{ render(url('frontend_content_index', {slug: pages[6].slug})) }}
-    </section>
-
-
-
-    {#<!-- Text -->#}
-    {#<section class="text">#}
-        {#<div class="content">#}
-            {#{{ page.text|raw }}#}
-        {#</div>#}
-    {#</section>#}
-    {#<!-- end Text -->#}
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    {% if app.request.get('slug') %}
-        <script type="text/javascript">
-            jQuery(function(){
-                if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                    jQuery(window).load(function () {
-                        jQuery('.nav-pills a[href="#{{ app.request.get('slug') }}"]').parent().addClass('current');
-                        enable_scroll();
-                        console.log(jQuery('#{{ app.request.get('slug') }}').offset().top);
-                        jQuery(window).scrollTop(jQuery('#{{ app.request.get('slug') }}').offset().top);
-                        disable_scroll(jQuery('#{{ app.request.get('slug') }}').offset().top);
-                    });
-                }
-            });
-        </script>
-    {% endif %}
+    <!-- end Text -->
 {% endblock %}

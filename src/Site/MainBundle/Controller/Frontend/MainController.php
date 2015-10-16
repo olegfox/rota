@@ -26,9 +26,11 @@ class MainController extends Controller
         $groupCompanies = $repository_group_company->findAll();
         $news = $repository_news->findLastAll(3);
         $sliders = $repository_sliders->findBy(array('main' => true));
+        $pages = $repository_page->findAll();
 
         return $this->render('SiteMainBundle:Frontend/Main:index.html.twig', array(
             'page' => $page,
+            'pages' => $pages,
             'groupCompanies' => $groupCompanies,
             'news' => $news,
             'sliders' => $sliders

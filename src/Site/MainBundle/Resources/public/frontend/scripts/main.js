@@ -1,62 +1,24 @@
-//var numberVideo = 1;
+function disable_scroll(top) {
+    if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 
-//jQuery('body').vide({
-//  mp4: './video/video' + numberVideo + '.mp4'
-//}, {
-//  volume: 1,
-//  playbackRate: 1,
-//  muted: true,
-//  loop: true,
-//  autoplay: true,
-//  position: '50% 50%', // Similar to the CSS `background-position` property.
-//  posterType: 'detect', // Poster image type. "detect" — auto-detection; "none" — no poster; "jpg", "png", "gif",... - extensions.
-//  resizing: true // Auto-resizing, read: https://github.com/VodkaBears/Vide#resizing...
-//});
+        window.onscroll = function () {
+            console.log('disable scroll');
+            window.scrollTo(0, top);
+        };
+    }
+}
 
+function enable_scroll() {
+    if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        window.onscroll = function () {
+            console.log('enable scroll');
+        };
+    }
+}
 
-//jQuery("body").keydown(function(e) {
-//  if(e.keyCode == 37) { // left
-//    numberVideo--;
-//
-//    if(numberVideo < 1){
-//      numberVideo = 3;
-//    }
-//
-//    jQuery('body').vide({
-//      mp4: './video/video' + numberVideo + '.mp4'
-//    }, {
-//      volume: 1,
-//      playbackRate: 1,
-//      muted: true,
-//      loop: true,
-//      autoplay: true,
-//      position: '50% 50%', // Similar to the CSS `background-position` property.
-//      posterType: 'detect', // Poster image type. "detect" — auto-detection; "none" — no poster; "jpg", "png", "gif",... - extensions.
-//      resizing: true // Auto-resizing, read: https://github.com/VodkaBears/Vide#resizing...
-//    });
-//  }
-//  else if(e.keyCode == 39) { // right
-//    numberVideo++;
-//
-//    if(numberVideo > 3){
-//      numberVideo = 1;
-//    }
-//
-//    jQuery('body').vide({
-//      mp4: './video/video' + numberVideo + '.mp4'
-//    }, {
-//      volume: 1,
-//      playbackRate: 1,
-//      muted: true,
-//      loop: true,
-//      autoplay: true,
-//      position: '50% 50%', // Similar to the CSS `background-position` property.
-//      posterType: 'detect', // Poster image type. "detect" — auto-detection; "none" — no poster; "jpg", "png", "gif",... - extensions.
-//      resizing: true // Auto-resizing, read: https://github.com/VodkaBears/Vide#resizing...
-//    });
-//  }
-//});
 jQuery(function () {
+    disable_scroll(0);
+
   //  Инициализация слайдера на главной
   jQuery('.slider').slick({
     dots: false,
@@ -107,42 +69,43 @@ jQuery(function () {
   });
 
   /* Кнопка вниз на главной */
-  jQuery("a.icon-arrow").each(function (i, e) {
-    jQuery(e).click(function (element) {
-      element.preventDefault();
-      jQuery("body,html").animate({
-        scrollTop: jQuery(jQuery(e).attr('href')).offset().top
-      }, 1000);
-    });
+  jQuery("a.icon-arrow").click(function (e) {
+      e.preventDefault();
+      jQuery('.nav-pills li a[href="' + jQuery(this).attr('href') + '"]').click();
   });
 
-  ///* Стрелка для переключения слайдера */
-  //if(!Modernizr.touch){
-  //  jQuery(".CursorAnimateRotate").on("mousemove", function (e) {
-  //    jQuery('.cursor').addClass('isVisible');
-  //    if (e.pageX > jQuery(window).width() / 2) {
-  //      jQuery(".CursorAnimateRotate").addClass('right');
-  //    } else {
-  //      jQuery(".CursorAnimateRotate").removeClass('right');
-  //    }
-  //    jQuery('.cursor').css({'left': e.pageX - 35, 'top': e.pageY - 75 - jQuery(window).scrollTop()});
-  //  });
-  //
-  //  jQuery(".CursorAnimateRotate").on("mouseout", function (e) {
-  //    jQuery('.cursor').removeClass('isVisible');
-  //  });
-  //
-  //  jQuery(".icon-arrow").on("mousemove", function (e) {
-  //    jQuery('.cursor').removeClass('isVisible');
-  //  });
-  //
-  //  jQuery('.slider').click(function () {
-  //    if (jQuery(".CursorAnimateRotate").hasClass('right')) {
-  //      jQuery('.slider').slick('slickNext');
-  //    } else {
-  //      jQuery('.slider').slick('slickPrev');
-  //    }
-  //  });
-  //}
+    /* ---------------------------------------------- /*
+     * Scroll Animation
+     /* ---------------------------------------------- */
+
+    jQuery('.section-scroll').bind('click', function (e) {
+        var anchor = jQuery(this);
+        enable_scroll();
+        jQuery('.nav-pills li').removeClass('current');
+        anchor.parent().addClass('current');
+        jQuery('html, body').stop().animate({
+            scrollTop: jQuery(anchor.attr('href')).offset().top
+        }, 1000, function () {
+            if (anchor.attr('href') == "#mieniu") {
+                jQuery(".slider-menu .slick-next, .slider-menu .slick-prev").css({
+                    "opacity": 1
+                });
+            } else {
+                jQuery(".slider-menu .slick-next, .slider-menu .slick-prev").css({
+                    "opacity": 0
+                });
+            }
+            //if(jQuery(anchor.attr('href')).get(0).scrollHeight <= jQuery(anchor.attr('href')).height() + 115){
+            console.log('enable scroll');
+            disable_scroll(jQuery(window).scrollTop());
+            //}
+        });
+        if (window.history.pushState) {
+            if (anchor.attr('href').replace('#', '') != 'photo_restaurant') {
+                window.history.pushState(null, null, '/' + anchor.attr('href').replace('#', ''));
+            }
+        }
+        e.preventDefault();
+    });
 
 });
