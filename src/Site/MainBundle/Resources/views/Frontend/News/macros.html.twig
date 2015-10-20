@@ -25,6 +25,11 @@
                     {% for n in news %}
                         <li class="revealOnScroll" data-animation="fadeIn">
                             <div class="wrap">
+                                {% if n.img|length > 0 %}
+                                    <div class="image">
+                                        <img src="{{ image(n.webPath).cropResize(500, 400) }}" alt=""/>
+                                    </div>
+                                {% endif %}
                                 <div class="head">
                                     <span class="first">{{ n.date|date('d') }}/</span>
                                     <span class="second">{{ n.date|date('m') }}</span>

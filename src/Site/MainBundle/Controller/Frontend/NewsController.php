@@ -10,6 +10,22 @@ use Symfony\Component\HttpFoundation\Response;
 class NewsController extends Controller
 {
     /**
+     * News Content
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function indexAction()
+    {
+        $repository_news = $this->getDoctrine()->getRepository('SiteMainBundle:News');
+
+        $news = $repository_news->findAll();
+
+        return $this->render('SiteMainBundle:Frontend/News:index.html.twig', array(
+            'news' => $news
+        ));
+    }
+
+    /**
      * Get one news
      *
      * @param $slug

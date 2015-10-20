@@ -163,12 +163,16 @@ var demo = (function(window, jQuery, undefined) {
         'position': 'relative',
         'z-index': '1'
       });
+        if (window.history.pushState) {
+            window.history.pushState(null, null, jQuery('.hexagon').eq(id).attr('data-href'));
+        }
       setTimeout(function(){
         jQuery('.card__container').eq(id).find('.card__caption').css({
           'visibility': 'visible'
         });
         jQuery('body,html').scrollTop(0);
         jQuery('.nav-main').prependTo(jQuery('.card__container .wrap-svg').eq(id));
+        jQuery('.section-scroll').bind('click', sectionScroll2);
         jQuery('.nav-main').removeClass('revealOnScroll animated');
         jQuery('.nav-main').css({
           'position': 'absolute'
@@ -193,18 +197,23 @@ var demo = (function(window, jQuery, undefined) {
           var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
           hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
           navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+          jQuery('.section-scroll').bind('click', sectionScroll2);
           hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
         }else{
           var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
           hexagonOpen.find('.wrap-svg').html(hexagonPrev.find('.wrap-svg').html());
           hexagonOpen.find('.card__content').html(hexagonPrev.find('.card__content').html());
           navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+          jQuery('.section-scroll').bind('click', sectionScroll2);
         }
 
         hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
         hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
         hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
         hexagonCurrent = hexagonPrev;
+          if (window.history.pushState) {
+              window.history.pushState(null, null, hexagonCurrent.attr('data-href'));
+          }
       };
       var nvClickRight = function(){
         var hexagonNext = hexagonCurrent.parent().parent().next().find('.hexagon');
@@ -217,17 +226,22 @@ var demo = (function(window, jQuery, undefined) {
           hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
           hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
           navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+          jQuery('.section-scroll').bind('click', sectionScroll2);
         } else{
           var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
           hexagonOpen.find('.wrap-svg').html(hexagonNext.find('.wrap-svg').html());
           hexagonOpen.find('.card__content').html(hexagonNext.find('.card__content').html());
           navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+          jQuery('.section-scroll').bind('click', sectionScroll2);
         }
 
         hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
         hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
         hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
         hexagonCurrent = hexagonNext;
+          if (window.history.pushState) {
+              window.history.pushState(null, null, hexagonCurrent.attr('data-href'));
+          }
       };
       /**
        *  Обработка нажатия ссылок для переключения между направлениями компании
@@ -241,20 +255,24 @@ var demo = (function(window, jQuery, undefined) {
         if(hexagonNext.parent().parent().index() == hexagonOpen.parent().parent().index()){
           var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
           hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
-          navMain.prependTo(hexagonOpen.find('.wrap-svg')); 
+          navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+          jQuery('.section-scroll').bind('click', sectionScroll2);
           hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
         }else{
           var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
           hexagonOpen.find('.wrap-svg').html(hexagonNext.find('.wrap-svg').html());
           hexagonOpen.find('.card__content').html(hexagonNext.find('.card__content').html());
           navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+          jQuery('.section-scroll').bind('click', sectionScroll2);
         }
-
 
         hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
         hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
         hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
         hexagonCurrent = hexagonNext;
+          if (window.history.pushState) {
+              window.history.pushState(null, null, hexagonCurrent.attr('data-href'));
+          }
       };
       jQuery('.hexagon').eq(id).find('.nv-left').unbind('click').click(nvClickLeft);
       jQuery('.hexagon').eq(id).find('.nv-right').unbind('click').click(nvClickRight);

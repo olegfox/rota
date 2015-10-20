@@ -10,6 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MainController extends Controller
 {
+    /**
+     * @param null $slug
+     * @return Response
+     */
     public function indexAction($slug = null)
     {
         $repository_page = $this->getDoctrine()->getRepository('SiteMainBundle:Page');
@@ -37,6 +41,10 @@ class MainController extends Controller
         ));
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function feedbackAction(Request $request){
         $feedback = new Feedback();
         $form = $this->createForm(new FeedbackType(), $feedback);

@@ -1,3 +1,63 @@
+function sectionScroll(e){
+    var anchor = jQuery(this);
+    enable_scroll();
+    jQuery('.nav-pills li').removeClass('current');
+    anchor.parent().addClass('current');
+    jQuery('html, body').stop().animate({
+        scrollTop: jQuery(anchor.attr('href')).offset().top
+    }, 1000, function () {
+        if (anchor.attr('href') == "#mieniu") {
+            jQuery(".slider-menu .slick-next, .slider-menu .slick-prev").css({
+                "opacity": 1
+            });
+        } else {
+            jQuery(".slider-menu .slick-next, .slider-menu .slick-prev").css({
+                "opacity": 0
+            });
+        }
+        //if(jQuery(anchor.attr('href')).get(0).scrollHeight <= jQuery(anchor.attr('href')).height() + 115){
+        console.log('enable scroll');
+        disable_scroll(jQuery(window).scrollTop());
+        //}
+    });
+    if (window.history.pushState) {
+        if (anchor.attr('href').replace('#', '') != 'photo_restaurant') {
+            window.history.pushState(null, null, '/' + anchor.attr('href').replace('#', ''));
+        }
+    }
+    e.preventDefault();
+}
+
+function sectionScroll2(e){
+    var anchor = jQuery(this);
+    enable_scroll();
+    jQuery('.nav-pills li').removeClass('current');
+    anchor.parent().addClass('current');
+    jQuery('html, body').stop().animate({
+        scrollTop: jQuery(anchor.attr('href')).offset().top
+    }, 1000, function () {
+        if (anchor.attr('href') == "#mieniu") {
+            jQuery(".slider-menu .slick-next, .slider-menu .slick-prev").css({
+                "opacity": 1
+            });
+        } else {
+            jQuery(".slider-menu .slick-next, .slider-menu .slick-prev").css({
+                "opacity": 0
+            });
+        }
+        //if(jQuery(anchor.attr('href')).get(0).scrollHeight <= jQuery(anchor.attr('href')).height() + 115){
+        console.log('enable scroll');
+        disable_scroll(jQuery(window).scrollTop());
+        //}
+    });
+    if (window.history.pushState) {
+        if (anchor.attr('href').replace('#', '') != 'photo_restaurant') {
+            window.history.pushState(null, null, '/' + anchor.attr('href').replace('#', ''));
+        }
+    }
+    e.preventDefault();
+}
+
 function disable_scroll(top) {
     if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 
@@ -78,34 +138,6 @@ jQuery(function () {
      * Scroll Animation
      /* ---------------------------------------------- */
 
-    jQuery('.section-scroll').bind('click', function (e) {
-        var anchor = jQuery(this);
-        enable_scroll();
-        jQuery('.nav-pills li').removeClass('current');
-        anchor.parent().addClass('current');
-        jQuery('html, body').stop().animate({
-            scrollTop: jQuery(anchor.attr('href')).offset().top
-        }, 1000, function () {
-            if (anchor.attr('href') == "#mieniu") {
-                jQuery(".slider-menu .slick-next, .slider-menu .slick-prev").css({
-                    "opacity": 1
-                });
-            } else {
-                jQuery(".slider-menu .slick-next, .slider-menu .slick-prev").css({
-                    "opacity": 0
-                });
-            }
-            //if(jQuery(anchor.attr('href')).get(0).scrollHeight <= jQuery(anchor.attr('href')).height() + 115){
-            console.log('enable scroll');
-            disable_scroll(jQuery(window).scrollTop());
-            //}
-        });
-        if (window.history.pushState) {
-            if (anchor.attr('href').replace('#', '') != 'photo_restaurant') {
-                window.history.pushState(null, null, '/' + anchor.attr('href').replace('#', ''));
-            }
-        }
-        e.preventDefault();
-    });
+    jQuery('.section-scroll').bind('click', sectionScroll);
 
 });

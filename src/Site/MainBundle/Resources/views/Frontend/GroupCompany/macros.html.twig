@@ -11,7 +11,7 @@
                 {% for g in groupCompanies %}
                     <li class="revealOnScroll" data-animation="fadeIn">
                         <div class="wrap">
-                            <div class="hexagon card" id="{{ g.slug }}">
+                            <div class="hexagon card" id="{{ g.slug }}" data-href="{{ path('frontend_group_company_one', {slug: g.slug}) }}">
                                 <img src="{{ image(g.webPath).zoomCrop(700, 500) }}" alt=""/>
                                 <div class="card__container card__container_radius card__container--closed">
                                     <div class="wrap-svg">
