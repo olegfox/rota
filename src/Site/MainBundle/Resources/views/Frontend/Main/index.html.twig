@@ -82,7 +82,8 @@
 
     {# Контакты #}
     <section class="page" id="{{ pages[6].slug }}">
-        {{ render(url('frontend_content_index', {slug: pages[6].slug})) }}
+        {% include 'SiteMainBundle:Frontend/Feedback:form.html.twig' %}
+        {#{{ render(url('frontend_content_index', {slug: pages[6].slug})) }}#}
     </section>
 
 
@@ -115,7 +116,135 @@
                             console.log(jQuery('#struktura').offset().top);
                             jQuery(window).scrollTop(jQuery('#struktura').offset().top);
                             disable_scroll(jQuery('#struktura').offset().top);
-                            $('#{{ app.request.get('slug') }}').find('.card__image').trigger('click');
+                            {#$('#{{ app.request.get('slug') }}').find('.card__image').trigger('click');#}
+                            jQuery('#{{ app.request.get('slug') }}').find('.card__container').removeClass('card__container--closed');
+                            jQuery('.main').hide();
+                            if(jQuery('.slide').length > 0){
+                                jQuery('.slide').hide(1000);
+                            }
+                            jQuery('.posts-block').switchClass('bg-posts-block', 'bg-none-posts-block', 0);
+                            jQuery('.news-block').hide();
+                            jQuery('section.text').hide();
+                            jQuery('body').css({
+                                'overflow': 'hidden'
+                            });
+                            jQuery('footer').hide();
+                            jQuery('.hexagons').switchClass('bg-yes', 'bg-none', 0);
+                            jQuery('.hexagon').parent().find('.info').hide();
+                            jQuery('.hexagon').parent().find('.mediaOverlayIcon').hide();
+                            jQuery('#{{ app.request.get('slug') }}').find('.card__container').switchClass('card__container_radius', 'card__container_no_radius', 0);
+                            jQuery('#{{ app.request.get('slug') }}').find('.card__container').find('.card__image').css({
+                                'display': 'inline-block'
+                            });
+                            jQuery('#{{ app.request.get('slug') }}').parent().parent().css({
+                                'position': 'relative',
+                                'z-index': '1'
+                            });
+                            if (window.history.pushState) {
+                                window.history.pushState(null, null, jQuery('#{{ app.request.get('slug') }}').attr('data-href'));
+                            }
+                            jQuery('#{{ app.request.get('slug') }}').find('.card__container').find('.card__caption').css({
+                                'visibility': 'visible'
+                            });
+                            jQuery('body,html').scrollTop(0);
+                            jQuery('.nav-main').prependTo(jQuery('#{{ app.request.get('slug') }}').find('.card__container .wrap-svg'));
+                            jQuery('.section-scroll').bind('click', sectionScroll2);
+                            jQuery('.nav-main').removeClass('revealOnScroll animated');
+                            jQuery('.nav-main').css({
+                                'position': 'absolute'
+                            });
+                            jQuery('#{{ app.request.get('slug') }}').find('.card__container').find('.wrap-svg').addClass('wrap-svg-show');
+
+                            var hexagonOpen = jQuery('#{{ app.request.get('slug') }}'),
+                                    hexagonCurrent = jQuery('#{{ app.request.get('slug') }}'),
+                                    hexagonCurrentSvg = hexagonCurrent.find('.wrap-svg').html(),
+                                    hexagonCurrentCardContent = hexagonCurrent.find('.card__content').html();
+                            /**
+                             *  Обработка нажатия стрелок для переключения между направлениями компании
+                             */
+                            var nvClickLeft = function(){
+                                var hexagonPrev = hexagonCurrent.parent().parent().prev().find('.hexagon');
+
+                                if(hexagonPrev.html() == undefined){
+                                    hexagonPrev = jQuery('.hexagon').eq(jQuery('.hexagon').length - 1);
+                                }
+                                if(hexagonPrev.parent().parent().index() == hexagonOpen.parent().parent().index()){
+                                    hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
+                                    jQuery('.section-scroll').bind('click', sectionScroll2);
+                                    hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
+                                }else{
+                                    var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
+                                    hexagonOpen.find('.wrap-svg').html(hexagonPrev.find('.wrap-svg').html());
+                                    hexagonOpen.find('.card__content').html(hexagonPrev.find('.card__content').html());
+                                    navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+                                    jQuery('.section-scroll').bind('click', sectionScroll2);
+                                }
+
+                                hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
+                                hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
+                                hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
+                                hexagonCurrent = hexagonPrev;
+                                if (window.history.pushState) {
+                                    window.history.pushState(null, null, hexagonCurrent.attr('data-href'));
+                                }
+                            };
+                            var nvClickRight = function(){
+                                var hexagonNext = hexagonCurrent.parent().parent().next().find('.hexagon');
+
+                                if(hexagonNext.html() == undefined){
+                                    hexagonNext = jQuery('.hexagon').eq(0);
+                                }
+                                if(hexagonNext.parent().parent().index() == hexagonOpen.parent().parent().index()){
+                                    hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
+                                    hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
+                                    jQuery('.section-scroll').bind('click', sectionScroll2);
+                                } else{
+                                    var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
+                                    hexagonOpen.find('.wrap-svg').html(hexagonNext.find('.wrap-svg').html());
+                                    hexagonOpen.find('.card__content').html(hexagonNext.find('.card__content').html());
+                                    navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+                                    jQuery('.section-scroll').bind('click', sectionScroll2);
+                                }
+
+                                hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
+                                hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
+                                hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
+                                hexagonCurrent = hexagonNext;
+                                if (window.history.pushState) {
+                                    window.history.pushState(null, null, hexagonCurrent.attr('data-href'));
+                                }
+                            };
+                            /**
+                             *  Обработка нажатия ссылок для переключения между направлениями компании
+                             */
+                            var nvClickLink = function(e){
+                                e.preventDefault();
+
+                                var id = jQuery(this).attr('href'),
+                                    hexagonNext = jQuery('.hexagon' + id);
+                                if(hexagonNext.parent().parent().index() == hexagonOpen.parent().parent().index()){
+                                    hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
+                                    jQuery('.section-scroll').bind('click', sectionScroll2);
+                                    hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
+                                }else{
+                                    var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
+                                    hexagonOpen.find('.wrap-svg').html(hexagonNext.find('.wrap-svg').html());
+                                    hexagonOpen.find('.card__content').html(hexagonNext.find('.card__content').html());
+                                    navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+                                    jQuery('.section-scroll').bind('click', sectionScroll2);
+                                }
+
+                                hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
+                                hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
+                                hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
+                                hexagonCurrent = hexagonNext;
+                                if (window.history.pushState) {
+                                    window.history.pushState(null, null, hexagonCurrent.attr('data-href'));
+                                }
+                            };
+                            jQuery('#{{ app.request.get('slug') }}').find('.nv-left').unbind('click').click(nvClickLeft);
+                            jQuery('#{{ app.request.get('slug') }}').find('.nv-right').unbind('click').click(nvClickRight);
+                            jQuery('#{{ app.request.get('slug') }}').find('.submenu ul li a').unbind('click').click(nvClickLink);
                         {% endif %}
                     });
                 }

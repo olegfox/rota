@@ -5,41 +5,24 @@ namespace Site\MainBundle\Form;
 class Feedback
 {
 
-    /**
-     * Имя
-     *
-     * @var
-     */
-    private $name;
+    protected $name;
+
+    protected $company;
+
+    protected $phone;
+
+    protected $email;
+
+    protected $message;
+
+    public function getName()
+    {
+        return $this->name;
+    }
 
     /**
-     * Телефон
-     *
-     * @var
+     * {@inheritdoc}
      */
-    private $phone;
-
-    /**
-     * Email
-     *
-     * @var
-     */
-    private $email;
-
-    /**
-     * Тема
-     *
-     * @var
-     */
-    private $theme;
-
-    /**
-     * Сообщение
-     *
-     * @var
-     */
-    private $message;
-
     public function setName($name)
     {
         $this->name = $name;
@@ -47,26 +30,17 @@ class Feedback
         return $this;
     }
 
-    public function getName()
+    public function getCompany()
     {
-        return $this->name;
+        return $this->company;
     }
 
-    public function setPhone($phone)
+    /**
+     * {@inheritdoc}
+     */
+    public function setCompany($company)
     {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-    public function setEmail($email)
-    {
-        $this->email = $email;
+        $this->company = $company;
 
         return $this;
     }
@@ -76,21 +50,27 @@ class Feedback
         return $this->email;
     }
 
-    public function setTheme($theme)
+    /**
+     * {@inheritdoc}
+     */
+    public function setEmail($email)
     {
-        $this->theme = $theme;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getTheme()
+    public function getPhone()
     {
-        return $this->theme;
+        return $this->phone;
     }
 
-    public function setMessage($message)
+    /**
+     * {@inheritdoc}
+     */
+    public function setPhone($phone)
     {
-        $this->message = $message;
+        $this->phone = $phone;
 
         return $this;
     }
@@ -100,4 +80,13 @@ class Feedback
         return $this->message;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
 }

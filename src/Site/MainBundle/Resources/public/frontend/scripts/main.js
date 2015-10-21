@@ -6,24 +6,11 @@ function sectionScroll(e){
     jQuery('html, body').stop().animate({
         scrollTop: jQuery(anchor.attr('href')).offset().top
     }, 1000, function () {
-        if (anchor.attr('href') == "#mieniu") {
-            jQuery(".slider-menu .slick-next, .slider-menu .slick-prev").css({
-                "opacity": 1
-            });
-        } else {
-            jQuery(".slider-menu .slick-next, .slider-menu .slick-prev").css({
-                "opacity": 0
-            });
-        }
-        //if(jQuery(anchor.attr('href')).get(0).scrollHeight <= jQuery(anchor.attr('href')).height() + 115){
         console.log('enable scroll');
         disable_scroll(jQuery(window).scrollTop());
-        //}
     });
     if (window.history.pushState) {
-        if (anchor.attr('href').replace('#', '') != 'photo_restaurant') {
-            window.history.pushState(null, null, '/' + anchor.attr('href').replace('#', ''));
-        }
+        window.history.pushState(null, null, '/' + anchor.attr('href').replace('#', ''));
     }
     e.preventDefault();
 }
@@ -33,27 +20,52 @@ function sectionScroll2(e){
     enable_scroll();
     jQuery('.nav-pills li').removeClass('current');
     anchor.parent().addClass('current');
+    jQuery('.main').show();
+    if(jQuery('.slide').length > 0){
+        jQuery('.slide').show();
+    }
+    jQuery('.posts-block').switchClass('bg-none-posts-block', 'bg-posts-block', 0);
+    jQuery('.news-block').show();
+    jQuery('section.text').show();
+    jQuery('body').css({
+        'overflow': 'auto'
+    });
+    jQuery('body,html').scrollTop(jQuery('.posts-block').offset().top + 20);
+    jQuery('footer').show();
+    jQuery('.hexagons').switchClass('bg-none', 'bg-yes', 0);
+    jQuery('.hexagons').find('.pattern').remove();
+    jQuery('.hexagon').attr('style', '');
+    jQuery('.hexagon').parent().find('.info').show();
+    jQuery('.hexagon').parent().find('.mediaOverlayIcon').show();
+
+    jQuery('.wrap-svg-show').parent().parent().find('.card__container').switchClass('card__container_no_radius', 'card__container_radius', 0);
+
+    jQuery('.wrap-svg-show').parent().parent().parent().parent().css({
+        'position': 'static',
+        'z-index': '0'
+    });
+    jQuery('.wrap-svg-show').parent().parent().find('.card__container').find('.card__caption').css({
+        'visibility': 'hidden'
+    });
+    jQuery('.wrap-svg-show').parent().parent().find('.card__container').addClass('card__container--closed');
+    jQuery('.wrap-svg-show').find('.nav-main').prependTo(jQuery('body'));
+
+    jQuery('.nav-main').css({
+        'position': 'fixed'
+    });
+    jQuery('.wrap-svg-show').removeClass('wrap-svg-show');
+    jQuery('body').css({
+        'overflow': 'hidden'
+    });
+    jQuery('.section-scroll').unbind('click').bind('click', sectionScroll);
     jQuery('html, body').stop().animate({
         scrollTop: jQuery(anchor.attr('href')).offset().top
     }, 1000, function () {
-        if (anchor.attr('href') == "#mieniu") {
-            jQuery(".slider-menu .slick-next, .slider-menu .slick-prev").css({
-                "opacity": 1
-            });
-        } else {
-            jQuery(".slider-menu .slick-next, .slider-menu .slick-prev").css({
-                "opacity": 0
-            });
-        }
-        //if(jQuery(anchor.attr('href')).get(0).scrollHeight <= jQuery(anchor.attr('href')).height() + 115){
         console.log('enable scroll');
         disable_scroll(jQuery(window).scrollTop());
-        //}
     });
     if (window.history.pushState) {
-        if (anchor.attr('href').replace('#', '') != 'photo_restaurant') {
-            window.history.pushState(null, null, '/' + anchor.attr('href').replace('#', ''));
-        }
+        window.history.pushState(null, null, '/' + anchor.attr('href').replace('#', ''));
     }
     e.preventDefault();
 }
@@ -139,5 +151,57 @@ jQuery(function () {
      /* ---------------------------------------------- */
 
     jQuery('.section-scroll').bind('click', sectionScroll);
+
+    //  Валидация формы обратной связи
+    var $feedbackForm = jQuery('.form-block form');
+
+    function isEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+    }
+
+    if ($feedbackForm.length > 0) {
+        $feedbackForm.submit(function () {
+            // Флаг проверки
+            var $fl = 0;
+
+            if (jQuery(this).find('#name').val().length < 3) {
+                $fl = 1;
+                jQuery(this).find('#name').css('border-bottom', '1px solid red');
+            } else {
+                jQuery(this).find('#name').css('border-bottom', '1px solid #bdbdbd');
+            }
+            if (jQuery(this).find('#phone').val().length < 3) {
+                $fl = 1;
+                jQuery(this).find('#phone').css('border-bottom', '1px solid red');
+            } else {
+                jQuery(this).find('#phone').css('border-bottom', '1px solid #bdbdbd');
+            }
+            if (!isEmail($(this).find('#email').val())) {
+                $fl = 1;
+                jQuery(this).find('#email').css('border-bottom', '1px solid red');
+            } else {
+                jQuery(this).find('#email').css('border-bottom', '1px solid #bdbdbd');
+            }
+
+            if ($fl == 0) {
+                var $params = jQuery(this).serialize();
+
+                alert("Сообщение успешно отправлено!");
+
+                $feedbackForm.find('#name').val('');
+                $feedbackForm.find('#company').val('');
+                $feedbackForm.find('#phone').val('');
+                $feedbackForm.find('#email').val('');
+                $feedbackForm.find('#message').val('');
+
+                jQuery.post($(this).attr('action'), $params).fail(function () {
+                    alert("Ошибка отправки формы!");
+                });
+            }
+
+            return false;
+        });
+    }
 
 });

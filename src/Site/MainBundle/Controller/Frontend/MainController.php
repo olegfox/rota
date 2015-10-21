@@ -3,7 +3,7 @@
 namespace Site\MainBundle\Controller\Frontend;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Site\MainBundle\Form\FeedbackType;
+use Site\MainBundle\Form\FeedbackFormType;
 use Site\MainBundle\Form\Feedback;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,57 +31,69 @@ class MainController extends Controller
         $news = $repository_news->findLastAll(3);
         $sliders = $repository_sliders->findBy(array('main' => true));
         $pages = $repository_page->findAll();
+        $feedbackForm = $this->createCreateFeedbackForm(new Feedback());
 
         return $this->render('SiteMainBundle:Frontend/Main:index.html.twig', array(
             'page' => $page,
             'pages' => $pages,
             'groupCompanies' => $groupCompanies,
             'news' => $news,
-            'sliders' => $sliders
+            'sliders' => $sliders,
+            'feedbackForm' => $feedbackForm->createView()
         ));
     }
 
     /**
+     * Отправка сообшения через форму контактов
+     *
      * @param Request $request
      * @return Response
      */
     public function feedbackAction(Request $request){
-        $feedback = new Feedback();
-        $form = $this->createForm(new FeedbackType(), $feedback);
+        $feedbackForm = new Feedback();
+
+        $form = $this->createForm(new FeedbackFormType(), $feedbackForm, array(
+            'action' => $this->generateUrl('frontend_feedback'),
+            'method' => 'POST',
+        ));
 
         $form->handleRequest($request);
 
         if($form->isValid()){
+
             $swift = \Swift_Message::newInstance()
-                ->setSubject('Рота (Новая заявка)')
-                ->setFrom(array('site@dvsablin.ru' => "Новое письмо с сайта"))
-                ->setTo(array('mail@dvsablin.ru'))
+                ->setSubject('Рота (Обратная связь)')
+                ->setFrom(array('info@rota.ru' => "Рота"))
+                ->setTo(array('1991oleg22@gmail.com'))
                 ->setBody(
                     $this->renderView(
-                        'SiteMainBundle:Frontend/Feedback:message.html.twig',
+                        'SiteMainBundle:Frontend/Feedback:feedback_message.html.twig',
                         array(
-                            'form' => $feedback
+                            'feedbackForm' => $feedbackForm
                         )
                     )
                     , 'text/html'
                 );
             $this->get('mailer')->send($swift);
 
-            return new Response('Сообщение успешно отправлено!', 200);
+            return new Response('', 200);
         }
 
-        return new Response('Ошибка!', 500);
+        return new Response('', 500);
     }
 
     /**
-     * Создание формы обратной связи
+     * Создание формы контактов
      *
      * @param Feedback $entity
      * @return \Symfony\Component\Form\Form
      */
-    private function createCreateForm(Feedback $entity)
+    private function createCreateFeedbackForm(Feedback $entity)
     {
-        $form = $this->createForm(new FeedbackType(), $entity);
+        $form = $this->createForm(new FeedbackFormType(), $entity, array(
+            'action' => $this->generateUrl('frontend_feedback'),
+            'method' => 'POST',
+        ));
 
         return $form;
     }
