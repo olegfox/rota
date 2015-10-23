@@ -12,6 +12,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class BackgroundRepository extends EntityRepository
 {
+    /**
+     * @return bool
+     */
     public function findBackground(){
         $em = $this->getEntityManager();
 
@@ -23,6 +26,27 @@ class BackgroundRepository extends EntityRepository
 
         if(count($query->getResult()) > 0){
             return $query->getResult()[0];
+        }
+
+        return false;
+    }
+
+    /**
+     * Поис всех слайдеров, где есть только изображения
+     *
+     * @return array|bool
+     */
+    public function findByOnlyImage(){
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery('
+            SELECT b FROM SiteMainBundle:Background b
+            WHERE b.main = 1 AND b.video IS NULL
+            ORDER BY b.id DESC
+        ');
+
+        if(count($query->getResult()) > 0){
+            return $query->getResult();
         }
 
         return false;

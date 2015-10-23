@@ -7,6 +7,7 @@ use Site\MainBundle\Form\FeedbackFormType;
 use Site\MainBundle\Form\Feedback;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+include_once("Mobile_Detect.php");
 
 class MainController extends Controller
 {
@@ -16,6 +17,7 @@ class MainController extends Controller
      */
     public function indexAction($slug = null)
     {
+        $Mobile_Detect = new Mobile_Detect();
         $repository_page = $this->getDoctrine()->getRepository('SiteMainBundle:Page');
         $repository_group_company = $this->getDoctrine()->getRepository('SiteMainBundle:GroupCompany');
         $repository_news = $this->getDoctrine()->getRepository('SiteMainBundle:News');
@@ -30,6 +32,7 @@ class MainController extends Controller
         $groupCompanies = $repository_group_company->findAll();
         $news = $repository_news->findLastAll(3);
         $sliders = $repository_sliders->findBy(array('main' => true));
+
         $pages = $repository_page->findAll();
         $feedbackForm = $this->createCreateFeedbackForm(new Feedback());
 
@@ -39,7 +42,8 @@ class MainController extends Controller
             'groupCompanies' => $groupCompanies,
             'news' => $news,
             'sliders' => $sliders,
-            'feedbackForm' => $feedbackForm->createView()
+            'feedbackForm' => $feedbackForm->createView(),
+            'mobile' => $Mobile_Detect->isTablet() || $Mobile_Detect->isMobile()
         ));
     }
 

@@ -141,44 +141,93 @@ var demo = (function(window, jQuery, undefined) {
     if (!card.isOpen) {
       // Hide all
       //jQuery('.nav').fadeOut(1000);
-      jQuery('.main').fadeOut(1000);
-      if(jQuery('.slide').length > 0){
-        jQuery('.slide').fadeOut(1000);
-      }
-      jQuery('.posts-block').switchClass('bg-posts-block', 'bg-none-posts-block', 1000);
-      jQuery('.news-block').fadeOut(1000);
-      jQuery('section.text').fadeOut(1000);
-      jQuery('body').css({
-        'overflow': 'hidden'
-      });
-      jQuery('footer').fadeOut(1000);
-      jQuery('.hexagons').switchClass('bg-yes', 'bg-none', 1000);
-      jQuery('.hexagon').parent().find('.info').fadeOut(1000);
-      jQuery('.hexagon').parent().find('.mediaOverlayIcon').fadeOut(1000);
-      jQuery('.card__container').eq(id).switchClass('card__container_radius', 'card__container_no_radius', 3000);
-      jQuery('.card__container').eq(id).find('.card__image').css({
-        'display': 'inline-block'
-      });
-      jQuery('.hexagon').eq(id).parent().parent().css({
-        'position': 'relative',
-        'z-index': '1'
-      });
-        if (window.history.pushState) {
-            window.history.pushState(null, null, jQuery('.hexagon').eq(id).attr('data-href'));
+        if(mobilecheck()){
+            jQuery('.hexagon').eq(id).find('.card__container').removeClass('card__container--closed');
+            jQuery('.main').hide();
+            if(jQuery('.slide').length > 0){
+                jQuery('.slide').hide(1000);
+            }
+            jQuery('.posts-block').switchClass('bg-posts-block', 'bg-none-posts-block', 0);
+            jQuery('.news-block').hide();
+            jQuery('section.page .text').hide();
+            jQuery('body').css({
+                'overflow': 'hidden'
+            });
+            jQuery('footer').hide();
+            jQuery('.hexagons').switchClass('bg-yes', 'bg-none', 0);
+            jQuery('.hexagon').each(function(i, e){
+                if(jQuery(e).attr('id') != jQuery('.hexagon').eq(id).attr('id')){
+                    jQuery(e).css({
+                        'visibility': 'hidden'
+                    });
+                }
+            });
+            jQuery('.hexagon').parent().find('.info').hide();
+            jQuery('.hexagon').parent().find('.mediaOverlayIcon').hide();
+            jQuery('.hexagon').eq(id).find('.card__container').switchClass('card__container_radius', 'card__container_no_radius', 0);
+            jQuery('.hexagon').eq(id).find('.card__container').find('.card__image').css({
+                'display': 'inline-block'
+            });
+            jQuery('.hexagon').eq(id).parent().parent().css({
+                'position': 'relative',
+                'z-index': '1'
+            });
+            if (window.history.pushState) {
+                window.history.pushState(null, null, jQuery('.hexagon').eq(id).attr('data-href'));
+            }
+            jQuery('.hexagon').eq(id).find('.card__container').find('.card__caption').css({
+                'visibility': 'visible'
+            });
+            jQuery('.wrap-st-content').scrollTop(0);
+            jQuery('.nav-main').prependTo(jQuery('.hexagon').eq(id).find('.card__container .wrap-svg'));
+            jQuery('.section-scroll').bind('click', sectionScroll2);
+            jQuery('.nav-main').removeClass('revealOnScroll animated');
+            jQuery('.nav-main').css({
+                'position': 'absolute'
+            });
+            jQuery('.hexagon').eq(id).find('.card__container').find('.wrap-svg').addClass('wrap-svg-show');
+        } else {
+            jQuery('.main').fadeOut(1000);
+            if(jQuery('.slide').length > 0){
+                jQuery('.slide').fadeOut(1000);
+            }
+            jQuery('.posts-block').switchClass('bg-posts-block', 'bg-none-posts-block', 1000);
+            jQuery('.news-block').fadeOut(1000);
+            jQuery('section.page .text').fadeOut(1000);
+            jQuery('body').css({
+                'overflow': 'hidden'
+            });
+            jQuery('footer').fadeOut(1000);
+            jQuery('.hexagons').switchClass('bg-yes', 'bg-none', 1000);
+            jQuery('.hexagon').parent().find('.info').fadeOut(1000);
+            jQuery('.hexagon').parent().find('.mediaOverlayIcon').fadeOut(1000);
+            jQuery('.card__container').eq(id).switchClass('card__container_radius', 'card__container_no_radius', 3000);
+            jQuery('.card__container').eq(id).find('.card__image').css({
+                'display': 'inline-block'
+            });
+            jQuery('.hexagon').eq(id).parent().parent().css({
+                'position': 'relative',
+                'z-index': '1'
+            });
+            if (window.history.pushState) {
+                window.history.pushState(null, null, jQuery('.hexagon').eq(id).attr('data-href'));
+            }
+            setTimeout(function(){
+                jQuery('.card__container').eq(id).find('.card__caption').css({
+                    'visibility': 'visible'
+                });
+                jQuery('body,html').scrollTop(0);
+                jQuery('.nav-main').prependTo(jQuery('.card__container .wrap-svg').eq(id));
+                initToggleMenu();
+                jQuery('.section-scroll').bind('click', sectionScroll2);
+                jQuery('.nav-main').removeClass('revealOnScroll animated');
+                jQuery('.nav-main').css({
+                    'position': 'absolute'
+                });
+                jQuery('.card__container').eq(id).find('.wrap-svg').addClass('wrap-svg-show');
+            }, 3000);
         }
-      setTimeout(function(){
-        jQuery('.card__container').eq(id).find('.card__caption').css({
-          'visibility': 'visible'
-        });
-        jQuery('body,html').scrollTop(0);
-        jQuery('.nav-main').prependTo(jQuery('.card__container .wrap-svg').eq(id));
-        jQuery('.section-scroll').bind('click', sectionScroll2);
-        jQuery('.nav-main').removeClass('revealOnScroll animated');
-        jQuery('.nav-main').css({
-          'position': 'absolute'
-        });
-        jQuery('.card__container').eq(id).find('.wrap-svg').addClass('wrap-svg-show');
-      }, 3000);
+
 
       var hexagonOpen = jQuery('.hexagon').eq(id),
           hexagonCurrent = jQuery('.hexagon').eq(id),
@@ -196,7 +245,9 @@ var demo = (function(window, jQuery, undefined) {
         if(hexagonPrev.parent().parent().index() == hexagonOpen.parent().parent().index()){
           var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
           hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
-          navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+            if(!mobilecheck()){
+                navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+            }
           jQuery('.section-scroll').bind('click', sectionScroll2);
           hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
         }else{
@@ -204,6 +255,7 @@ var demo = (function(window, jQuery, undefined) {
           hexagonOpen.find('.wrap-svg').html(hexagonPrev.find('.wrap-svg').html());
           hexagonOpen.find('.card__content').html(hexagonPrev.find('.card__content').html());
           navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+            initToggleMenu();
           jQuery('.section-scroll').bind('click', sectionScroll2);
         }
 
@@ -221,17 +273,22 @@ var demo = (function(window, jQuery, undefined) {
         if(hexagonNext.html() == undefined){
           hexagonNext = jQuery('.hexagon').eq(0);
         }
+          console.log(hexagonNext.parent().parent().index() + '        ' + hexagonOpen.parent().parent().index());
         if(hexagonNext.parent().parent().index() == hexagonOpen.parent().parent().index()){
           var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
           hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
           hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
-          navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+            if(!mobilecheck()){
+                navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+            }
+            initToggleMenu();
           jQuery('.section-scroll').bind('click', sectionScroll2);
         } else{
           var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
           hexagonOpen.find('.wrap-svg').html(hexagonNext.find('.wrap-svg').html());
           hexagonOpen.find('.card__content').html(hexagonNext.find('.card__content').html());
           navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+            initToggleMenu();
           jQuery('.section-scroll').bind('click', sectionScroll2);
         }
 
@@ -255,7 +312,9 @@ var demo = (function(window, jQuery, undefined) {
         if(hexagonNext.parent().parent().index() == hexagonOpen.parent().parent().index()){
           var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
           hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
-          navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+            if(!mobilecheck()){
+                navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+            }
           jQuery('.section-scroll').bind('click', sectionScroll2);
           hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
         }else{
@@ -263,6 +322,7 @@ var demo = (function(window, jQuery, undefined) {
           hexagonOpen.find('.wrap-svg').html(hexagonNext.find('.wrap-svg').html());
           hexagonOpen.find('.card__content').html(hexagonNext.find('.card__content').html());
           navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+            initToggleMenu();
           jQuery('.section-scroll').bind('click', sectionScroll2);
         }
 
@@ -281,10 +341,10 @@ var demo = (function(window, jQuery, undefined) {
       // end Hide all
 
       // Open sequence.
-
-      sequence.add(tweenOtherCards);
-      sequence.add(card.openCard(_onCardMove), 0);
-
+        if(!mobilecheck()){
+            sequence.add(tweenOtherCards);
+            sequence.add(card.openCard(_onCardMove), 0);
+        }
     } else {
       // Close sequence.
       var closeCard = card.closeCard();
@@ -302,7 +362,7 @@ var demo = (function(window, jQuery, undefined) {
         }
         jQuery('.posts-block').switchClass('bg-none-posts-block', 'bg-posts-block', 1000);
         jQuery('.news-block').fadeIn(1000);
-        jQuery('section.text').fadeIn(1000);
+        jQuery('section.page .text').fadeIn(1000);
         jQuery('body').css({
           'overflow': 'auto'
         });
@@ -321,6 +381,7 @@ var demo = (function(window, jQuery, undefined) {
         'visibility': 'hidden'
       });
       jQuery('.card__container .wrap-svg').eq(id).find('.nav-main').prependTo(jQuery('body'));
+        initToggleMenu();
       jQuery('.nav-main').css({
         'position': 'relative'
       });

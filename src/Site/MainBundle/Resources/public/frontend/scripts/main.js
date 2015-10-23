@@ -3,11 +3,11 @@ function sectionScroll(e){
     enable_scroll();
     jQuery('.nav-pills li').removeClass('current');
     anchor.parent().addClass('current');
-    jQuery('html, body').stop().animate({
-        scrollTop: jQuery(anchor.attr('href')).offset().top
+    jQuery('.wrap-st-content').stop().animate({
+        scrollTop: jQuery(anchor.attr('href')).index() * jQuery('.wrap-st-content').height()
     }, 1000, function () {
         console.log('enable scroll');
-        disable_scroll(jQuery(window).scrollTop());
+        disable_scroll(jQuery('.wrap-st-content').scrollTop());
     });
     if (window.history.pushState) {
         window.history.pushState(null, null, '/' + anchor.attr('href').replace('#', ''));
@@ -31,6 +31,7 @@ function sectionScroll2(e){
         'overflow': 'auto'
     });
     jQuery('body,html').scrollTop(jQuery('.posts-block').offset().top + 20);
+    jQuery('section.page .text').show();
     jQuery('footer').show();
     jQuery('.hexagons').switchClass('bg-none', 'bg-yes', 0);
     jQuery('.hexagons').find('.pattern').remove();
@@ -48,7 +49,7 @@ function sectionScroll2(e){
         'visibility': 'hidden'
     });
     jQuery('.wrap-svg-show').parent().parent().find('.card__container').addClass('card__container--closed');
-    jQuery('.wrap-svg-show').find('.nav-main').prependTo(jQuery('body'));
+    jQuery('.wrap-svg-show').find('.nav-main').prependTo(jQuery('.st-pusher'));
 
     jQuery('.nav-main').css({
         'position': 'fixed'
@@ -58,11 +59,11 @@ function sectionScroll2(e){
         'overflow': 'hidden'
     });
     jQuery('.section-scroll').unbind('click').bind('click', sectionScroll);
-    jQuery('html, body').stop().animate({
-        scrollTop: jQuery(anchor.attr('href')).offset().top
+    jQuery('.wrap-st-content').stop().animate({
+        scrollTop: jQuery(anchor.attr('href')).index() * jQuery('.wrap-st-content').height()
     }, 1000, function () {
         console.log('enable scroll');
-        disable_scroll(jQuery(window).scrollTop());
+        disable_scroll(jQuery('.wrap-st-content').scrollTop());
     });
     if (window.history.pushState) {
         window.history.pushState(null, null, '/' + anchor.attr('href').replace('#', ''));
@@ -144,6 +145,8 @@ jQuery(function () {
   jQuery("a.icon-arrow").click(function (e) {
       e.preventDefault();
       jQuery('.nav-pills li a[href="' + jQuery(this).attr('href') + '"]').click();
+      jQuery('.nav-pills li').removeClass('current');
+      jQuery('.nav-pills li a[href="' + jQuery(this).attr('href') + '"]').parent().addClass('current');
   });
 
     /* ---------------------------------------------- /*

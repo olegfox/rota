@@ -7,7 +7,7 @@
     <div class="CursorAnimateRotate">
         <div class="slider">
             {% for slider in socialActivities %}
-                <div {% if slider.webPath|length > 0 %}style="background: url('{{ asset(slider.webPath) }}') center center no-repeat; background-size: cover;"{% endif %} {% if slider.video|length > 0 %}data-video='{{ asset('uploads/background/' ~ slider.video) }}' class="video"{% endif %}>
+                <div {% if slider.webPath|length > 0 %}style="background: url('{{ asset(slider.webPath) }}') center center no-repeat; background-size: cover;"{% endif %} {% if slider.video|length > 0 and mobile == false %}data-video='{{ asset('uploads/background/' ~ slider.video) }}' class="video"{% endif %}>
                     <div class="wrap-sticker">
                         <div class="sticker revealOnScroll" data-animation="fadeInRight">
                             <div class="wrap">
@@ -22,14 +22,14 @@
         <div class="cursor"><div class="cursorIcon"></div></div>
     </div>
 
-    <a href="#posts" class="icon-arrow revealOnScroll" data-animation="fadeInUp"></a>
+    {#<a href="#posts" class="icon-arrow revealOnScroll" data-animation="fadeInUp"></a>#}
 </section>
 <!-- end Main -->
 
 <!-- Text -->
-<section class="text">
-    <div class="content">
-        {{ page.text|raw }}
-    </div>
-</section>
+{#<section class="text">#}
+    {#<div class="content">#}
+        {#{{ page.text|raw }}#}
+    {#</div>#}
+{#</section>#}
 <!-- end Text -->

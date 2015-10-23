@@ -12,4 +12,24 @@ use Doctrine\ORM\EntityRepository;
  */
 class SocialActivitiesRepository extends EntityRepository
 {
+    /**
+     * Поис всех слайдеров, где есть только изображения
+     *
+     * @return array|bool
+     */
+    public function findByOnlyImage(){
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery('
+            SELECT s FROM SiteMainBundle:SocialActivities s
+            WHERE s.main = 1 AND s.video IS NULL
+            ORDER BY s.id DESC
+        ');
+
+        if(count($query->getResult()) > 0){
+            return $query->getResult();
+        }
+
+        return false;
+    }
 }
