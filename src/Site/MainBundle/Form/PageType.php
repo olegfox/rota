@@ -15,11 +15,11 @@ class PageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('parent', 'entity', array(
-                'required' => false,
-                'label' => 'backend.page.parent',
-                'class' => 'Site\MainBundle\Entity\Page',
-            ))
+//            ->add('parent', 'entity', array(
+//                'required' => false,
+//                'label' => 'backend.page.parent',
+//                'class' => 'Site\MainBundle\Entity\Page',
+//            ))
             ->add('file', 'file', array(
                 'required' => false,
                 'label' => 'backend.page.background'
