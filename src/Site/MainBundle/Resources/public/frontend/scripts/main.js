@@ -7,6 +7,10 @@ function sectionScroll(e){
         scrollTop: jQuery(anchor.attr('href')).index() * jQuery('.wrap-st-content').height()
     }, 1000, function () {
         console.log('enable scroll');
+        setTimeout(function(){
+            jQuery(anchor.attr('href')).focus();
+        }, 1000);
+
         disable_scroll(jQuery('.wrap-st-content').scrollTop());
     });
     if (window.history.pushState) {
@@ -63,6 +67,10 @@ function sectionScroll2(e){
         scrollTop: jQuery(anchor.attr('href')).index() * jQuery('.wrap-st-content').height()
     }, 1000, function () {
         console.log('enable scroll');
+        setTimeout(function(){
+            jQuery(anchor.attr('href')).focus();
+        }, 1000);
+
         disable_scroll(jQuery('.wrap-st-content').scrollTop());
     });
     if (window.history.pushState) {
@@ -99,7 +107,7 @@ jQuery(function () {
     speed: 300,
     slidesToShow: 1,
     adaptiveHeight: true,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 3000
   });
 
@@ -133,7 +141,7 @@ jQuery(function () {
       volume: 1,
       playbackRate: 1,
       muted: true,
-      autoplay: false,
+      autoplay: true,
       loop: true,
       position: '50% 50%', // Similar to the CSS `background-position` property.
       posterType: 'detect', // Poster image type. "detect" — auto-detection; "none" — no poster; "jpg", "png", "gif",... - extensions.
@@ -206,5 +214,14 @@ jQuery(function () {
             return false;
         });
     }
+
+    setTimeout(function(){
+        jQuery('.myScroll').perfectScrollbar({
+            wheelSpeed: 2,
+            wheelPropagation: true,
+            minScrollbarLength: 20,
+            suppressScrollX: true
+        });
+    }, 500);
 
 });

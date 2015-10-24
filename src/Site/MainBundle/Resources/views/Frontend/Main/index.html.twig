@@ -56,32 +56,32 @@
     <!-- end News -->
 
     {# Структура #}
-    <section class="page" id="{{ pages[1].slug }}">
+    <section class="page myScroll" id="{{ pages[1].slug }}">
         {{ render(url('frontend_group_company_index')) }}
     </section>
 
     {# О нас #}
-    <section class="page" id="{{ pages[2].slug }}">
+    <section class="page myScroll" id="{{ pages[2].slug }}">
         {{ render(url('frontend_content_index', {slug: pages[2].slug})) }}
     </section>
 
     {# Руководство #}
-    <section class="page" id="{{ pages[3].slug }}">
+    <section class="page myScroll" id="{{ pages[3].slug }}">
         {{ render(url('frontend_director_index')) }}
     </section>
 
     {# Социальная деятельность #}
-    <section class="page" id="{{ pages[4].slug }}">
+    <section class="page myScroll" id="{{ pages[4].slug }}">
         {{ render(url('frontend_social_activities_index')) }}
     </section>
 
     {# Новости #}
-    <section class="page" id="{{ pages[5].slug }}">
+    <section class="page myScroll" id="{{ pages[5].slug }}">
         {{ render(url('frontend_news_index')) }}
     </section>
 
     {# Контакты #}
-    <section class="page" id="{{ pages[6].slug }}">
+    <section class="page myScroll" id="{{ pages[6].slug }}">
         {% include 'SiteMainBundle:Frontend/Feedback:form.html.twig' %}
         {#{{ render(url('frontend_content_index', {slug: pages[6].slug})) }}#}
     </section>
