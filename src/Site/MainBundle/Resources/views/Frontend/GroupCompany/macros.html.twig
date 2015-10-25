@@ -13,7 +13,7 @@
                         <div class="wrap">
                             <div class="hexagon card" id="{{ g.slug }}" data-href="{{ path('frontend_group_company_one', {slug: g.slug}) }}">
                                 <img src="{{ image(g.webPath).zoomCrop(700, 500) }}" alt=""/>
-                                <div class="card__container card__container_radius card__container--closed">
+                                <div class="card__container card__container_radius card__container--closed myScrollCompany">
                                     <div class="wrap-svg">
                                         <svg class="card__image" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 500" preserveAspectRatio="xMidYMid slice">
                                             <defs>
@@ -32,7 +32,7 @@
                                                 {% endfor %}
                                             </ul>
                                         </div>
-                                        <div class="wrap-h1">
+                                        <div class="wrap-h1 myScrollCompany">
                                             <h1>{{ g.title }}</h1>
                                             {{ g.text|raw }}
                                         </div>

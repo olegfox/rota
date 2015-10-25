@@ -160,6 +160,12 @@
                             'position': 'absolute'
                         });
                         jQuery('#{{ app.request.get('slug') }}').find('.card__container').find('.wrap-svg').addClass('wrap-svg-show');
+                    jQuery('#{{ app.request.get('slug') }}').find('.myScrollCompany').perfectScrollbar({
+                        wheelSpeed: 2,
+                        wheelPropagation: true,
+                        minScrollbarLength: 20,
+                        suppressScrollX: true
+                    });
 
                         var hexagonOpen = jQuery('#{{ app.request.get('slug') }}'),
                                 hexagonCurrent = jQuery('#{{ app.request.get('slug') }}'),
@@ -187,6 +193,13 @@
                                 jQuery('.section-scroll').bind('click', sectionScroll2);
                             }
 
+                            hexagonOpen.find('.myScrollCompany').perfectScrollbar({
+                                wheelSpeed: 2,
+                                wheelPropagation: true,
+                                minScrollbarLength: 20,
+                                suppressScrollX: true
+                            });
+
                             hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
                             hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
                             hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
@@ -213,6 +226,13 @@
                                 initToggleMenu();
                                 jQuery('.section-scroll').bind('click', sectionScroll2);
                             }
+
+                            hexagonOpen.find('.myScrollCompany').perfectScrollbar({
+                                wheelSpeed: 2,
+                                wheelPropagation: true,
+                                minScrollbarLength: 20,
+                                suppressScrollX: true
+                            });
 
                             hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
                             hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
@@ -242,6 +262,13 @@
                                 initToggleMenu();
                                 jQuery('.section-scroll').bind('click', sectionScroll2);
                             }
+
+                            hexagonOpen.find('.myScrollCompany').perfectScrollbar({
+                                wheelSpeed: 2,
+                                wheelPropagation: true,
+                                minScrollbarLength: 20,
+                                suppressScrollX: true
+                            });
 
                             hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
                             hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);

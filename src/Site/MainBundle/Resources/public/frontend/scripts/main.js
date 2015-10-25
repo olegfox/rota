@@ -70,6 +70,9 @@ function sectionScroll2(e){
         setTimeout(function(){
             jQuery(anchor.attr('href')).focus();
         }, 1000);
+        jQuery('.hexagon').each(function(i, e){
+            $(e).find('.myScrollCompany').perfectScrollbar('destroy');  
+        });
 
         disable_scroll(jQuery('.wrap-st-content').scrollTop());
     });
@@ -108,7 +111,9 @@ jQuery(function () {
     slidesToShow: 1,
     adaptiveHeight: true,
     autoplay: true,
-    autoplaySpeed: 3000
+    autoplaySpeed: 3000,
+      fade: true,
+      cssEase: 'linear'
   });
 
   jQuery('.slider').on('init setPosition', function (slick) {

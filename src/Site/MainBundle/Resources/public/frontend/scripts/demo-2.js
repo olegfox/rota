@@ -186,6 +186,12 @@ var demo = (function(window, jQuery, undefined) {
                 'position': 'absolute'
             });
             jQuery('.hexagon').eq(id).find('.card__container').find('.wrap-svg').addClass('wrap-svg-show');
+            jQuery('.hexagon').eq(id).find('.myScrollCompany').perfectScrollbar({
+                wheelSpeed: 2,
+                wheelPropagation: true,
+                minScrollbarLength: 20,
+                suppressScrollX: true
+            });
         } else {
             jQuery('.main').fadeOut(1000);
             if(jQuery('.slide').length > 0){
@@ -225,6 +231,12 @@ var demo = (function(window, jQuery, undefined) {
                     'position': 'absolute'
                 });
                 jQuery('.card__container').eq(id).find('.wrap-svg').addClass('wrap-svg-show');
+                jQuery('.hexagon').eq(id).find('.myScrollCompany').perfectScrollbar({
+                    wheelSpeed: 2,
+                    wheelPropagation: true,
+                    minScrollbarLength: 20,
+                    suppressScrollX: true
+                });
             }, 3000);
         }
 
@@ -259,6 +271,13 @@ var demo = (function(window, jQuery, undefined) {
           jQuery('.section-scroll').bind('click', sectionScroll2);
         }
 
+          hexagonOpen.find('.myScrollCompany').perfectScrollbar({
+              wheelSpeed: 2,
+              wheelPropagation: true,
+              minScrollbarLength: 20,
+              suppressScrollX: true
+          });
+
         hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
         hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
         hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
@@ -291,6 +310,13 @@ var demo = (function(window, jQuery, undefined) {
             initToggleMenu();
           jQuery('.section-scroll').bind('click', sectionScroll2);
         }
+
+          hexagonOpen.find('.myScrollCompany').perfectScrollbar({
+              wheelSpeed: 2,
+              wheelPropagation: true,
+              minScrollbarLength: 20,
+              suppressScrollX: true
+          });
 
         hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
         hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
@@ -325,6 +351,13 @@ var demo = (function(window, jQuery, undefined) {
             initToggleMenu();
           jQuery('.section-scroll').bind('click', sectionScroll2);
         }
+
+          hexagonOpen.find('.myScrollCompany').perfectScrollbar({
+              wheelSpeed: 2,
+              wheelPropagation: true,
+              minScrollbarLength: 20,
+              suppressScrollX: true
+          });
 
         hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
         hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
