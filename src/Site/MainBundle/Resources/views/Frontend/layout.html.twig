@@ -7,14 +7,19 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="{{ asset('bundles/sitemain/frontend/fonts/font-awesome-4.3.0/css/font-awesome.min.css') }}">
-    <link href="{{ asset('bundles/sitemain/frontend/scripts/SidebarTransitions/component.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('bundles/sitemain/frontend/styles/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/sitemain/frontend/styles/pattern.css') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/sitemain/frontend/styles/card.css') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/sitemain/frontend/styles/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/sitemain/frontend/scripts/perfect-scrollbar/css/perfect-scrollbar.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/sitemain/frontend/styles/main.css') }}">
+    {% stylesheets
+    'bundles/sitemain/frontend/fonts/font-awesome-4.3.0/css/font-awesome.min.css'
+    'bundles/sitemain/frontend/scripts/SidebarTransitions/component.css'
+    'bundles/sitemain/frontend/styles/animate.css'
+    'bundles/sitemain/frontend/styles/pattern.css'
+    'bundles/sitemain/frontend/styles/card.css'
+    'bundles/sitemain/frontend/styles/slick.css'
+    'bundles/sitemain/frontend/scripts/perfect-scrollbar/css/perfect-scrollbar.min.css'
+    'js/code.photoswipe-3.0.5/3.0.5/photoswipe.css'
+    'bundles/sitemain/frontend/styles/main.css'
+    filter='yui_css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %} 
     <!-- endbuild -->
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="{{ asset('bundles/sitemain/frontend/bower_components/modernizr/modernizr.js') }}"></script>

@@ -58,6 +58,7 @@ function sectionScroll2(e){
     jQuery('.nav-main').css({
         'position': 'fixed'
     });
+    jQuery('.wrap-svg-show').parent().parent().find('.myScrollCompany').perfectScrollbar('destroy');
     jQuery('.wrap-svg-show').removeClass('wrap-svg-show');
     jQuery('body').css({
         'overflow': 'hidden'
@@ -70,9 +71,6 @@ function sectionScroll2(e){
         setTimeout(function(){
             jQuery(anchor.attr('href')).focus();
         }, 1000);
-        jQuery('.hexagon').each(function(i, e){
-            $(e).find('.myScrollCompany').perfectScrollbar('destroy');  
-        });
 
         disable_scroll(jQuery('.wrap-st-content').scrollTop());
     });
