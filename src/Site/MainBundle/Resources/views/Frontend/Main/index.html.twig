@@ -12,6 +12,35 @@
 {% block og_image %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}http://{{ app.request.host }}{{ image(groupCompany.webPath).zoomCrop(300, 300) }}{% else %}http://{{ app.request.host }}{{ image('bundles/sitemain/frontend/images/logo.png').zoomCrop(300, 300) }}{% endif %}{% endblock %}
 {% block image_src %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}http://{{ app.request.host }}{{ image(groupCompany.webPath).zoomCrop(300, 300) }}{% else %}http://{{ app.request.host }}{{ image('bundles/sitemain/frontend/images/logo.png').zoomCrop(300, 300) }}{% endif %}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}
+        <script type="text/javascript">
+            jQuery('.main').hide();
+            if(jQuery('.slide').length > 0){
+                jQuery('.slide').hide(1000);
+            }
+            jQuery('.posts-block').switchClass('bg-posts-block', 'bg-none-posts-block', 0);
+            jQuery('.news-block').hide();
+            jQuery('section.page .text').hide();
+            jQuery('body').css({
+                'overflow': 'hidden'
+            });
+            jQuery('footer').hide();
+            jQuery('.hexagons').switchClass('bg-yes', 'bg-none', 0);
+            jQuery('.hexagon').each(function(i, e){
+                if(jQuery(e).attr('id') != '{{ app.request.get('slug') }}'){
+                    jQuery(e).css({
+                        'visibility': 'hidden'
+                    });
+                }
+            });
+            jQuery('.hexagon').parent().find('.info').hide();
+            jQuery('.hexagon').parent().find('.mediaOverlayIcon').hide(); 
+        </script>
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     <!-- Main -->
     <section class="main">

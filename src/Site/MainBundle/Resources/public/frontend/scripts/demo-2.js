@@ -193,7 +193,7 @@ var demo = (function(window, jQuery, undefined) {
                 suppressScrollX: true
             });
         } else {
-            jQuery('.main').fadeOut(1000);
+            //jQuery('.main').fadeOut(1000);
             if(jQuery('.slide').length > 0){
                 jQuery('.slide').fadeOut(1000);
             }
