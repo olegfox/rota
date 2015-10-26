@@ -54,6 +54,13 @@ class Background
      */
     private $main = false;
 
+    /**
+     * @var integer
+     * @Gedmo\SortablePosition
+     * @ORM\Column(name="position", type="integer", nullable=true)
+     */
+    private $position = 0;
+
     public function getAbsolutePath()
     {
         return null === $this->img
@@ -293,5 +300,28 @@ class Background
     public function getText()
     {
         return $this->text;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     * @return Background
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer 
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }

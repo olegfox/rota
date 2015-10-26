@@ -13,6 +13,13 @@ use Doctrine\ORM\EntityRepository;
 class BackgroundRepository extends EntityRepository
 {
     /**
+     * @return array
+     */
+    public function findAll(){
+        return $this->findBy(array(), array('position' => 'ASC'));
+    }
+
+    /**
      * @return bool
      */
     public function findBackground(){

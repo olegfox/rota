@@ -15,6 +15,13 @@ class BackgroundType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('position', null, array(
+                'required' => false,
+                'label' => 'backend.background.position',
+                'attr' => array(
+                    'min' => 0
+                )
+            ))
             ->add('videoFile', 'file', array(
                 'required' => false,
                 'label' => 'backend.background.video'

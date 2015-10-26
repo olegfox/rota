@@ -33,6 +33,7 @@ backend:
         video: Видео
         img: Изображение
         text: Текст
+        position: Позиция
         not_found: Слайд не существует
     social_activities:
         h1_show: Слайд

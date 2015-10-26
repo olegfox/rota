@@ -15,29 +15,29 @@
 {% block stylesheets %}
     {{ parent() }}
     {% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}
-        <script type="text/javascript">
-            jQuery('.main').hide();
-            if(jQuery('.slide').length > 0){
-                jQuery('.slide').hide(1000);
+        <style type="text/css">
+            .main{
+                display: none;
             }
-            jQuery('.posts-block').switchClass('bg-posts-block', 'bg-none-posts-block', 0);
-            jQuery('.news-block').hide();
-            jQuery('section.page .text').hide();
-            jQuery('body').css({
-                'overflow': 'hidden'
-            });
-            jQuery('footer').hide();
-            jQuery('.hexagons').switchClass('bg-yes', 'bg-none', 0);
-            jQuery('.hexagon').each(function(i, e){
-                if(jQuery(e).attr('id') != '{{ app.request.get('slug') }}'){
-                    jQuery(e).css({
-                        'visibility': 'hidden'
-                    });
-                }
-            });
-            jQuery('.hexagon').parent().find('.info').hide();
-            jQuery('.hexagon').parent().find('.mediaOverlayIcon').hide(); 
-        </script>
+            .slide{
+                display: none;
+            }
+            .news-block{
+                display: none;
+            }
+            section.page .text{
+                display: none;
+            }
+            footer{
+                display: none;
+            }
+            .hexagon .info{
+                display: none;
+            }
+            .hexagon .mediaOverlayIcon{
+                display: none;
+            }
+        </style>
     {% endif %}
 {% endblock %}
 
@@ -171,7 +171,7 @@
                         jQuery('#{{ app.request.get('slug') }}').find('.card__container').find('.card__image').css({
                             'display': 'inline-block'
                         });
-                        jQuery('#{{ app.request.get('slug') }}').parent().parent().css({
+                        jQuery('#{{ app.request.get('slug')  }}').parent().parent().css({
                             'position': 'relative',
                             'z-index': '1'
                         });

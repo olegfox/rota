@@ -54,6 +54,13 @@ class Background
      */
     private $main = false;
 
+    /**
+     * @var integer
+     * @Gedmo\SortablePosition
+     * @ORM\Column(name="position", type="integer", nullable=true)
+     */
+    private $position = 0;
+
     public function getAbsolutePath()
     {
         return null === $this->img
@@ -247,5 +254,51 @@ class Background
     public function getMain()
     {
         return $this->main;
+    }
+
+    /**
+     * Set video
+     *
+     * @param string $video
+     * @return Background
+     */
+    public function setVideo($video)
+    {
+        $this->video = $video;
+
+        return $this;
+    }
+
+    /**
+     * Get video
+     *
+     * @return string 
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * Set text
+     *
+     * @param string $text
+     * @return Background
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * Get text
+     *
+     * @return string 
+     */
+    public function getText()
+    {
+        return $this->text;
     }
 }
