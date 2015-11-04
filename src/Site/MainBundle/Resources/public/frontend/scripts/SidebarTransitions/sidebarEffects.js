@@ -83,5 +83,87 @@ function initToggleMenu() {
     });
 }
 
+/*
+ * News and Comments Menu
+ */
+function initNews(selector, selector2) {
+
+    var container = document.getElementById( selector2 ),
+        buttons = Array.prototype.slice.call( document.querySelectorAll( selector ) ),
+    // event type (if mobile use touch events)
+        eventtype = 'click',
+        resetMenu = function() {
+            classie.remove( container, 'st-menu-open' );
+            classie.remove( document.getElementById( 'st-container' ), 'st-menu-open' );
+            if (window.history.pushState) {
+                window.history.back();
+            }
+        },
+        bodyClickFn = function(evt) {
+            if( !hasParentClass( evt.target, 'st-menu' ) ) {
+                resetMenu();
+                document.removeEventListener( mobilecheck() ? 'touchstart' : 'click', bodyClickFn );
+            }
+        };
+
+    buttons.forEach( function( el, i ) {
+        console.log(el);
+        var effect = el.getAttribute( 'data-effect' );
+
+        el.addEventListener( eventtype, function( ev ) {
+            ev.stopPropagation();
+            ev.preventDefault();
+            //container.className = 'st-menu-menu'; // clear
+            document.getElementById( 'st-container').className = 'st-container';
+            jQuery('.' + selector2).html(jQuery.parseJSON(jQuery(this).data( 'text' )));
+
+            // Init scrollbar
+            jQuery('#st-menu-news').perfectScrollbar({
+                wheelSpeed: 2,
+                wheelPropagation: true,
+                minScrollbarLength: 20,
+                suppressScrollX: true
+            });
+
+            setTimeout(function(){
+                // Init Slider
+                jQuery('#st-menu-news .slider').slick({
+                    dots: true,
+                    infinite: true,
+                    speed: 500,
+                    fade: false,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: false,
+                    autoplaySpeed: 2000
+                });
+            }, 500);
+
+
+            jQuery('.st-menu .close').click(function(){
+                resetMenu();
+                document.removeEventListener( mobilecheck() ? 'touchstart' : 'click', bodyClickFn );
+            });
+
+            if (window.history.pushState) {
+                window.history.pushState(null, null, jQuery(this).data( 'href' ));
+            }
+
+            // Инициализация социальных кнопок
+            jQuery('.social-likes').socialLikes();
+
+            classie.add( container, effect );
+            classie.add( document.getElementById( 'st-container' ), effect );
+            setTimeout( function() {
+                classie.add( container, 'st-menu-open' );
+                classie.add( document.getElementById( 'st-container' ), 'st-menu-open' );
+            }, 25 );
+            document.addEventListener( mobilecheck() ? 'touchstart' : 'click', bodyClickFn );
+        });
+    } );
+
+}
+
 initToggleMenu();
+initNews('.news-block .inner-news-block .wrap-news .news ul li .wrap', 'st-menu-news');
 

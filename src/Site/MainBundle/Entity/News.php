@@ -86,6 +86,16 @@ class News
      */
     private $file;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Slider", mappedBy="news", cascade={"persist", "remove"})
+     **/
+    private $slider;
+
+    /**
+     * Список фото из формы
+     **/
+    private $sliderGallery;
+
     public function getAbsolutePath()
     {
         return null === $this->img
@@ -385,4 +395,70 @@ class News
         return $this->date;
     }
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->slider = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add slider
+     *
+     * @param \Site\MainBundle\Entity\Slider $slider
+     * @return News
+     */
+    public function addSlider(\Site\MainBundle\Entity\Slider $slider)
+    {
+        $this->slider[] = $slider;
+
+        return $this;
+    }
+
+    /**
+     * Remove slider
+     *
+     * @param \Site\MainBundle\Entity\Slider $slider
+     */
+    public function removeSlider(\Site\MainBundle\Entity\Slider $slider)
+    {
+        $this->slider->removeElement($slider);
+    }
+
+    /**
+     * Get slider
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSlider()
+    {
+        return $this->slider;
+    }
+
+    public function getSliderGallery()
+    {
+        return $this->sliderGallery;
+    }
+
+    public function setSliderGallery($sliderGallery)
+    {
+        $this->sliderGallery = $sliderGallery;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\PreRemove
+     */
+    public function deleteAllSlider()
+    {
+        $sliders = $this->getSlider();
+
+        foreach ($sliders as $slider) {
+            if(file_exists($slider->getImg())){
+                unlink($slider->getImg());
+            }
+        }
+    }
 }

@@ -24,7 +24,7 @@
                 <ul>
                     {% for n in news %}
                         <li class="revealOnScroll" data-animation="fadeIn">
-                            <div class="wrap">
+                            <div class="wrap" data-effect="st-effect-666" data-text="{{ (render(url('frontend_news_one_ajax', {slug : n.slug})))|json_encode }}" data-href="{{ path('frontend_news_one', {slug : n.slug}) }}">
                                 {% if n.img|length > 0 %}
                                     <div class="image">
                                         <img src="{{ image(n.webPath).cropResize(500, 400) }}" alt=""/>

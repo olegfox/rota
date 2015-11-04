@@ -37,6 +37,16 @@
             <th>{{ 'backend.news.metakeywords'|trans({}, 'menu') }}</th>
             <td>{{ entity.metaKeywords }}</td>
         </tr>
+        <tr>
+            <th>{{ 'backend.news.slider'|trans({}, 'menu') }}</th>
+            <td>
+                <div class="gallery">
+                    {% for slider in entity.slider %}
+                        <a href="{{ asset(slider.img) }}" target="_blank"><img src="{{ image(slider.img).zoomCrop(50, 50) }}" alt="{{ image(slider.img).zoomCrop(50, 50) }}"/></a>
+                    {% endfor %}
+                </div>
+            </td>
+        </tr>
         </tbody>
     </table>
 

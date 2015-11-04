@@ -50,6 +50,21 @@ class NewsController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
+//          Добавляем фотки в слайдер
+            $imagesJson = $request->get('sliderGallery');
+            if ($imagesJson) {
+
+                $images = json_decode($imagesJson);
+
+                foreach ($images as $image) {
+                    $slider = new Slider();
+                    $slider->setImg("uploads/slider/" . $image);
+                    $slider->setNews($entity);
+                    $em->persist($slider);
+                }
+
+            }
+
             $em->persist($entity);
             $em->flush();
 
@@ -179,6 +194,38 @@ class NewsController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+
+//          Добавляем фотки в слайдер
+            $imagesJson = $request->get('sliderGallery');
+            if ($imagesJson) {
+
+                $images = json_decode($imagesJson);
+
+                foreach ($images as $image) {
+                    $slider = new Slider();
+                    $slider->setImg("uploads/slider/" . $image);
+                    $slider->setNews($entity);
+                    $em->persist($slider);
+                }
+
+            }
+
+//          Удаляем фотки из слайдера, отмеченные на удаление
+            $sliders = $request->get('sliders');
+
+            if(is_array($sliders)){
+                foreach($sliders as $slider){
+                    $repository_slider = $this->getDoctrine()->getRepository('SiteMainBundle:Slider');
+                    $sliderObject = $repository_slider->find($slider);
+
+                    if($sliderObject){
+                        if(file_exists($sliderObject->getImg())){
+                            unlink($sliderObject->getImg());
+                        }
+                        $em->remove($sliderObject);
+                    }
+                }
+            }
 
             $em->flush();
 

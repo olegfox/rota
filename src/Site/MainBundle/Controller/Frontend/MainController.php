@@ -31,7 +31,7 @@ class MainController extends Controller
 
         $groupCompanies = $repository_group_company->findAll();
         $news = $repository_news->findLastAll(3);
-        $sliders = $repository_sliders->findBy(array('main' => true));
+        $sliders = $repository_sliders->findBy(array('main' => true), array('position' => 'ASC'));
 
         $pages = $repository_page->findAll();
         $feedbackForm = $this->createCreateFeedbackForm(new Feedback());

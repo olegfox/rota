@@ -47,7 +47,7 @@
         <div class="CursorAnimateRotate">
             <div class="slider">
                 {% for slider in sliders %}
-                    <div {% if slider.webPath|length > 0 %}style="background: url('{{ asset(slider.webPath) }}') center center no-repeat; background-size: cover;"{% endif %} {% if slider.video|length > 0 and mobile == false %}data-video='{{ asset('uploads/background/' ~ slider.video) }}' class="video"{% endif %}>
+                    <div {% if slider.webPath|length > 0 %}style="background: url('{{ image(slider.webPath).cropResize(1920) }}') center center no-repeat; background-size: cover;"{% endif %} {% if slider.video|length > 0 and mobile == false %}data-video='{{ asset('uploads/background/' ~ slider.video) }}' class="video"{% endif %}>
                         <div class="wrap-sticker">
                             <div class="sticker revealOnScroll" data-animation="fadeInRight">
                                 <div class="wrap">
@@ -138,6 +138,13 @@
                         console.log(jQuery('#{{ app.request.get('slug') }}').offset().top);
                         jQuery('.wrap-st-content').scrollTop(jQuery('#{{ app.request.get('slug') }}').index() * jQuery('.wrap-st-content').height());
                         disable_scroll(jQuery('.wrap-st-content').scrollTop());
+                        {% elseif app.request.attributes.get('_route') == 'frontend_news_one' %}
+    //                  News
+                        $('.nav a[href="#novosti"]').parent().addClass('current');
+                        enable_scroll();
+                        $('.wrap-st-content').scrollTop($('#novosti').index() * $('.wrap-st-content').height());
+                        disable_scroll($('#novosti').index() * $('.wrap-st-content').height());
+                        $("*[data-href='{{ path('frontend_news_one', {slug : newsOne.slug}) }}']").click();
                     {% elseif app.request.attributes.get('_route') == 'frontend_group_company_one' %}
                         jQuery('.nav-pills a[href="#struktura"]').parent().addClass('current');
                         enable_scroll();

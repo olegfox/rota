@@ -16,6 +16,7 @@
     'bundles/sitemain/frontend/styles/card.css'
     'bundles/sitemain/frontend/styles/slick.css'
     'bundles/sitemain/frontend/scripts/perfect-scrollbar/css/perfect-scrollbar.min.css'
+    'bundles/sitemain/frontend/styles/social-likes_birman.css'
     'bundles/sitemain/frontend/styles/main.css'
     filter='yui_css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
@@ -29,6 +30,7 @@
 {% block body %}
     <div id="st-container" class="st-container">
         <div class="st-pusher">
+            <nav class="st-menu st-menu-news st-effect-666" id="st-menu-news"></nav>
             <nav class="st-menu st-effect-1" id="st-menu-nav">
                 {{ knp_menu_render('SiteMainBundle:FrontendMenuBuilder:mainMenu') }}
             </nav>
@@ -89,7 +91,8 @@
     'bundles/sitemain/frontend/bower_components/jquery/dist/jquery.min.js'
     'bundles/sitemain/frontend/bower_components/jquery-ui/jquery-ui.min.js'
     'bundles/sitemain/frontend/bower_components/vide/dist/jquery.vide.js'
-    'bundles/sitemain/frontend/bower_components/slick-carousel/slick/slick.min.js'
+    'bundles/sitemain/frontend/scripts/social-likes.min.js'
+    'bundles/sitemain/frontend/bower_components/slick-carousel/slick/slick.js'
     'bundles/sitemain/frontend/scripts/animate.scroll.js'
     'bundles/sitemain/frontend/scripts/vendors/trianglify.min.js'
     'bundles/sitemain/frontend/scripts/vendors/TweenMax.min.js'

@@ -108,8 +108,7 @@ jQuery(function () {
     speed: 300,
     slidesToShow: 1,
     adaptiveHeight: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
+    autoplay: false,
       fade: true,
       cssEase: 'linear'
   });

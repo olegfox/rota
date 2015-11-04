@@ -46,6 +46,14 @@ class NewsType extends AbstractType
                     "class" => "ckeditor"
                 )
             ))
+            ->add('sliderGallery', 'file', array(
+                'required' => false,
+                'label' => 'backend.news.sliderGallery',
+                'attr' => array(
+                    'class' => 'uploadifySlider',
+                    'multiple' => true
+                )
+            ))
             ->add('file', 'file', array(
                 'required' => false,
                 'label' => 'backend.news.img'
