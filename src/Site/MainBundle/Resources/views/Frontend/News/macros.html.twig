@@ -32,7 +32,8 @@
                                 {% endif %}
                                 <div class="head">
                                     <span class="first">{{ n.date|date('d') }}/</span>
-                                    <span class="second">{{ n.date|date('m') }}</span>
+                                    <span class="second">{{ n.date|date('m') }}/</span>
+                                    <span class="second">{{ n.date|date('Y') }}</span>
                                 </div>
                                 <a class="title" href="#">{{ n.title }}</a>
                                 <a class="description" href="#">{{ n.description }}</a>

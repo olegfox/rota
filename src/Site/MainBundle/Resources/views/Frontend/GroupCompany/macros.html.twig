@@ -44,7 +44,7 @@
                                         <div class="wrap-companies">
                                             <div class="companies">
                                                 {% for company in g.companies %}
-                                                    <div class="wrap-company">
+                                                    <div class="wrap-company{% if g.companies|length == 1 %} wrap-company-full{% endif %}">
                                                         <div class="company">
                                                             {#<div class="image">#}
                                                                 {#<img src="{{ image(company.webPath).zoomCrop(500, 500) }}" alt=""/>#}

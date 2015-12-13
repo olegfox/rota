@@ -639,6 +639,9 @@ a:focus {
   width: 50%;
   margin-bottom: 70px;
 }
+.posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company.wrap-company-full {
+    width: 100%;
+}
 /* line 407, ../sass/main.sass */
 .posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company {
   font-size: 0;
