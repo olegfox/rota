@@ -12,7 +12,7 @@
                     <li class="revealOnScroll" data-animation="fadeIn">
                         <div class="wrap">
                             <div class="hexagon card" id="{{ g.slug }}" data-href="{{ path('frontend_group_company_one', {slug: g.slug}) }}">
-                                <img src="{{ image(g.webPath).zoomCrop(700, 500) }}" alt=""/>
+                                <img src="{{ image(g.webPath).zoomCrop(350, 250).jpeg(50) }}" alt=""/>
                                 <div class="card__container card__container_radius card__container--closed myScrollCompany">
                                     <div class="wrap-svg">
                                         <svg class="card__image" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 500" preserveAspectRatio="xMidYMid slice">
@@ -21,7 +21,7 @@
                                                     <polygon class="clip" points="0,560 0,0 1920,0 1920,560"></polygon>
                                                 </clipPath>
                                             </defs>
-                                            <image clip-path="url(#clipPath1)" width="1920" height="560" xlink:href="{{ image(g.webPath).zoomCrop(1920, 560) }}"></image>
+                                            <image clip-path="url(#clipPath1)" width="1920" height="560" xlink:href="{{ image(g.webPath).zoomCrop(1920, 560).jpeg(70) }}"></image>
                                         </svg>
                                         <div class="submenu">
                                             <ul>
@@ -46,12 +46,14 @@
                                                 {% for company in g.companies %}
                                                     <div class="wrap-company{% if g.companies|length == 1 %} wrap-company-full{% endif %}">
                                                         <div class="company">
-                                                            {#<div class="image">#}
-                                                                {#<img src="{{ image(company.webPath).zoomCrop(500, 500) }}" alt=""/>#}
-                                                            {#</div>#}
+                                                            <div class="image">
+                                                                <img src="{{ image(company.webPath).cropResize(80).png(50) }}" alt=""/>
+                                                            </div>
                                                             <div class="info">
                                                                 <h2>{{ company.title }}</h2>
-                                                                {{ company.text|raw }}
+                                                                <div class="inner-text" data-full-text="{{ company.genPreview()|raw|json_encode }}">
+                                                                    {% if company.genPreview()|raw|length > 800 %}{{ company.genPreview(800)|raw }} <a href="#" class="readmore"><span>+</span>Читать далее</a>{% else %}{{ company.genPreview()|raw }}{% endif %}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

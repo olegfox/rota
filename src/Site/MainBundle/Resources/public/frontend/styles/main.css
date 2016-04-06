@@ -385,9 +385,13 @@ a:focus {
 }
 /* line 244, ../sass/main.sass */
 .directors .wrap-directors-list ul li a.inner .block-image {
-  height: 328px;
   width: 100%;
 }
+
+.directors .wrap-directors-list ul li a.inner .block-image canvas {
+    width: 100%;
+}
+
 /* line 248, ../sass/main.sass */
 .directors .wrap-directors-list ul li a.inner .block-content .block-title {
   color: #000;
@@ -638,6 +642,7 @@ a:focus {
   display: inline-block;
   width: 50%;
   margin-bottom: 70px;
+  vertical-align: top;
 }
 .posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company.wrap-company-full {
     width: 100%;
@@ -649,17 +654,17 @@ a:focus {
 }
 /* line 410, ../sass/main.sass */
 .posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company .image {
-  display: inline-block;
-  width: 30%;
+    display: table-cell;
+    width: auto;
 }
 /* line 413, ../sass/main.sass */
 .posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company .image img {
-  width: 100%;
+  width: auto;
   visibility: visible !important;
 }
 /* line 416, ../sass/main.sass */
 .posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company .info {
-  display: inline-block !important;
+  display: table-cell !important;
   width: 100%;
   text-align: left;
   vertical-align: top;
@@ -1053,6 +1058,7 @@ a:focus {
   display: inline-block;
   width: 33.33%;
   margin-bottom: 40px;
+  vertical-align: top;
 }
 /* line 674, ../sass/main.sass */
 .news-block .inner-news-block .wrap-news .news ul li .wrap {
@@ -1794,7 +1800,7 @@ footer {
   height: 430px;
 }
 /* line 1207, ../sass/main.sass */
-.st-menu > .slider .wrap-slider .slider {
+.st-menu > .slider .wrap-slider .slide {
   height: 430px;
   opacity: 0.7;
 }
@@ -1926,6 +1932,9 @@ footer {
 }
 
 @media screen and (max-width: 960px) {
+  .st-menu {
+    padding: 15px;
+  }
   /* line 1304, ../sass/main.sass */
   .st-menu > .slider {
     margin: -40px -15px 30px -15px;
@@ -2290,4 +2299,17 @@ footer {
     background: url(../images/next.png) center center no-repeat;
     background-size: cover;
   }
+}
+
+#kontakty {
+      position: relative;
+    min-height: 100%;
+    margin-bottom: -64px;
+    background: url('https://api-maps.yandex.ru/services/constructor/1.0/static/?sid=urjbjAuazWoHRW6dEbW3ZQjl3ds0Zqt9&width=600&height=450&lang=ru_RU&sourceType=constructor') center center no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -pie-background: url('https://api-maps.yandex.ru/services/constructor/1.0/static/?sid=urjbjAuazWoHRW6dEbW3ZQjl3ds0Zqt9&width=600&height=450&lang=ru_RU&sourceType=constructor') no-repeat center center / cover;
+    -ms-behavior: url("/bundles/sitemain/css/backgroundsize.min.htc");
 }

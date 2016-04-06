@@ -4,11 +4,11 @@
 {% from 'SiteMainBundle:Frontend/GroupCompany:macros.html.twig' import listTabGroup %}
 {% from 'SiteMainBundle:Frontend/News:macros.html.twig' import listSidebarNews %}
 
-{% block title %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.metaTitle }}{% else %}{{ page.metaTitle }}{% endif %}{% endblock %}
-{% block meta_description %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.metaDescription }}{% else %}{{ page.metaDescription }}{% endif %}{% endblock %}
-{% block meta_keywords %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.metaKeywords }}{% else %}{{ page.metaKeywords }}{% endif %}{% endblock %}
-{% block og_title %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.title }}{% else %}{{ page.metaTitle }}{% endif %}{% endblock %}
-{% block og_description %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.metaDescription }}{% else %}{{ page.metaDescription }}{% endif %}{% endblock %}
+{% block title %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.metaTitle }}{% elseif app.request.attributes.get('_route') == 'frontend_news_one' %}{{ newsOne.metaTitle }}{% else %}{{ page.metaTitle }}{% endif %}{% endblock %}
+{% block meta_description %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.metaDescription }}{% elseif app.request.attributes.get('_route') == 'frontend_news_one' %}{{ newsOne.metaDescription }}{% else %}{{ page.metaDescription }}{% endif %}{% endblock %}
+{% block meta_keywords %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.metaKeywords }}{% elseif app.request.attributes.get('_route') == 'frontend_news_one' %}{{ newsOne.metaKeywords }}{% else %}{{ page.metaKeywords }}{% endif %}{% endblock %}
+{% block og_title %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.title }}{% elseif app.request.attributes.get('_route') == 'frontend_news_one' %}{{ newsOne.metaTitle }}{% else %}{{ page.metaTitle }}{% endif %}{% endblock %}
+{% block og_description %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.metaDescription }}{% elseif app.request.attributes.get('_route') == 'frontend_news_one' %}{{ newsOne.metaDescription }}{% else %}{{ page.metaDescription }}{% endif %}{% endblock %}
 {% block og_image %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}http://{{ app.request.host }}{{ image(groupCompany.webPath).zoomCrop(300, 300) }}{% else %}http://{{ app.request.host }}{{ image('bundles/sitemain/frontend/images/logo.png').zoomCrop(300, 300) }}{% endif %}{% endblock %}
 {% block image_src %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}http://{{ app.request.host }}{{ image(groupCompany.webPath).zoomCrop(300, 300) }}{% else %}http://{{ app.request.host }}{{ image('bundles/sitemain/frontend/images/logo.png').zoomCrop(300, 300) }}{% endif %}{% endblock %}
 
@@ -42,29 +42,64 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Main -->
-    <section class="main">
-        <div class="CursorAnimateRotate">
-            <div class="slider">
-                {% for slider in sliders %}
-                    <div {% if slider.webPath|length > 0 %}style="background: url('{{ image(slider.webPath).cropResize(1920) }}') center center no-repeat; background-size: cover;"{% endif %} {% if slider.video|length > 0 and mobile == false %}data-video='{{ asset('uploads/background/' ~ slider.video) }}' class="video"{% endif %}>
-                        <div class="wrap-sticker">
-                            <div class="sticker revealOnScroll" data-animation="fadeInRight">
-                                <div class="wrap">
-                                    {{ slider.text|raw }}
+
+    {% for page in pages %}
+        {% if page.slug == "glavnaia" %}
+            <!-- Main -->
+            <section class="main">
+                <div class="CursorAnimateRotate">
+                    <div class="slider">
+                        {% for slider in sliders %}
+                            <div {% if slider.webPath|length > 0 %}style="background: url('{{ image(slider.webPath).cropResize(1600).jpeg(50) }}') center center no-repeat; background-size: cover;"{% endif %} {% if slider.video|length > 0 and mobile == false %}data-video='{{ asset('uploads/background/' ~ slider.video) }}' class="video"{% endif %}>
+                                <div class="wrap-sticker">
+                                    <div class="sticker revealOnScroll" data-animation="fadeInRight">
+                                        <div class="wrap">
+                                            {{ slider.text|raw }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
-            </div>
 
-            <div class="cursor"><div class="cursorIcon"></div></div>
-        </div>
+                    <div class="cursor"><div class="cursorIcon"></div></div>
+                </div>
 
-        <a href="#{{ pages[1].slug }}" class="icon-arrow revealOnScroll" data-animation="fadeInUp"></a>
-    </section>
-    <!-- end Main -->
+                <a href="#{{ pages[1].slug }}" class="icon-arrow revealOnScroll" data-animation="fadeInUp"></a>
+            </section>
+            <!-- end Main -->
+        {% elseif page.slug == "struktura" %}
+            {# Структура #}
+            <section class="page myScroll" id="{{ page.slug }}">
+                {{ render(url('frontend_group_company_index')) }}
+            </section>
+        {% elseif page.slug == "rukovodstvo" %}
+            {# Руководство #}
+            <section class="page myScroll" id="{{ page.slug }}">
+                {{ render(url('frontend_director_index')) }}
+            </section>
+        {% elseif page.slug == "sotsial-naia-dieiatiel-nost" %}
+            {# Социальная деятельность #}
+            <section class="page myScroll" id="{{ page.slug }}">
+                {{ render(url('frontend_social_activities_index')) }}
+            </section>
+        {% elseif page.slug == "novosti" %}
+            {# Новости #}
+            <section class="page myScroll" id="{{ page.slug }}">
+                {{ render(url('frontend_news_index')) }}
+            </section>
+        {% elseif page.slug == "kontakty" %}
+            {# Контакты #}
+            <section class="page myScroll" id="{{ page.slug }}">
+                {% include 'SiteMainBundle:Frontend/Feedback:form.html.twig' %}
+                {#{{ render(url('frontend_content_index', {slug: pages[6].slug})) }}#}
+            </section>
+        {% else %}
+            <section class="page myScroll" id="{{ page.slug }}">
+                {{ render(url('frontend_content_index', {slug: page.slug})) }}
+            </section>
+        {% endif %}
+    {% endfor %}
 
     <!-- Posts -->
     {#<section class="page" >#}
@@ -84,37 +119,6 @@
     {#</section>#}
     <!-- end News -->
 
-    {# Структура #}
-    <section class="page myScroll" id="{{ pages[1].slug }}">
-        {{ render(url('frontend_group_company_index')) }}
-    </section>
-
-    {# О нас #}
-    <section class="page myScroll" id="{{ pages[2].slug }}">
-        {{ render(url('frontend_content_index', {slug: pages[2].slug})) }}
-    </section>
-
-    {# Руководство #}
-    <section class="page myScroll" id="{{ pages[3].slug }}">
-        {{ render(url('frontend_director_index')) }}
-    </section>
-
-    {# Социальная деятельность #}
-    <section class="page myScroll" id="{{ pages[4].slug }}">
-        {{ render(url('frontend_social_activities_index')) }}
-    </section>
-
-    {# Новости #}
-    <section class="page myScroll" id="{{ pages[5].slug }}">
-        {{ render(url('frontend_news_index')) }}
-    </section>
-
-    {# Контакты #}
-    <section class="page myScroll" id="{{ pages[6].slug }}">
-        {% include 'SiteMainBundle:Frontend/Feedback:form.html.twig' %}
-        {#{{ render(url('frontend_content_index', {slug: pages[6].slug})) }}#}
-    </section>
-
 
 
     {#<!-- Text -->#}
@@ -127,9 +131,15 @@
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
+    {{ parent() }} 
+    <script type="text/javascript"> 
+    var modernizr = document.getElementById('modernizr'),
+    	scripts = document.getElementById('scripts');
+    modernizr.src = modernizr.dataset.src;
+    scripts.src = scripts.dataset.src;
+    </script>
     {% if app.request.get('slug') %}
-        <script type="text/javascript">
+        <script type="text/javascript">     
             jQuery(function(){
                 jQuery(window).load(function () {
                     {% if app.request.attributes.get('_route') == 'frontend_page_index' %}
@@ -140,15 +150,15 @@
                         disable_scroll(jQuery('.wrap-st-content').scrollTop());
                         {% elseif app.request.attributes.get('_route') == 'frontend_news_one' %}
     //                  News
-                        $('.nav a[href="#novosti"]').parent().addClass('current');
+                        jQuery('.nav a[href="#novosti"]').parent().addClass('current');
                         enable_scroll();
-                        $('.wrap-st-content').scrollTop($('#novosti').index() * $('.wrap-st-content').height());
-                        disable_scroll($('#novosti').index() * $('.wrap-st-content').height());
-                        $("*[data-href='{{ path('frontend_news_one', {slug : newsOne.slug}) }}']").click();
+                        jQuery('.wrap-st-content').scrollTop(jQuery('#novosti').index() * jQuery('.wrap-st-content').height());
+                        disable_scroll(jQuery('#novosti').index() * jQuery('.wrap-st-content').height());
+                        jQuery("*[data-href='{{ path('frontend_news_one', {slug : newsOne.slug}) }}']").click();
                     {% elseif app.request.attributes.get('_route') == 'frontend_group_company_one' %}
+                    	console.log();
                         jQuery('.nav-pills a[href="#struktura"]').parent().addClass('current');
                         enable_scroll();
-                        console.log(jQuery('#struktura').offset().top);
                         jQuery('.wrap-st-content').scrollTop(jQuery('#struktura').index() * jQuery('.wrap-st-content').height());
                         disable_scroll(jQuery('.wrap-st-content').scrollTop());
                         {#$('#{{ app.request.get('slug') }}').find('.card__image').trigger('click');#}
@@ -172,6 +182,9 @@
                                 });
                             }
                         });
+                        jQuery('.wrap-st-content').css({ 
+                        	'overflow-y': 'auto'
+                        });
                         jQuery('.hexagon').parent().find('.info').hide();
                         jQuery('.hexagon').parent().find('.mediaOverlayIcon').hide();
                         jQuery('#{{ app.request.get('slug') }}').find('.card__container').switchClass('card__container_radius', 'card__container_no_radius', 0);
@@ -188,7 +201,6 @@
                         jQuery('#{{ app.request.get('slug') }}').find('.card__container').find('.card__caption').css({
                             'visibility': 'visible'
                         });
-                        jQuery('.wrap-st-content').scrollTop(0);
                         jQuery('.nav-main').prependTo(jQuery('#{{ app.request.get('slug') }}').find('.card__container .wrap-svg'));
                         jQuery('.section-scroll').bind('click', sectionScroll2);
                         jQuery('.nav-main').removeClass('revealOnScroll animated');
@@ -196,12 +208,12 @@
                             'position': 'absolute'
                         });
                         jQuery('#{{ app.request.get('slug') }}').find('.card__container').find('.wrap-svg').addClass('wrap-svg-show');
-                    jQuery('#{{ app.request.get('slug') }}').find('.myScrollCompany').perfectScrollbar({
-                        wheelSpeed: 2,
-                        wheelPropagation: true,
-                        minScrollbarLength: 20,
-                        suppressScrollX: true
-                    });
+	                    jQuery('#{{ app.request.get('slug') }}').find('.myScrollCompany').perfectScrollbar({
+	                        wheelSpeed: 2,
+	                        wheelPropagation: true,
+	                        minScrollbarLength: 20,
+	                        suppressScrollX: true
+	                    });
 
                         var hexagonOpen = jQuery('#{{ app.request.get('slug') }}'),
                                 hexagonCurrent = jQuery('#{{ app.request.get('slug') }}'),

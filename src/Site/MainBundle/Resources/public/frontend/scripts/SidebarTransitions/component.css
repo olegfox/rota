@@ -609,8 +609,8 @@ body,
 
 .st-effect-666.st-menu-open.st-effect-666.st-menu {
     visibility: visible;
-    -webkit-transform: translate3d(-50%, 170px, 0);
-    transform: translate3d(-50%, 170px, 0);
+    -webkit-transform: translate3d(-50%, 20px, 0);
+    transform: translate3d(-50%, 20px, 0);
 }
 
 .st-effect-666.st-menu::after {
