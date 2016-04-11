@@ -1,0 +1,44 @@
+{% extends 'SiteMainBundle:Backend:layout.html.twig' %}
+
+{% block content -%}
+    <h1>{{ 'backend.gallery.h1_show'|trans({}, 'menu') }}</h1>
+
+    {{ form(delete_form) }}
+
+    <table class="record_properties table table-striped table-bordered">
+        <tbody>
+        <tr>
+            <th>{{ 'backend.gallery.created'|trans({}, 'menu') }}</th>
+            <td>{{ entity.date|date('d.m.Y') }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'backend.gallery.galleryElementPhotos'|trans({}, 'menu') }}</th>
+            <td>
+                <div class="gallery">
+                    {% for photo in entity.galleryElementPhotos %}
+                        <a href="{{ asset(photo.link) }}" target="_blank"><img src="{{ image(photo.link).zoomCrop(50, 50) }}" alt="{{ image(photo.link).zoomCrop(50, 50) }}"/></a>
+                    {% endfor %}
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="record_actions nav nav-pills">
+        <li>
+            <a href="{{ path('backend_gallery_index') }}">
+                {{ 'backend.gallery.back_to_list'|trans({}, 'menu') }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('backend_gallery_edit', { 'id': entity.id }) }}">
+                {{ 'backend.edit'|trans({}, 'menu') }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('backend_gallery_new') }}">
+                {{ 'backend.create'|trans({}, 'menu') }}
+            </a>
+        </li>
+    </ul>
+{% endblock %}

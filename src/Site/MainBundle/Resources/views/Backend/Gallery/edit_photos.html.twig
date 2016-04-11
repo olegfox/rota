@@ -1,0 +1,40 @@
+{% extends 'SiteMainBundle:Backend/Gallery:edit.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/sitemain/backend/js/uploadify/uploadify.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block form -%}
+    {{ form_row(edit_form.date) }}
+    {% if entity.galleryElementPhotos|length > 0 %}
+        <table class="records_list table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th></th>
+                <th>{{ 'backend.gallery.photo'|trans({}, 'menu') }}</th>
+                <th>{{ 'backend.gallery.description'|trans({}, 'menu') }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for photo in entity.galleryElementPhotos %}
+                <tr>
+                    {% set img = image(photo.link).zoomCrop(50, 50) %}
+                    <td><input name="photos[]" type="checkbox" value="{{ photo.id }}"/></td>
+                    <td><a href="{{ asset(photo.link) }}" target="_blank"><img src="{{ img }}" alt="{{ img }}"/></a></td>
+                    <td>
+                        <textarea name="description[]" id="" cols="50" rows="2" style="resize: none;">{{ photo.description }}</textarea>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    {{ form_row(edit_form.gallery) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/backend/js/uploadify/jquery.uploadify.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/backend/js/init_uploadify.js') }}"></script>
+{% endblock %}

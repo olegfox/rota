@@ -20,6 +20,23 @@ backend:
             position: Вы не ввели позицию!
             position_integer: Вы некорректно ввели позицию!
             position_min: Позициия не может быть меньше нуля!
+    gallery:
+        h1_show: Галерея
+        h1_list: Список фото и видео
+        h1_edit: Редактирование
+        h1_create: Добавление
+        back_to_list: Назад к списку
+        empty_list: Пусто
+        create_video: Добавить видео
+        create_photos: Добавить фотографии
+        video: Видео
+        photos: Фотографии
+        photo: Фото
+        description: Описание
+        date: Дата
+        description: Описание
+        validation:
+            date: Вы не выбрали дату!
     background:
         h1_show: Слайд
         h1_list: Список слайдов

@@ -1,0 +1,26 @@
+backend_gallery_index:
+    path:     /
+    defaults: { _controller: "SiteMainBundle:Backend/Gallery:index" }
+
+backend_gallery_new:
+    path:     /new/{type}
+    defaults: { _controller: "SiteMainBundle:Backend/Gallery:new", type: 'video' }
+
+backend_gallery_create:
+    path:     /create/{type}
+    defaults: { _controller: "SiteMainBundle:Backend/Gallery:create", type: 'video' }
+    methods:  POST
+
+backend_gallery_edit:
+    path:     /{id}/edit/{type}
+    defaults: { _controller: "SiteMainBundle:Backend/Gallery:edit", type: 'video' }
+
+backend_gallery_update:
+    path:     /{id}/update
+    defaults: { _controller: "SiteMainBundle:Backend/Gallery:update" }
+    methods:  [POST, PUT]
+
+backend_gallery_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SiteMainBundle:Backend/Gallery:delete" }
+    methods:  [POST, DELETE]
