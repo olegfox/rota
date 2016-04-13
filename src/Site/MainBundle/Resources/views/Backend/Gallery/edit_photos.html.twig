@@ -23,7 +23,7 @@
                     <td><input name="photos[]" type="checkbox" value="{{ photo.id }}"/></td>
                     <td><a href="{{ asset(photo.link) }}" target="_blank"><img src="{{ img }}" alt="{{ img }}"/></a></td>
                     <td>
-                        <textarea name="description[]" id="" cols="50" rows="2" style="resize: none;">{{ photo.description }}</textarea>
+                        <textarea name="description[{{ photo.id }}][]" id="" cols="50" rows="2" style="resize: none;">{{ photo.description }}</textarea>
                     </td>
                 </tr>
             {% endfor %}

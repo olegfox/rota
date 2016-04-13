@@ -23,10 +23,6 @@ class GalleryVideoType extends AbstractType
                 'required' => false,
                 'label' => 'backend.gallery.video'
             ))
-            ->add('description', 'textarea', array(
-                'required' => false,
-                'label' => 'backend.gallery.description'
-            ))
         ;
     }
     
@@ -36,7 +32,7 @@ class GalleryVideoType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Site\MainBundle\Entity\GalleryVideo',
+            'data_class' => 'Site\MainBundle\Entity\Gallery',
             'translation_domain' => 'menu'
         ));
     }

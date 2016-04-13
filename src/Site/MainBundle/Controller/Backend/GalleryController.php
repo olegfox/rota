@@ -221,8 +221,8 @@ class GalleryController extends Controller
      */
     private function createEditVideoForm(Gallery $entity)
     {
-        $form = $this->createForm(new GalleryType(), $entity, array(
-            'action' => $this->generateUrl('backend_gallery_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new GalleryVideoType(), $entity, array(
+            'action' => $this->generateUrl('backend_gallery_update', array('id' => $entity->getId(), 'type' => 'video')),
             'method' => 'PUT',
         ));
 
@@ -237,6 +237,7 @@ class GalleryController extends Controller
      */
     public function updateAction(Request $request, $id, $type)
     {
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SiteMainBundle:Gallery')->find($id);
@@ -284,7 +285,9 @@ class GalleryController extends Controller
                         $galleryElementPhotoObject = $repository_gallery_photo->find($galleryElementPhoto);
 
                         if($galleryElementPhotoObject){
-                            unlink($galleryElementPhotoObject->getLink());
+                            if (file_exists($galleryElementPhotoObject->getLink())) {
+                                unlink($galleryElementPhotoObject->getLink());
+                            }
                             $em->remove($galleryElementPhotoObject);
                         }
                     }
@@ -294,14 +297,11 @@ class GalleryController extends Controller
                 $galleryElementPhotosDescription = $request->get('description');
 
                 if(is_array($galleryElementPhotosDescription)){
-                    foreach($galleryElementPhotosDescription as $galleryElementPhotoDescription){
+                    foreach($galleryElementPhotosDescription as $idPhoto => $galleryElementPhotoDescription){
                         $repository_gallery_photo = $this->getDoctrine()->getRepository('SiteMainBundle:GalleryElementPhoto');
-                        $galleryElementPhotoObject = $repository_gallery_photo->find($galleryElementPhoto);
+                        $galleryElementPhotoObject = $repository_gallery_photo->find($idPhoto);
 
-                        if($galleryElementPhotoObject){
-                            unlink($galleryElementPhotoObject->getLink());
-                            $em->remove($galleryElementPhotoObject);
-                        }
+                        $galleryElementPhotoObject->setDescription($galleryElementPhotoDescription);
                     }
                 }
 
@@ -326,10 +326,12 @@ class GalleryController extends Controller
 
             $em->flush();
 
-            return $this->redirect($this->generateUrl('backend_gallery_edit', array('id' => $id)));
+            die($id); 
+
+            return $this->redirect($this->generateUrl('backend_gallery_edit', array('id' => $id, 'type' => $type)));
         }
 
-        return $this->render('SiteMainBundle:Backend/Gallery:edit.html.twig', array(
+        return $this->render($template, array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

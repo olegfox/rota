@@ -24,13 +24,12 @@
                 {% endfor %}
         </div>
     {% endif %}
-    {{ form_row(edit_form.gallery) }}
     {{ form_end(edit_form) }}
 
     <ul class="record_actions nav nav-pills">
         <li>
-            <a href="{{ path('backend_media_index') }}">
-                {{ 'backend.media.back_to_list'|trans({}, 'menu') }}
+            <a href="{{ path('backend_gallery_index') }}">
+                {{ 'backend.gallery.back_to_list'|trans({}, 'menu') }}
             </a>
         </li>
     </ul>

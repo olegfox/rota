@@ -13,7 +13,7 @@ backend_gallery_create:
 
 backend_gallery_edit:
     path:     /{id}/edit/{type}
-    defaults: { _controller: "SiteMainBundle:Backend/Gallery:edit", type: 'video' }
+    defaults: { _controller: "SiteMainBundle:Backend/Gallery:edit" }
 
 backend_gallery_update:
     path:     /{id}/update/{type}
