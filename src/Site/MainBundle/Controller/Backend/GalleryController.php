@@ -269,7 +269,7 @@ class GalleryController extends Controller
                     foreach ($images as $image) {
                         $galleryElementPhoto = new GalleryElementPhoto();
                         $galleryElementPhoto->setLink("uploads/media/" . $image);
-                        $galleryElementPhoto->set($entity);
+                        $galleryElementPhoto->setGallery($entity);
                         $em->persist($galleryElementPhoto);
                     }
 

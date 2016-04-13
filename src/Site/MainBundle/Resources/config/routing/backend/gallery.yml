@@ -16,7 +16,7 @@ backend_gallery_edit:
     defaults: { _controller: "SiteMainBundle:Backend/Gallery:edit", type: 'video' }
 
 backend_gallery_update:
-    path:     /{id}/update
+    path:     /{id}/update/{type}
     defaults: { _controller: "SiteMainBundle:Backend/Gallery:update" }
     methods:  [POST, PUT]
 
