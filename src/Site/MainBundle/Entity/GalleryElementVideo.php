@@ -57,7 +57,7 @@ class GalleryElementVideo
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="text", nullable=false)
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -68,7 +68,7 @@ class GalleryElementVideo
     private $created;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Gallery", inversedBy="galleryElementVideo")
+     * @ORM\OneToOne(targetEntity="Gallery", inversedBy="galleryElementVideo")
      * @ORM\JoinColumn(name="gallery_id", referencedColumnName="id")
      **/
     private $gallery;
@@ -222,29 +222,6 @@ class GalleryElementVideo
     }
 
     /**
-     * Set gallery
-     *
-     * @param \Site\MainBundle\Entity\Gallery $gallery
-     * @return GalleryElementVideo
-     */
-    public function setGallery(\Site\MainBundle\Entity\Gallery $gallery = null)
-    {
-        $this->gallery = $gallery;
-
-        return $this;
-    }
-
-    /**
-     * Get gallery
-     *
-     * @return \Site\MainBundle\Entity\Gallery 
-     */
-    public function getGallery()
-    {
-        return $this->gallery;
-    }
-
-    /**
      * Set description
      *
      * @param string $description
@@ -265,5 +242,28 @@ class GalleryElementVideo
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set gallery
+     *
+     * @param \Site\MainBundle\Entity\Gallery $gallery
+     * @return GalleryElementVideo
+     */
+    public function setGallery(\Site\MainBundle\Entity\Gallery $gallery = null)
+    {
+        $this->gallery = $gallery;
+
+        return $this;
+    }
+
+    /**
+     * Get gallery
+     *
+     * @return \Site\MainBundle\Entity\Gallery 
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
     }
 }

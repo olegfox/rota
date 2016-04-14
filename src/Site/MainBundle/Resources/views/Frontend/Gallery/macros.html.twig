@@ -1,0 +1,32 @@
+{% macro galleryWidget(gallery) %}
+    {% if gallery|length > 0 %}
+        <div class="wrap-gallery">
+            <div class="gallery">
+                {% for g in gallery %}
+                    {% if g.type == 'year' %}
+                        <div class="gallery-year">{{ g.value }}</div>
+                    {% endif %}
+                    {% if g.type == 'month' %}
+                        <div class="gallery-month">{{ g.value }}</div>
+                    {% endif %}
+                    {% if g.type == 'day' %}
+                        <div class="gallery-day">
+                            {% if g.typeElement == 'video' %}
+                                <div class="gallery-element">
+                                    <div class="element" style="background: url('{{ image(g.getPreviewImageUrl).cropResize(184, 120) }}')"></div>
+                                    <div class="date">{{ g.date|date('d M') }}</div>
+                                </div>
+                            {% endif %}
+                            {% if g.typeElement == 'photos' %}
+                                <div class="gallery-element">
+                                    <div class="element" style="background: url('{{ image(g.getLink).cropResize(184, 120) }}')"></div>
+                                    <div class="date">{{ g.date|date('d M') }}</div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endmacro %}

@@ -221,6 +221,10 @@ class GalleryController extends Controller
      */
     private function createEditVideoForm(Gallery $entity)
     {
+        if ($entity->getGalleryElementVideo()) {
+            $entity->setVideoUrl($entity->getGalleryElementVideo()->getLink());
+        }
+
         $form = $this->createForm(new GalleryVideoType(), $entity, array(
             'action' => $this->generateUrl('backend_gallery_update', array('id' => $entity->getId(), 'type' => 'video')),
             'method' => 'PUT',
@@ -294,39 +298,74 @@ class GalleryController extends Controller
                 }
 
 //              Изменение описания фотографий
-                $galleryElementPhotosDescription = $request->get('description');
+                $galleryElementPhotosDescriptions = $request->get('description');
 
-                if(is_array($galleryElementPhotosDescription)){
-                    foreach($galleryElementPhotosDescription as $idPhoto => $galleryElementPhotoDescription){
+                if(is_array($galleryElementPhotosDescriptions)){
+                    foreach($galleryElementPhotosDescriptions as $idPhoto => $galleryElementPhotoDescription){
                         $repository_gallery_photo = $this->getDoctrine()->getRepository('SiteMainBundle:GalleryElementPhoto');
                         $galleryElementPhotoObject = $repository_gallery_photo->find($idPhoto);
 
-                        $galleryElementPhotoObject->setDescription($galleryElementPhotoDescription);
+                        if ($galleryElementPhotoObject) {
+
+                            $galleryElementPhotoObject->setDescription($galleryElementPhotoDescription[0]);
+
+                        }
+
                     }
                 }
 
             } elseif ("video" == $type) {
-                $editForm = $this->createEditVideoForm($entity);
-            }
 
-////          Удаляем видео из галереи, отмеченные на удаление
-//            $galleryElementVideos = $request->get('videos');
-//
-//            if(is_array($galleryElementVideos)){
-//                foreach($galleryElementVideos as $galleryElementVideo){
-//                    $repository_gallery_video = $this->getDoctrine()->getRepository('SiteMainBundle:GalleryElementVideo');
-//                    $galleryElementVideoObject = $repository_gallery_video->find($galleryElementVideo);
-//
-//                    if($galleryElementVideoObject){
-//                        unlink($galleryElementVideoObject->getLink());
-//                        $em->remove($galleryElementVideoObject);
-//                    }
-//                }
-//            }
+//              Редактируем видео
+
+//              Если строка с видео не пустая
+                if($entity->getVideoUrl()){
+
+                    $flag = 0;
+
+//                  Если у поста уже есть видео
+                    if(is_object($entity->getGalleryElementVideo())){
+//                      Если добавляется то же видео
+                        if($entity->getVideoUrl() == $entity->getGalleryElementVideo()->getLink()){
+                            $flag = 1;
+                        }
+                    }
+
+                    if($flag == 0){
+                        $video = VideoParser::getVideo($entity->getVideoUrl());
+
+                        $galleryVideo = new GalleryElementVideo();
+
+                        if(is_object($entity->getGalleryElementVideo())){
+                            $galleryVideo = $entity->getGalleryElementVideo();
+                        }
+
+                        $galleryVideo->setTitle($video->title);
+                        $galleryVideo->setLink($entity->getVideoUrl());
+                        $galleryVideo->setOriginal($video->url);
+                        $galleryVideo->setPreviewImageUrl($video->thumbnail_url);
+                        $galleryVideo->setHtml($video->html);
+                        $galleryVideo->setGallery($entity);
+
+                        if(!is_object($entity->getGalleryElementVideo())){
+                            $em->persist($galleryVideo);
+                        }
+                    }
+
+//              Если строка с видео пустая, то удаляем видео, если оно существует
+                }else{
+
+                    if(is_object($entity->getGalleryElementVideo())){
+
+                        $em->remove($entity->getGalleryElementVideo());
+
+                    }
+
+                }
+            }
 
             $em->flush();
 
-            die($id); 
 
             return $this->redirect($this->generateUrl('backend_gallery_edit', array('id' => $id, 'type' => $type)));
         }
@@ -354,7 +393,7 @@ class GalleryController extends Controller
                 throw $this->createNotFoundException($this->get('translator')->trans('backend.gallery.not_found'));
             }
 
-//            $entity->deleteAllPhotos();
+            $entity->deleteAllPhotos();
 
             $em->remove($entity);
             $em->flush();

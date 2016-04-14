@@ -12,16 +12,10 @@
 
     {{ form_start(edit_form, { 'style': 'horizontal' , attr: {novalidate: 'novalidate'} }) }}
     {{ form_row(edit_form.date) }}
-    {% if entity.galleryElementPhotos|length > 0 %}
-        <div class="photos">
-                {% for photo in entity.galleryElementPhotos %}
-                    <div class="item">
-                        <div class="inner-item">
-                            <div><input name="photos[]" type="checkbox" value="{{ photo.id }}"/></div>
-                            <div><a href="{{ asset(photo.link) }}" target="_blank"><img src="{{ image(photo.link).zoomCrop(200, 200) }}" alt="{{ image(photo.link).zoomCrop(200, 200) }}"/></a></div>
-                        </div>
-                    </div>
-                {% endfor %}
+    {% if entity.galleryElementVideo %}
+        <div class="form-group">
+            <label class="control-label col-lg-2">Превью видео</label>
+            <div class="col-lg-10">{{ entity.galleryElementVideo.html|raw }}</div>
         </div>
     {% endif %}
     {{ form_end(edit_form) }}

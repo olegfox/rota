@@ -11,6 +11,10 @@ frontend_news:
     resource: "@SiteMainBundle/Resources/config/routing/frontend/news.yml"
     prefix: /novosti
 
+frontend_gallery:
+    resource: "@SiteMainBundle/Resources/config/routing/frontend/gallery.yml"
+    prefix: /gallery
+
 frontend_director:
     resource: "@SiteMainBundle/Resources/config/routing/frontend/director.yml"
     prefix: /rukovodstvo

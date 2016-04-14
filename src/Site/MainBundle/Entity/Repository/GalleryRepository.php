@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class GalleryRepository extends EntityRepository
 {
+    public function findAllArray() {
+        $gallery = $this->findAll();
+        $galleryArray = array();
+
+        foreach($gallery as $g) {
+            $galleryArray[$g->getDate()->format('Y')] = array();
+            $galleryArray[$g->getDate()->format('Y')]['type'] = 'year';
+            $galleryArray[$g->getDate()->format('Y')]['value'] = $g->getDate()->format('Y');
+        }
+
+        return $galleryArray;
+    }
 }

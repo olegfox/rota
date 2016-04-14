@@ -45,7 +45,7 @@ class Gallery
     private $galleryElementPhotos;
 
     /**
-     * @ORM\OneToMany(targetEntity="GalleryElementVideo", mappedBy="gallery", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="GalleryElementVideo", mappedBy="gallery", cascade={"persist", "remove"})
      **/
     private $galleryElementVideo;
     /**
@@ -54,7 +54,6 @@ class Gallery
     public function __construct()
     {
         $this->galleryElementPhotos = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->galleryElementVideo = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -123,39 +122,6 @@ class Gallery
         return $this->galleryElementPhotos;
     }
 
-    /**
-     * Add galleryElementVideo
-     *
-     * @param \Site\MainBundle\Entity\GalleryElementVideo $galleryElementVideo
-     * @return Gallery
-     */
-    public function addGalleryElementVideo(\Site\MainBundle\Entity\GalleryElementVideo $galleryElementVideo)
-    {
-        $this->galleryElementVideo[] = $galleryElementVideo;
-
-        return $this;
-    }
-
-    /**
-     * Remove galleryElementVideo
-     *
-     * @param \Site\MainBundle\Entity\GalleryElementVideo $galleryElementVideo
-     */
-    public function removeGalleryElementVideo(\Site\MainBundle\Entity\GalleryElementVideo $galleryElementVideo)
-    {
-        $this->galleryElementVideo->removeElement($galleryElementVideo);
-    }
-
-    /**
-     * Get galleryElementVideo
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getGalleryElementVideo()
-    {
-        return $this->galleryElementVideo;
-    }
-
     public function setVideoUrl($videoUrl)
     {
         $this->videoUrl = $videoUrl;
@@ -178,5 +144,42 @@ class Gallery
         $this->gallery = $gallery;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PreRemove
+     */
+    public function deleteAllPhotos()
+    {
+        $photos = $this->getGalleryElementPhotos();
+
+        foreach ($photos as $photo) {
+            if(file_exists($photo->getLink())){
+                unlink($photo->getLink());
+            }
+        }
+    }
+
+    /**
+     * Set galleryElementVideo
+     *
+     * @param \Site\MainBundle\Entity\GalleryElementVideo $galleryElementVideo
+     * @return Gallery
+     */
+    public function setGalleryElementVideo(\Site\MainBundle\Entity\GalleryElementVideo $galleryElementVideo = null)
+    {
+        $this->galleryElementVideo = $galleryElementVideo;
+
+        return $this;
+    }
+
+    /**
+     * Get galleryElementVideo
+     *
+     * @return \Site\MainBundle\Entity\GalleryElementVideo 
+     */
+    public function getGalleryElementVideo()
+    {
+        return $this->galleryElementVideo;
     }
 }
