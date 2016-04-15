@@ -17,9 +17,7 @@ class GalleryRepository extends EntityRepository
         $galleryArray = array();
 
         foreach($gallery as $g) {
-            $galleryArray[$g->getDate()->format('Y')] = array();
-            $galleryArray[$g->getDate()->format('Y')]['type'] = 'year';
-            $galleryArray[$g->getDate()->format('Y')]['value'] = $g->getDate()->format('Y');
+            $galleryArray[$g->getDate()->format('Y')][$g->getDate()->format('m')][$g->getDate()->format('d')] = $g;
         }
 
         return $galleryArray;

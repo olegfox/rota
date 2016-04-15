@@ -2,29 +2,27 @@
     {% if gallery|length > 0 %}
         <div class="wrap-gallery">
             <div class="gallery">
-                {% for g in gallery %}
-                    {% if g.type == 'year' %}
-                        <div class="gallery-year">{{ g.value }}</div>
-                    {% endif %}
-                    {% if g.type == 'month' %}
-                        <div class="gallery-month">{{ g.value }}</div>
-                    {% endif %}
-                    {% if g.type == 'day' %}
-                        <div class="gallery-day">
-                            {% if g.typeElement == 'video' %}
-                                <div class="gallery-element">
-                                    <div class="element" style="background: url('{{ image(g.getPreviewImageUrl).cropResize(184, 120) }}')"></div>
-                                    <div class="date">{{ g.date|date('d M') }}</div>
-                                </div>
-                            {% endif %}
-                            {% if g.typeElement == 'photos' %}
-                                <div class="gallery-element">
-                                    <div class="element" style="background: url('{{ image(g.getLink).cropResize(184, 120) }}')"></div>
-                                    <div class="date">{{ g.date|date('d M') }}</div>
-                                </div>
-                            {% endif %}
-                        </div>
-                    {% endif %}
+                {% for keyYear, year in gallery %}
+                    <div class="gallery-year">{{ keyYear }}</div>
+                    {% for keyMonth, month in year %}
+                        <div class="gallery-month">{{ month[keyMonth].date|date('M') }}</div>
+                        {% for keyDay, g in month %}
+                            <div class="gallery-day">
+                                {% if g.getGalleryElementVideo %}
+                                    <div class="gallery-element">
+                                        <div class="element" style="background: url('{{ image(g.getGalleryElementVideo.getPreviewImageUrl).cropResize(184, 120) }}')"></div>
+                                        <div class="date">{{ g.date|date('d M') }}</div>
+                                    </div>
+                                {% endif %}
+                                {% if g.getGalleryElementPhotos|length > 0 %}
+                                    <div class="gallery-element">
+                                        <div class="element" style="background: url('{{ image(g.getGalleryElementPhotos[0].getLink).cropResize(184, 120) }}')"></div>
+                                        <div class="date">{{ g.date|date('d M') }}</div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
                 {% endfor %}
             </div>
         </div>
