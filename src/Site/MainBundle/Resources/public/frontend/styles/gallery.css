@@ -107,6 +107,12 @@
     padding-right: 10px;
 }
 
+@media screen and (max-width: 1024px) {
+    .gallery-block .inner-gallery-block {
+        padding: 20px;
+    }
+}
+
 @media screen and (max-width: 830px) {
     .wrap-gallery .gallery .wrap-gallery-element .gallery-element {
         width: 25%;
