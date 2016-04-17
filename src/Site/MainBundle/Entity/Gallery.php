@@ -41,6 +41,7 @@ class Gallery
 
     /**
      * @ORM\OneToMany(targetEntity="GalleryElementPhoto", mappedBy="gallery", cascade={"persist", "remove"})
+     * @ORM\OrderBy({"id" = "ASC"})
      **/
     private $galleryElementPhotos;
 
