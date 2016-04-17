@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Site\MainBundle\Entity\Gallery;
+use Site\MainBundle\Form\GalleryFilterType;
 use Site\MainBundle\Entity\GalleryElementVideo;
 use Site\MainBundle\Entity\GalleryElementPhoto;
 use Site\MainBundle\Form\GalleryPhotosType;
@@ -23,11 +24,28 @@ class GalleryController extends Controller
      * Lists all Gallery entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('SiteMainBundle:Gallery')->findAll();
+
+        $form = $this->get('form.factory')->create(new GalleryFilterType());
+
+        if ($request->query->has($form->getName())) {
+            // manually bind values from the request
+            $form->submit($this->get('request')->query->get($form->getName()));
+
+            // initialize a query builder
+            $filterBuilder = $this->get('doctrine.orm.entity_manager')
+                ->getRepository('SiteMainBundle:Gallery')
+                ->createQueryBuilder('e');
+
+            // build the query from the given form object
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+
+            $entities = $filterBuilder->getQuery()->getResult();
+        }
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -38,6 +56,7 @@ class GalleryController extends Controller
 
         return $this->render('SiteMainBundle:Backend/Gallery:index.html.twig', array(
             'entities' => $pagination,
+            'form' => $form->createView()
         ));
     }
 

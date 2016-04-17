@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityRepository;
 class GalleryRepository extends EntityRepository
 {
     public function findAllArray() {
-        $gallery = $this->findAll();
+        $gallery = $this->findBy(array(), array('date' => 'desc'));
         $galleryArray = array();
 
         foreach($gallery as $g) {

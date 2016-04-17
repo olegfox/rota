@@ -119,6 +119,11 @@ body {
   }
 }
 
+.no-csstransforms3d .st-pusher, .no-js .st-pusher {
+    padding-left: 0;
+}
+
+
 /* line 55, ../sass/main.sass */
 a:focus {
   outline: 0;

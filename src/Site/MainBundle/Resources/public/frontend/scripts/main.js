@@ -102,6 +102,10 @@ jQuery(function () {
 
     FastClick.attach(document.body);
 
+    jQuery('a[data-rel^=lightcase]').lightcase({
+        swipe: true
+    });
+
     disable_scroll(0);
 
   //  Инициализация слайдера на главной

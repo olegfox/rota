@@ -21,7 +21,7 @@ class GalleryVideoType extends AbstractType
             ))
             ->add('videoUrl', 'url', array(
                 'required' => false,
-                'label' => 'backend.gallery.video'
+                'label' => 'Видео URL (Youtube, Vimeo)'
             ))
         ;
     }

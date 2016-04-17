@@ -18,8 +18,6 @@ class GalleryController extends Controller
 
         $gallery = $repository_gallery->findAllArray();
 
-        var_dump($gallery);
-
         return $this->render('SiteMainBundle:Frontend/Gallery:index.html.twig', array(
             'gallery' => $gallery
         ));

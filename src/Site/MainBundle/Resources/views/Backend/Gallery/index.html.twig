@@ -3,10 +3,14 @@
 {% block content -%}
     <h1>{{ 'backend.gallery.h1_list'|trans({}, 'menu') }}</h1>
 
+    {% include 'SiteMainBundle:Backend/Gallery:filter.html.twig' %}
+
     {% if entities|length > 0 %}
         <table class="records_list table table-striped table-bordered">
             <thead>
             <tr>
+                <th></th>
+                <th></th>
                 <th>{{ 'backend.gallery.date'|trans({}, 'menu') }}</th>
                 <th>{{ 'backend.actions'|trans({}, 'menu') }}</th>
             </tr>
@@ -14,6 +18,20 @@
             <tbody>
             {% for entity in entities %}
                 <tr>
+                    <td>
+                        {% if entity.getGalleryElementPhotos|length > 0 %}
+                            <img src="{{ image(entity.getGalleryElementPhotos[0].getLink).cropResize(50) }}" width="50px" alt=""/>
+                        {% else %}
+                            <img src="{{ image(entity.getGalleryElementVideo.getPreviewImageUrl).cropResize(50) }}" width="50px" alt=""/>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if entity.getGalleryElementPhotos|length > 0 %}
+                            Фото
+                        {% else %}
+                            Видео
+                        {% endif %}
+                    </td>
                     <td>{{ entity.date|date('d.m.Y') }}</td>
                     <td>
                         <ul class="nav nav-pills">
