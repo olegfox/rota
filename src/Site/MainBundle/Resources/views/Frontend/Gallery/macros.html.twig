@@ -14,7 +14,7 @@
                                             <div class="gallery-element gallery-element-video">
                                                 <div class="element">
                                                     <a href="{{ g.getGalleryElementVideo.original }}" data-rel="lightcase:{{ g.id }}">
-                                                        <img src="{{ image(g.getGalleryElementVideo.getPreviewImageUrl).cropResize(190, 120) }}" alt=""/>
+                                                        <img src="{{ image(g.getGalleryElementVideo.getPreviewImageUrl).zoomCrop(190, 120) }}" alt=""/>
                                                     </a>
                                                 </div>
                                                 <div class="date">{{ g.date|localizeddate('long', 'none', null, null, 'd MMMM') }}</div>
@@ -24,7 +24,7 @@
                                             <div class="gallery-element gallery-element-photos">
                                                 <div class="element">
                                                     <a href="{{ image(g.getGalleryElementPhotos[0].getLink).cropResize(1920) }}" data-rel="lightcase:{{ g.id }}" title="{{ g.getGalleryElementPhotos[0].description }}">
-                                                        <img src="{{ image(g.getGalleryElementPhotos[0].getLink).cropResize(190, 120) }}" alt=""/>
+                                                        <img src="{{ image(g.getGalleryElementPhotos[0].getLink).zoomCrop(190, 120) }}" alt=""/>
                                                     </a>
                                                 </div>
                                                 <div class="date">{{ g.date|localizeddate('long', 'none', null, null, 'd MMMM') }}</div>
@@ -34,7 +34,7 @@
                                                 <div class="gallery-element gallery-element-photos">
                                                     <div class="element">
                                                         <a href="{{ image(photo.getLink).cropResize(1920) }}" data-rel="lightcase:{{ g.id }}" title="{{ photo.description }}">
-                                                            <img src="{{ image(photo.getLink).cropResize(190, 120) }}" alt=""/>
+                                                            <img src="{{ image(photo.getLink).zoomCrop(190, 120) }}" alt=""/>
                                                         </a>
                                                     </div>
                                                 </div>
