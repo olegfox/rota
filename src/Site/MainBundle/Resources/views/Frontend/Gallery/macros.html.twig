@@ -27,7 +27,6 @@
                                                         <img src="{{ image(g.getGalleryElementPhotos[0].getLink).zoomCrop(190, 120) }}" alt=""/>
                                                     </a>
                                                 </div>
-                                                <div class="date">{{ g.date|localizeddate('long', 'none', null, null, 'd MMMM') }}</div>
                                             </div>
 
                                             {% for photo in g.getGalleryElementPhotos|slice(1, g.getGalleryElementPhotos|length) %}
@@ -39,6 +38,7 @@
                                                     </div>
                                                 </div>
                                             {% endfor %}
+                                            <div class="date">{{ g.date|localizeddate('long', 'none', null, null, 'd MMMM') }}</div>
                                         {% endif %}
                                     </div>
                                 </div>

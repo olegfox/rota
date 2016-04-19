@@ -102,11 +102,12 @@
     width: 100%;
 }
 
-.wrap-gallery .gallery .wrap-gallery-element .gallery-element .date{
+.wrap-gallery .gallery .wrap-gallery-element .date{
     font-size: 16px;
     line-height: 30px;
     padding-left: 10px;
     padding-right: 10px;
+    margin-top: -30px;
 }
 
 @media screen and (max-width: 1024px) {
