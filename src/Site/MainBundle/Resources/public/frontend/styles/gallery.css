@@ -42,7 +42,7 @@
 .wrap-gallery .gallery .wrap-gallery-element .gallery-element {
     display: inline-block;
     width: 20%;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .wrap-gallery .gallery .wrap-gallery-element .gallery-element.gallery-element-video .element a:before {
@@ -107,7 +107,8 @@
     line-height: 30px;
     padding-left: 10px;
     padding-right: 10px;
-    margin-top: -30px;
+    margin-top: -15px;
+    margin-bottom: 15px;
 }
 
 @media screen and (max-width: 1024px) {
