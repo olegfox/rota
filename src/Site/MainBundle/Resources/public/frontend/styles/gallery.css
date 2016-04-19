@@ -79,7 +79,7 @@
 }
 
 .wrap-gallery .gallery .wrap-gallery-element .gallery-element.gallery-element-photos {
-
+    vertical-align: top;
 }
 
 .wrap-gallery .gallery .wrap-gallery-element .gallery-element.gallery-element-photos .element a {

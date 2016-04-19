@@ -26,12 +26,19 @@
                                                     <a href="{{ image(g.getGalleryElementPhotos[0].getLink).cropResize(1920) }}" data-rel="lightcase:{{ g.id }}" title="{{ g.getGalleryElementPhotos[0].description }}">
                                                         <img src="{{ image(g.getGalleryElementPhotos[0].getLink).cropResize(190, 120) }}" alt=""/>
                                                     </a>
-                                                    {% for photo in g.getGalleryElementPhotos|slice(1, g.getGalleryElementPhotos|length) %}
-                                                        <a href="{{ image(photo.getLink).cropResize(1920) }}" data-rel="lightcase:{{ g.id }}" title="{{ photo.description }}"></a>
-                                                    {% endfor %}
                                                 </div>
                                                 <div class="date">{{ g.date|localizeddate('long', 'none', null, null, 'd MMMM') }}</div>
                                             </div>
+
+                                            {% for photo in g.getGalleryElementPhotos|slice(1, g.getGalleryElementPhotos|length) %}
+                                                <div class="gallery-element gallery-element-photos">
+                                                    <div class="element">
+                                                        <a href="{{ image(photo.getLink).cropResize(1920) }}" data-rel="lightcase:{{ g.id }}" title="{{ photo.description }}">
+                                                            <img src="{{ image(photo.getLink).cropResize(190, 120) }}" alt=""/>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
                                         {% endif %}
                                     </div>
                                 </div>
