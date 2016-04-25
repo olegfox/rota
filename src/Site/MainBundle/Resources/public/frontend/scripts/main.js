@@ -99,6 +99,7 @@ function enable_scroll() {
 }
 
 jQuery(function () {
+
     disable_scroll(0);
 
   //  Инициализация слайдера на главной
@@ -108,7 +109,9 @@ jQuery(function () {
     speed: 300,
     slidesToShow: 1,
     adaptiveHeight: true,
-    autoplay: false,
+    //autoplay: false,
+	autoplay: true,
+	autoplaySpeed: 5000,
       fade: true,
       cssEase: 'linear'
   });

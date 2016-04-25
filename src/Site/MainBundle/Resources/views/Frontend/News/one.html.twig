@@ -3,7 +3,7 @@
     <div class="slider">
         {% for slider in newsOne.slider %}
             <div class="wrap-slider">
-                <div class="slider" style="background: url({{ image(slider.img).cropResize(800) }}) center center no-repeat; background-size: cover;">
+                <div class="slide" style="background: url({{ image(slider.img).cropResize(800) }}) center center no-repeat; background-size: cover;">
                 </div>
             </div>
         {% endfor %}

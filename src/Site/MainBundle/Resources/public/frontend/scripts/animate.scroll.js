@@ -1,6 +1,6 @@
 jQuery(function() {
 
-  var $window           = jQuery('.wrap-st-content, .page'),
+  var $window           = jQuery('.wrap-st-content'),
     win_height_padded = $window.height() * 1.1,
     isTouch           = Modernizr.touch;
 

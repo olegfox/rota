@@ -125,6 +125,9 @@ function initNews(selector, selector2) {
                 suppressScrollX: true
             });
 
+            jQuery('.' + selector2).scrollTop(0);                   
+            jQuery('#st-menu-news').perfectScrollbar('update');
+
             setTimeout(function(){
                 // Init Slider
                 jQuery('#st-menu-news .slider').slick({

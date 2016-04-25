@@ -23,7 +23,7 @@
     {% endstylesheets %}
     <!-- endbuild -->
     <!-- build:js scripts/vendor/modernizr.js -->
-    <script src="{{ asset('bundles/sitemain/frontend/bower_components/modernizr/modernizr.js') }}"></script>
+    <script data-src="{{ asset('bundles/sitemain/frontend/bower_components/modernizr/modernizr.js') }}" id="modernizr"></script>
     <!-- endbuild -->
 {% endblock %}
 
@@ -87,9 +87,10 @@
         ga('send', 'pageview');
     </script>
 
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/frontend/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/frontend/bower_components/jquery-ui/jquery-ui.min.js') }}"></script>
+
     {% javascripts
-    'bundles/sitemain/frontend/bower_components/jquery/dist/jquery.min.js'
-    'bundles/sitemain/frontend/bower_components/jquery-ui/jquery-ui.min.js'
     'bundles/sitemain/frontend/bower_components/vide/dist/jquery.vide.js'
     'bundles/sitemain/frontend/scripts/social-likes.min.js'
     'bundles/sitemain/frontend/bower_components/slick-carousel/slick/slick.js'
@@ -103,8 +104,10 @@
     'bundles/sitemain/frontend/scripts/SidebarTransitions/classie.js'
     'bundles/sitemain/frontend/scripts/SidebarTransitions/sidebarEffects.js'
     'bundles/sitemain/frontend/scripts/perfect-scrollbar/js/perfect-scrollbar.jquery.js'
+    'bundles/sitemain/frontend/scripts/fastclick.js'
     'bundles/sitemain/frontend/scripts/main.js'
     filter='yui_js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
+    <script type="text/javascript" data-src="{{ asset_url }}" id="scripts"></script>
     {% endjavascripts %}
+
 {% endblock %}

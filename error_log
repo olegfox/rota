@@ -1,0 +1,18 @@
+[18-Dec-2015 04:11:21 UTC] PHP Warning:  set_time_limit(): Cannot set time limit in safe mode in /var/www/u0133374/public_html/rota-group.ru/app/console on line 8
+[18-Dec-2015 04:11:21 UTC] PHP Parse error:  syntax error, unexpected '[', expecting ')' in /var/www/u0133374/public_html/rota-group.ru/vendor/react/promise/src/functions.php on line 68
+[28-Feb-2016 21:03:30 UTC] PHP Warning:  set_time_limit(): Cannot set time limit in safe mode in /var/www/u0133374/public_html/rota-group.ru/app/console on line 8
+[28-Feb-2016 21:03:31 UTC] PHP Parse error:  syntax error, unexpected '[', expecting ')' in /var/www/u0133374/public_html/rota-group.ru/vendor/react/promise/src/functions.php on line 68
+[09-Mar-2016 04:32:23 UTC] PHP Warning:  set_time_limit(): Cannot set time limit in safe mode in /var/www/u0133374/public_html/rota-group.ru/app/console on line 8
+[09-Mar-2016 04:32:23 UTC] PHP Parse error:  syntax error, unexpected '[', expecting ')' in /var/www/u0133374/public_html/rota-group.ru/vendor/react/promise/src/functions.php on line 68
+[09-Mar-2016 04:34:42 UTC] PHP Warning:  set_time_limit(): Cannot set time limit in safe mode in /var/www/u0133374/public_html/rota-group.ru/app/console on line 8
+[09-Mar-2016 04:34:42 UTC] PHP Parse error:  syntax error, unexpected '[', expecting ')' in /var/www/u0133374/public_html/rota-group.ru/vendor/react/promise/src/functions.php on line 68
+[09-Mar-2016 09:18:03 UTC] PHP Warning:  set_time_limit(): Cannot set time limit in safe mode in /var/www/u0133374/public_html/rota-group.ru/app/console on line 8
+[09-Mar-2016 09:18:03 UTC] PHP Parse error:  syntax error, unexpected '[', expecting ')' in /var/www/u0133374/public_html/rota-group.ru/vendor/react/promise/src/functions.php on line 68
+[09-Mar-2016 09:25:15 UTC] PHP Warning:  set_time_limit(): Cannot set time limit in safe mode in /var/www/u0133374/public_html/rota-group.ru/app/console on line 8
+[09-Mar-2016 09:25:15 UTC] PHP Parse error:  syntax error, unexpected '[', expecting ')' in /var/www/u0133374/public_html/rota-group.ru/vendor/react/promise/src/functions.php on line 68
+[09-Mar-2016 10:14:55 UTC] PHP Warning:  set_time_limit(): Cannot set time limit in safe mode in /var/www/u0133374/public_html/rota-group.ru/app/console on line 8
+[09-Mar-2016 10:14:55 UTC] PHP Parse error:  syntax error, unexpected '[', expecting ')' in /var/www/u0133374/public_html/rota-group.ru/vendor/react/promise/src/functions.php on line 68
+[09-Mar-2016 10:15:02 UTC] PHP Warning:  set_time_limit(): Cannot set time limit in safe mode in /var/www/u0133374/public_html/rota-group.ru/app/console on line 8
+[09-Mar-2016 10:15:02 UTC] PHP Parse error:  syntax error, unexpected '[', expecting ')' in /var/www/u0133374/public_html/rota-group.ru/vendor/react/promise/src/functions.php on line 68
+[09-Mar-2016 15:10:00 UTC] PHP Warning:  set_time_limit(): Cannot set time limit in safe mode in /var/www/u0133374/public_html/rota-group.ru/app/console on line 8
+[09-Mar-2016 15:10:01 UTC] PHP Parse error:  syntax error, unexpected '[', expecting ')' in /var/www/u0133374/public_html/rota-group.ru/vendor/react/promise/src/functions.php on line 68
