@@ -88,6 +88,12 @@
             <section class="page myScroll" id="{{ page.slug }}">
                 {{ render(url('frontend_news_index')) }}
             </section>
+        {% elseif page.slug == "galierieia" %}
+            {# Галерея #}
+            <section class="page myScroll" id="{{ page.slug }}">
+                {{ render(url('frontend_gallery_index')) }}
+                {#{{ render(url('frontend_content_index', {slug: pages[6].slug})) }}#}
+            </section>
         {% elseif page.slug == "kontakty" %}
             {# Контакты #}
             <section class="page myScroll" id="{{ page.slug }}">

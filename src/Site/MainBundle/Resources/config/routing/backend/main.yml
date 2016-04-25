@@ -29,3 +29,7 @@ backend_group_company:
 backend_director:
     resource: "@SiteMainBundle/Resources/config/routing/backend/director.yml"
     prefix: /director
+
+backend_gallery:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/gallery.yml"
+    prefix: /gallery

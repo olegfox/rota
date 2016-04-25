@@ -100,6 +100,12 @@ function enable_scroll() {
 
 jQuery(function () {
 
+    FastClick.attach(document.body);
+
+    jQuery('a[data-rel^=lightcase]').lightcase({
+        swipe: true
+    });
+
     disable_scroll(0);
 
   //  Инициализация слайдера на главной
@@ -112,9 +118,21 @@ jQuery(function () {
     //autoplay: false,
 	autoplay: true,
 	autoplaySpeed: 5000,
-      fade: true,
-      cssEase: 'linear'
+    fade: true,
+    cssEase: 'linear'
   });
+
+  // Читать далее в структуре
+    jQuery('.posts-block .hexagons>ul>li .hexagon .wrap-companies .companies .wrap-company .company .info .readmore').each(function(i, el) {
+        jQuery(el).unbind('click touchstart').bind('click touchstart', function(e) {
+            var $content;
+            e.preventDefault();
+            $content = JSON.parse(jQuery(this).parent().attr('data-full-text'));
+            jQuery(this).parent().html($content);
+            return false;
+        });
+    });
+
 
   jQuery('.slider').on('init setPosition', function (slick) {
     jQuery('.slider .slick-slide div').css({
@@ -126,33 +144,39 @@ jQuery(function () {
   jQuery('.slider').on('afterChange', function (slick, currentSlide) {
     var slide = jQuery('.slider .slick-slide[data-slick-index="'+currentSlide.currentSlide+'"]');
     if(slide.hasClass('video')){
-      var videoObject = slide.data('vide').getVideoObject();
-      videoObject.play();
+        if(slide.data('vide').getVideoObject() instanceof Object) {
+            var videoObject = slide.data('vide').getVideoObject();
+            videoObject.play();
+        }
     }
   });
 
   jQuery('.slider').on('beforeChange', function (slick, currentSlide, nextSlide) {
     var slide = jQuery('.slider .slick-slide[data-slick-index="'+nextSlide.currentSlide+'"]');
     if(slide.hasClass('video')){
-      var videoObject = slide.data('vide').getVideoObject();
-      videoObject.stop();
+        if (slide.data('vide').getVideoObject() instanceof Object) {
+            var videoObject = slide.data('vide').getVideoObject();
+            videoObject.stop();
+        }
     }
   });
 
-  jQuery('.slider .video').each(function (i, e) {
-    jQuery(e).vide({
-      mp4: jQuery(e).data('video')
-    }, {
-      volume: 1,
-      playbackRate: 1,
-      muted: true,
-      autoplay: true,
-      loop: true,
-      position: '50% 50%', // Similar to the CSS `background-position` property.
-      posterType: 'detect', // Poster image type. "detect" — auto-detection; "none" — no poster; "jpg", "png", "gif",... - extensions.
-      resizing: true // Auto-resizing, read: https://github.com/VodkaBears/Vide#resizing...
-    });
-  });
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false ) {
+      jQuery('.slider .video').each(function (i, e) {
+        jQuery(e).vide({
+          mp4: jQuery(e).data('video')
+        }, {
+          volume: 1,
+          playbackRate: 1,
+          muted: true,
+          autoplay: true,
+          loop: true,
+          position: '50% 50%', // Similar to the CSS `background-position` property.
+          posterType: 'png', // Poster image type. "detect" — auto-detection; "none" — no poster; "jpg", "png", "gif",... - extensions.
+          resizing: true // Auto-resizing, read: https://github.com/VodkaBears/Vide#resizing...
+        });
+      });
+    }
 
   /* Кнопка вниз на главной */
   jQuery("a.icon-arrow").click(function (e) {

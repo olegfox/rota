@@ -270,7 +270,16 @@ var demo = (function(window, jQuery, undefined) {
             initToggleMenu();
           jQuery('.section-scroll').bind('click', sectionScroll2);
         }
-
+          // Читать далее в структуре
+          jQuery('.posts-block .hexagons>ul>li .hexagon .wrap-companies .companies .wrap-company .company .info .readmore').each(function(i, el) {
+              jQuery(el).unbind('click touchstart').bind('click touchstart', function(e) {
+                  var $content;
+                  e.preventDefault();
+                  $content = JSON.parse(jQuery(this).parent().attr('data-full-text'));
+                  jQuery(this).parent().html($content);
+                  return false;
+              });
+          });
           hexagonOpen.find('.myScrollCompany').perfectScrollbar({
               wheelSpeed: 2,
               wheelPropagation: true,
@@ -310,7 +319,16 @@ var demo = (function(window, jQuery, undefined) {
             initToggleMenu();
           jQuery('.section-scroll').bind('click', sectionScroll2);
         }
-
+          // Читать далее в структуре
+          jQuery('.posts-block .hexagons>ul>li .hexagon .wrap-companies .companies .wrap-company .company .info .readmore').each(function(i, el) {
+              jQuery(el).unbind('click touchstart').bind('click touchstart', function(e) {
+                  var $content;
+                  e.preventDefault();
+                  $content = JSON.parse(jQuery(this).parent().attr('data-full-text'));
+                  jQuery(this).parent().html($content);
+                  return false;
+              });
+          });
           hexagonOpen.find('.myScrollCompany').perfectScrollbar({
               wheelSpeed: 2,
               wheelPropagation: true,

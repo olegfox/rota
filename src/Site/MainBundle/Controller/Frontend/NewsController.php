@@ -3,10 +3,11 @@
 namespace Site\MainBundle\Controller\Frontend;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Site\MainBundle\Form\FeedbackFormType;
+
+use Site\MainBundle\Form\FeedbackFormType; 
 use Site\MainBundle\Form\Feedback;
 use Symfony\Component\HttpFoundation\Response;
-include_once("Mobile_Detect.php");  
+include_once("Mobile_Detect.php");
 
 class NewsController extends Controller
 {

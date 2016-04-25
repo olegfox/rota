@@ -1,0 +1,111 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic,800,800italic,300italic,300&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
+    {% stylesheets
+    'bundles/sitemain/frontend/fonts/font-awesome-4.3.0/css/font-awesome.min.css'
+    'bundles/sitemain/frontend/scripts/SidebarTransitions/component.css'
+    'bundles/sitemain/frontend/styles/animate.css'
+    'bundles/sitemain/frontend/styles/pattern.css'
+    'bundles/sitemain/frontend/styles/card.css'
+    'bundles/sitemain/frontend/styles/slick.css'
+    'bundles/sitemain/frontend/scripts/perfect-scrollbar/css/perfect-scrollbar.min.css'
+    'bundles/sitemain/frontend/styles/social-likes_birman.css'
+    'bundles/sitemain/frontend/styles/main.css'
+    filter='yui_css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+    <!-- endbuild -->
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="{{ asset('bundles/sitemain/frontend/bower_components/modernizr/modernizr.js') }}"></script>
+    <!-- endbuild -->
+{% endblock %}
+
+{% block body %}
+    <div id="st-container" class="st-container">
+        <div class="st-pusher">
+            <nav class="st-menu st-menu-news st-effect-666" id="st-menu-news"></nav>
+            <nav class="st-menu st-effect-1" id="st-menu-nav">
+                {{ knp_menu_render('SiteMainBundle:FrontendMenuBuilder:mainMenu') }}
+            </nav>
+            <!-- Menu -->
+            <div class="nav nav-main revealOnScroll" data-animation="fadeInDown">
+                <a href="{{ path('frontend_homepage') }}" class="logo">
+                    <img src="{{ asset('bundles/sitemain/frontend/images/logo.png') }}" alt="" width="258px" height="96px"/>
+                </a>
+                {{ knp_menu_render('SiteMainBundle:FrontendMenuBuilder:mainMenu') }}
+                {#<a href="#" class="search"><span></span></a>#}
+                <button type="button" class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- end Menu -->
+            <div class="wrap-st-content">
+                {% block content %}
+
+                {% endblock %}
+                <!-- Footer -->
+                <footer>
+
+                </footer>
+                <!-- end Footer -->
+            <div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function (b, o, i, l, e, r) {
+            b.GoogleAnalyticsObject = l;
+            b[l] || (b[l] =
+                    function () {
+                        (b[l].q = b[l].q || []).push(arguments)
+                    });
+            b[l].l = +new Date;
+            e = o.createElement(i);
+            r = o.getElementsByTagName(i)[0];
+            e.src = '//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e, r)
+        }(window, document, 'script', 'ga'));
+        ga('create', 'UA-XXXXX-X');
+        ga('send', 'pageview');
+    </script>
+
+    {% javascripts
+    'bundles/sitemain/frontend/bower_components/jquery/dist/jquery.min.js'
+    'bundles/sitemain/frontend/bower_components/jquery-ui/jquery-ui.min.js'
+    'bundles/sitemain/frontend/bower_components/vide/dist/jquery.vide.js'
+    'bundles/sitemain/frontend/scripts/social-likes.min.js'
+    'bundles/sitemain/frontend/bower_components/slick-carousel/slick/slick.js'
+    'bundles/sitemain/frontend/scripts/animate.scroll.js'
+    'bundles/sitemain/frontend/scripts/vendors/trianglify.min.js'
+    'bundles/sitemain/frontend/scripts/vendors/TweenMax.min.js'
+    'bundles/sitemain/frontend/scripts/vendors/ScrollToPlugin.min.js'
+    'bundles/sitemain/frontend/scripts/vendors/cash.min.js'
+    'bundles/sitemain/frontend/scripts/Card-polygon.js'
+    'bundles/sitemain/frontend/scripts/demo-2.js'
+    'bundles/sitemain/frontend/scripts/SidebarTransitions/classie.js'
+    'bundles/sitemain/frontend/scripts/SidebarTransitions/sidebarEffects.js'
+    'bundles/sitemain/frontend/scripts/perfect-scrollbar/js/perfect-scrollbar.jquery.js'
+    'bundles/sitemain/frontend/scripts/main.js'
+    filter='yui_js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+{% endblock %}

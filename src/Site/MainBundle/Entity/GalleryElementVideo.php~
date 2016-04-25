@@ -1,0 +1,246 @@
+<?php
+
+namespace Site\MainBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Site\MainBundle\Entity\GalleryElementVideo
+ *
+ * @ORM\Table(name="gallery_element_video")
+ * @ORM\Entity(repositoryClass="Site\MainBundle\Entity\Repository\GalleryElementVideoRepository")
+ */
+class GalleryElementVideo
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="link", type="text", nullable=false)
+     */
+    private $link;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="original", type="text", nullable=false)
+     */
+    private $original;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="html", type="text", nullable=false)
+     */
+    private $html;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $preview_image_url = "";
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created", type="datetime")
+     */
+    private $created;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Gallery", inversedBy="galleryElementVideo")
+     * @ORM\JoinColumn(name="gallery_id", referencedColumnName="id")
+     **/
+    private $gallery;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return GalleryElementVideo
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     * @return GalleryElementVideo
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string 
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * Set original
+     *
+     * @param string $original
+     * @return GalleryElementVideo
+     */
+    public function setOriginal($original)
+    {
+        $this->original = $original;
+
+        return $this;
+    }
+
+    /**
+     * Get original
+     *
+     * @return string 
+     */
+    public function getOriginal()
+    {
+        return $this->original;
+    }
+
+    /**
+     * Set html
+     *
+     * @param string $html
+     * @return GalleryElementVideo
+     */
+    public function setHtml($html)
+    {
+        $this->html = $html;
+
+        return $this;
+    }
+
+    /**
+     * Get html
+     *
+     * @return string 
+     */
+    public function getHtml()
+    {
+        return $this->html;
+    }
+
+    /**
+     * Set preview_image_url
+     *
+     * @param string $previewImageUrl
+     * @return GalleryElementVideo
+     */
+    public function setPreviewImageUrl($previewImageUrl)
+    {
+        $this->preview_image_url = $previewImageUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get preview_image_url
+     *
+     * @return string 
+     */
+    public function getPreviewImageUrl()
+    {
+        return $this->preview_image_url;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return GalleryElementVideo
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime 
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return GalleryElementVideo
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+}

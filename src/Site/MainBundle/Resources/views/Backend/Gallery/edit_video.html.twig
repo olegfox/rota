@@ -1,0 +1,36 @@
+{% extends 'SiteMainBundle:Backend:layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/sitemain/backend/js/uploadify/uploadify.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content -%}
+    <h1>{{ 'backend.gallery.h1_edit'|trans({}, 'menu') }}</h1>
+
+    {{ form(delete_form) }}
+
+    {{ form_start(edit_form, { 'style': 'horizontal' , attr: {novalidate: 'novalidate'} }) }}
+    {{ form_row(edit_form.date) }}
+    {% if entity.galleryElementVideo %}
+        <div class="form-group">
+            <label class="control-label col-lg-2">Превью видео</label>
+            <div class="col-lg-10">{{ entity.galleryElementVideo.html|raw }}</div>
+        </div>
+    {% endif %}
+    {{ form_end(edit_form) }}
+
+    <ul class="record_actions nav nav-pills">
+        <li>
+            <a href="{{ path('backend_gallery_index') }}">
+                {{ 'backend.gallery.back_to_list'|trans({}, 'menu') }}
+            </a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/backend/js/uploadify/jquery.uploadify.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/backend/js/init_uploadify.js') }}"></script>
+{% endblock %}
