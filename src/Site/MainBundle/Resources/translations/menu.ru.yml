@@ -35,6 +35,7 @@ backend:
         description: Описание
         date: Дата
         description: Описание
+        pos: Позиция
         validation:
             date: Вы не выбрали дату!
     background:
