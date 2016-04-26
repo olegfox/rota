@@ -333,6 +333,23 @@ class GalleryController extends Controller
                     }
                 }
 
+//              Изменение позиций фотографий
+                $galleryElementPhotosPositions = $request->get('pos');
+
+                if(is_array($galleryElementPhotosPositions)){
+                    foreach($galleryElementPhotosPositions as $idPhoto => $galleryElementPos){
+                        $repository_gallery_photo = $this->getDoctrine()->getRepository('SiteMainBundle:GalleryElementPhoto');
+                        $galleryElementPhotoObject = $repository_gallery_photo->find($idPhoto);
+
+                        if ($galleryElementPhotoObject) {
+
+                            $galleryElementPhotoObject->setPos($galleryElementPos[0]);       
+
+                        }
+
+                    }
+                }                
+
             } elseif ("video" == $type) {
 
 //              Редактируем видео

@@ -43,6 +43,10 @@ class GalleryElementPhoto
      **/
     private $gallery;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $pos = 0;
 
     /**
      * Get id
@@ -144,5 +148,28 @@ class GalleryElementPhoto
     public function getGallery()
     {
         return $this->gallery;
+    }
+
+    /**
+     * Set pos
+     *
+     * @param integer $pos
+     * @return GalleryElementPhoto
+     */
+    public function setPos($pos)
+    {
+        $this->pos = $pos;
+
+        return $this;
+    }
+
+    /**
+     * Get pos
+     *
+     * @return integer 
+     */
+    public function getPos()
+    {
+        return $this->pos;
     }
 }

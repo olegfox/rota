@@ -111,6 +111,10 @@
     margin-bottom: 15px;
 }
 
+.wrap-gallery .gallery .wrap-gallery-element .gallery-element-video .date{
+    margin-top: 0;    
+}
+
 @media screen and (max-width: 1024px) {
     .gallery-block .inner-gallery-block {
         padding: 20px;

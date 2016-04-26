@@ -13,6 +13,7 @@
             <tr>
                 <th></th>
                 <th>{{ 'backend.gallery.photo'|trans({}, 'menu') }}</th>
+                <th>{{ 'backend.gallery.pos'|trans({}, 'menu') }}</th>
                 <th>{{ 'backend.gallery.description'|trans({}, 'menu') }}</th>
             </tr>
             </thead>
@@ -22,6 +23,7 @@
                     {% set img = image(photo.link).zoomCrop(50, 50) %}
                     <td><input name="photos[]" type="checkbox" value="{{ photo.id }}"/></td>
                     <td><a href="{{ asset(photo.link) }}" target="_blank"><img src="{{ img }}" alt="{{ img }}"/></a></td>
+                    <td><input name="pos[{{ photo.id }}][]" type="number" value="{{ photo.pos }}" style="width: 50px;"/></td>
                     <td>
                         <textarea name="description[{{ photo.id }}][]" id="" cols="50" rows="2" style="resize: none;">{{ photo.description }}</textarea>
                     </td>
