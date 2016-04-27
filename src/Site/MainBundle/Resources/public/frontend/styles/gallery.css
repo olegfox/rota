@@ -23,14 +23,14 @@
 
 .gallery-block .inner-gallery-block {
     max-width: 1260px;
-    padding: 115px;
-    margin: 0 -10px 0 306px;  
+    padding: 0 0 0 115px;
+    margin: 0 -10px 0 0;  
 }
 
 @media screen and (max-width: 1200px) {
 
     .gallery-block .inner-gallery-block {
-        padding: 115px 20px!important;
+        padding: 0 100px!important;
         margin: 0 -10px 0 150px!important; 
     }
 
@@ -39,7 +39,7 @@
 @media screen and (max-width: 1024px) {
 
     .gallery-block .inner-gallery-block {
-        padding: 80px 20px!important;
+        padding: 0 100px!important;  
         margin: 0 -10px 0 100px!important; 
     }
 
@@ -137,6 +137,7 @@
 .wrap-gallery .gallery .wrap-gallery-element .gallery-element .element img {
     margin-bottom: 7px;
     width: 100%;
+    visibility: visible!important; 
 }
 
 .wrap-gallery .gallery .wrap-gallery-element .date{

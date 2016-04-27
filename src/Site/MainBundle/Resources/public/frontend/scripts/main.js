@@ -253,28 +253,4 @@ jQuery(function () {
         });
     }, 500);
 
-
-    // Open window gallery
-    jQuery('#stroitiel-stvo-fiermy').unbind('click').bind('click', function() {
-  
-        console.log('click stroitiel-stvo-fiermy');
-
-        var anchor = jQuery(this);
-        enable_scroll();
-        jQuery('.wrap-st-content').stop().animate({
-            scrollTop: jQuery('#stroitiel-stvo-fiermy-page').index() * jQuery('.wrap-st-content').height()
-        }, 1000, function () {
-            console.log('enable scroll');
-            setTimeout(function(){
-                jQuery('#stroitiel-stvo-fiermy-page').focus();
-            }, 1000);
-
-            disable_scroll(jQuery('.wrap-st-content').scrollTop());
-        });
-        if (window.history.pushState) {
-            window.history.pushState(null, null, '/stroitiel-stvo-fiermy-page');
-        }
-
-    });
-
 });
