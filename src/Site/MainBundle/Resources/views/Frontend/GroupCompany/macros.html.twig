@@ -11,7 +11,7 @@
                 {% for g in groupCompanies %}
                     <li class="revealOnScroll" data-animation="fadeIn">
                         <div class="wrap">
-                            <div class="hexagon {% if g.slug != 'stroitiel-stvo-fiermy' %}card{% endif %}" id="{{ g.slug }}" data-href="{{ path('frontend_group_company_one', {slug: g.slug}) }}">
+                            <div class="hexagon card" id="{{ g.slug }}" data-href="{{ path('frontend_group_company_one', {slug: g.slug}) }}">
                                 <img src="{{ image(g.webPath).zoomCrop(350, 250).jpeg(50) }}" alt=""/>
                                 <div class="card__container card__container_radius card__container--closed myScrollCompany">
                                     <div class="wrap-svg">
@@ -41,6 +41,16 @@
                                     </div>
                                     <div class="card__content">
                                         <i class="card__btn-close fa fa-times"></i>
+                                        {% if g.slug == 'stroitiel-stvo-fiermy' %}
+
+                                            <div class="wrap-companies">
+                                                <div class="companies">
+                                                    {{ render(url('frontend_gallery_index')) }}  
+                                                </div>
+                                            </div>
+
+                                        {% else %}
+
                                         <div class="wrap-companies">
                                             <div class="companies">
                                                 {% for company in g.companies %}
@@ -60,6 +70,8 @@
                                                 {% endfor %}
                                             </div>
                                         </div>
+
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="mediaOverlayIcon"></div>
