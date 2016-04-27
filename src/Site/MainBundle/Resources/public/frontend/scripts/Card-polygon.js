@@ -47,6 +47,7 @@ var Card = (function(window, undefined) {
    */
   Card.prototype.openCard = function(callback) {
 
+
     this._TL = new TimelineLite;
 
     var slideContentDown = this._slideContentDown();
@@ -65,6 +66,7 @@ var Card = (function(window, undefined) {
     this.isOpen = true;
 
     return this._TL;
+
   };
 
   /**
