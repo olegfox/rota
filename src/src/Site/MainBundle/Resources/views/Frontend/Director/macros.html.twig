@@ -1,0 +1,19 @@
+{% macro listTab(directors) %}
+    {% if directors|length > 0 %}
+        <ul>
+            {% for director in directors %}
+                <li>
+                    <a class="inner" href="#">
+                        <div class="block-image" style="background-image: url({{ image(director.webPath).zoomCrop(328, 330) }}); background-repeat: no-repeat; background-size: cover;">
+                            <canvas width="328px" height="328px"></canvas>
+                        </div>
+                        <div class="block-content">
+                            <div class="block-title">{{ director.title }}</div>
+                            <div class="block-info">{{ director.description }}</div>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}

@@ -1,0 +1,30 @@
+backend_group_company_index:
+    path:     /
+    defaults: { _controller: "SiteMainBundle:Backend/GroupCompany:index" }
+
+backend_group_company_show:
+    path:     /{id}/show
+    defaults: { _controller: "SiteMainBundle:Backend/GroupCompany:show" }
+
+backend_group_company_new:
+    path:     /new
+    defaults: { _controller: "SiteMainBundle:Backend/GroupCompany:new" }
+
+backend_group_company_create:
+    path:     /create
+    defaults: { _controller: "SiteMainBundle:Backend/GroupCompany:create" }
+    methods:  POST
+
+backend_group_company_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SiteMainBundle:Backend/GroupCompany:edit" }
+
+backend_group_company_update:
+    path:     /{id}/update
+    defaults: { _controller: "SiteMainBundle:Backend/GroupCompany:update" }
+    methods:  [POST, PUT]
+
+backend_group_company_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SiteMainBundle:Backend/GroupCompany:delete" }
+    methods:  [POST, DELETE]

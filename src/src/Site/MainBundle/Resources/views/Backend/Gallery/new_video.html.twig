@@ -1,0 +1,6 @@
+{% extends 'SiteMainBundle:Backend/Gallery:new.html.twig' %}
+
+
+{% block form -%}
+    {{ form(form, { 'style': 'horizontal', attr: {novalidate: 'novalidate'} }) }}
+{% endblock %}

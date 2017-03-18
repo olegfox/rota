@@ -87,6 +87,13 @@ class Company
      **/
     private $group;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="link", type="string", length=500, nullable=true)
+     */
+    private $link;
+
     public function getAbsolutePath()
     {
         return null === $this->img
@@ -371,6 +378,29 @@ class Company
     public function getGroup()
     {
         return $this->group;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string 
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     * @return Company
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
     }
 
     /**

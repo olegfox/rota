@@ -1,0 +1,344 @@
+{% extends 'SiteMainBundle:Frontend:layout.html.twig' %}
+
+{% from 'SiteMainBundle:Frontend/News:macros.html.twig' import listTab %}
+{% from 'SiteMainBundle:Frontend/GroupCompany:macros.html.twig' import listTabGroup %}
+{% from 'SiteMainBundle:Frontend/News:macros.html.twig' import listSidebarNews %}
+
+{% block title %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.metaTitle }}{% elseif app.request.attributes.get('_route') == 'frontend_news_one' %}{{ newsOne.metaTitle }}{% else %}{{ page.metaTitle }}{% endif %}{% endblock %}
+{% block meta_description %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.metaDescription }}{% elseif app.request.attributes.get('_route') == 'frontend_news_one' %}{{ newsOne.metaDescription }}{% else %}{{ page.metaDescription }}{% endif %}{% endblock %}
+{% block meta_keywords %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.metaKeywords }}{% elseif app.request.attributes.get('_route') == 'frontend_news_one' %}{{ newsOne.metaKeywords }}{% else %}{{ page.metaKeywords }}{% endif %}{% endblock %}
+{% block og_title %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.title }}{% elseif app.request.attributes.get('_route') == 'frontend_news_one' %}{{ newsOne.metaTitle }}{% else %}{{ page.metaTitle }}{% endif %}{% endblock %}
+{% block og_description %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}{{ groupCompany.metaDescription }}{% elseif app.request.attributes.get('_route') == 'frontend_news_one' %}{{ newsOne.metaDescription }}{% else %}{{ page.metaDescription }}{% endif %}{% endblock %}
+{% block og_image %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}http://{{ app.request.host }}{{ image(groupCompany.webPath).zoomCrop(300, 300) }}{% else %}http://{{ app.request.host }}{{ image('bundles/sitemain/frontend/images/logo.png').zoomCrop(300, 300) }}{% endif %}{% endblock %}
+{% block image_src %}{% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}http://{{ app.request.host }}{{ image(groupCompany.webPath).zoomCrop(300, 300) }}{% else %}http://{{ app.request.host }}{{ image('bundles/sitemain/frontend/images/logo.png').zoomCrop(300, 300) }}{% endif %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% if app.request.attributes.get('_route') == 'frontend_group_company_one' %}
+        <style type="text/css">
+            .main{
+                display: none;
+            }
+            .slide{
+                display: none;
+            }
+            .news-block{
+                display: none;
+            }
+            section.page .text{
+                display: none;
+            }
+            footer{
+                display: none;
+            }
+            .hexagon .info{
+                display: none;
+            }
+            .hexagon .mediaOverlayIcon{
+                display: none;
+            }
+        </style>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    {% for page in pages %}
+        {% if page.slug == "glavnaia" %}
+            <!-- Main -->
+            <section class="main">
+                <div class="CursorAnimateRotate">
+                    <div class="slider">
+                        {% for slider in sliders %}
+                            <div {% if slider.webPath|length > 0 %}style="background: url('{{ image(slider.webPath).cropResize(1600).jpeg(50) }}') center center no-repeat; background-size: cover;"{% endif %} {% if slider.video|length > 0 and mobile == false %}data-video='{{ asset('uploads/background/' ~ slider.video) }}' class="video"{% endif %}>
+                                <div class="wrap-sticker">
+                                    <div class="sticker revealOnScroll" data-animation="fadeInRight">
+                                        <div class="wrap">
+                                            {{ slider.text|raw }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="cursor"><div class="cursorIcon"></div></div>
+                </div>
+
+                <a href="#{{ pages[1].slug }}" class="icon-arrow revealOnScroll" data-animation="fadeInUp"></a>
+            </section>
+            <!-- end Main -->
+        {% elseif page.slug == "struktura" %}
+            {# Структура #}
+            <section class="page myScroll" id="{{ page.slug }}">
+                {{ render(url('frontend_group_company_index')) }}
+            </section>
+        {% elseif page.slug == "rukovodstvo" %}
+            {# Руководство #}
+            <section class="page myScroll" id="{{ page.slug }}">
+                {{ render(url('frontend_director_index')) }}
+            </section>
+        {% elseif page.slug == "sotsial-naia-dieiatiel-nost" %}
+            {# Социальная деятельность #}
+            <section class="page myScroll" id="{{ page.slug }}">
+                {{ render(url('frontend_social_activities_index')) }}
+            </section>
+        {% elseif page.slug == "novosti" %}
+            {# Новости #}
+            <section class="page myScroll" id="{{ page.slug }}">
+                {{ render(url('frontend_news_index')) }}
+            </section>
+        {% elseif page.slug == "galierieia" %}
+            {# Галерея #}
+            <section class="page myScroll" id="{{ page.slug }}">
+                {{ render(url('frontend_gallery_index')) }}
+                {#{{ render(url('frontend_content_index', {slug: pages[6].slug})) }}#}
+            </section>
+        {% elseif page.slug == "kontakty" %}
+            {# Контакты #}
+            <section class="page myScroll" id="{{ page.slug }}">
+                {% include 'SiteMainBundle:Frontend/Feedback:form.html.twig' %}
+                {#{{ render(url('frontend_content_index', {slug: pages[6].slug})) }}#}
+            </section>
+        {% else %}
+            <section class="page myScroll" id="{{ page.slug }}">
+                {{ render(url('frontend_content_index', {slug: page.slug})) }}
+            </section>
+        {% endif %}
+    {% endfor %}
+
+    <!-- Posts -->
+    {#<section class="page" >#}
+        {#<section class="posts-block bg-posts-block" id="posts">#}
+            {#{{ listTabGroup(groupCompanies) }}#}
+        {#</section>#}
+    {#</section>#}
+    <!-- end Posts -->
+
+    <!-- News -->
+    {#<section class="news-block">#}
+        {#<div class="inner-news-block">#}
+            {#<h2 class="revealOnScroll" data-animation="fadeInLeft">Новости группы компаний</h2>#}
+
+            {#{{ listSidebarNews(news) }}#}
+        {#</div>#}
+    {#</section>#}
+    <!-- end News -->
+
+
+
+    {#<!-- Text -->#}
+    {#<section class="text">#}
+        {#<div class="content">#}
+            {#{{ page.text|raw }}#}
+        {#</div>#}
+    {#</section>#}
+    {#<!-- end Text -->#}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }} 
+    <script type="text/javascript"> 
+    var modernizr = document.getElementById('modernizr'),
+    	scripts = document.getElementById('scripts');
+    modernizr.src = modernizr.dataset.src;
+    scripts.src = scripts.dataset.src;
+    </script>
+    {% if app.request.get('slug') %}
+        <script type="text/javascript">     
+            jQuery(function(){
+                jQuery(window).load(function () {
+                    {% if app.request.attributes.get('_route') == 'frontend_page_index' %}
+                        jQuery('.nav-pills a[href="#{{ app.request.get('slug') }}"]').parent().addClass('current');
+                        enable_scroll();
+                        console.log(jQuery('#{{ app.request.get('slug') }}').offset().top);
+                        jQuery('.wrap-st-content').scrollTop(jQuery('#{{ app.request.get('slug') }}').index() * jQuery('.wrap-st-content').height());
+                        disable_scroll(jQuery('.wrap-st-content').scrollTop());
+                        {% elseif app.request.attributes.get('_route') == 'frontend_news_one' %}
+    //                  News
+                        jQuery('.nav a[href="#novosti"]').parent().addClass('current');
+                        enable_scroll();
+                        jQuery('.wrap-st-content').scrollTop(jQuery('#novosti').index() * jQuery('.wrap-st-content').height());
+                        disable_scroll(jQuery('#novosti').index() * jQuery('.wrap-st-content').height());
+                        jQuery("*[data-href='{{ path('frontend_news_one', {slug : newsOne.slug}) }}']").click();
+                    {% elseif app.request.attributes.get('_route') == 'frontend_group_company_one' %}
+                    	console.log();
+                        jQuery('.nav-pills a[href="#struktura"]').parent().addClass('current');
+                        enable_scroll();
+                        jQuery('.wrap-st-content').scrollTop(jQuery('#struktura').index() * jQuery('.wrap-st-content').height());
+                        disable_scroll(jQuery('.wrap-st-content').scrollTop());
+                        {#$('#{{ app.request.get('slug') }}').find('.card__image').trigger('click');#}
+                        jQuery('#{{ app.request.get('slug') }}').find('.card__container').removeClass('card__container--closed');
+                        jQuery('.main').hide();
+                        if(jQuery('.slide').length > 0){
+                            jQuery('.slide').hide(1000);
+                        }
+                        jQuery('.posts-block').switchClass('bg-posts-block', 'bg-none-posts-block', 0);
+                        jQuery('.news-block').hide();
+                        jQuery('section.page .text').hide();
+                        jQuery('body').css({
+                            'overflow': 'hidden'
+                        });
+                        jQuery('footer').hide();
+                        jQuery('.hexagons').switchClass('bg-yes', 'bg-none', 0);
+                        jQuery('.hexagon').each(function(i, e){
+                            if(jQuery(e).attr('id') != '{{ app.request.get('slug') }}'){
+                                jQuery(e).css({
+                                    'visibility': 'hidden'
+                                });
+                            }
+                        });
+                        jQuery('.wrap-st-content').css({ 
+                        	'overflow-y': 'auto'
+                        });
+                        jQuery('.hexagon').parent().find('.info').hide();
+                        jQuery('.hexagon').parent().find('.mediaOverlayIcon').hide();
+                        jQuery('#{{ app.request.get('slug') }}').find('.card__container').switchClass('card__container_radius', 'card__container_no_radius', 0);
+                        jQuery('#{{ app.request.get('slug') }}').find('.card__container').find('.card__image').css({
+                            'display': 'inline-block'
+                        });
+                        jQuery('#{{ app.request.get('slug')  }}').parent().parent().css({
+                            'position': 'relative',
+                            'z-index': '1'
+                        });
+                        if (window.history.pushState) {
+                            window.history.pushState(null, null, jQuery('#{{ app.request.get('slug') }}').attr('data-href'));
+                        }
+                        jQuery('#{{ app.request.get('slug') }}').find('.card__container').find('.card__caption').css({
+                            'visibility': 'visible'
+                        });
+                        jQuery('#{{ app.request.get('slug') }}').find('.card__container').addClass('card__container--open');
+                        jQuery('.nav-main').prependTo(jQuery('#{{ app.request.get('slug') }}').find('.card__container .wrap-svg'));
+                        jQuery('.section-scroll').bind('click', sectionScroll2);
+                        jQuery('.nav-main').removeClass('revealOnScroll animated');
+                        jQuery('.nav-main').css({
+                            'position': 'absolute'
+                        });
+                        jQuery('#{{ app.request.get('slug') }}').find('.card__container').find('.wrap-svg').addClass('wrap-svg-show');
+	                    jQuery('#{{ app.request.get('slug') }}').find('.myScrollCompany').perfectScrollbar({
+	                        wheelSpeed: 2,
+	                        wheelPropagation: true,
+	                        minScrollbarLength: 20,
+	                        suppressScrollX: true
+	                    });
+
+                        var hexagonOpen = jQuery('#{{ app.request.get('slug') }}'),
+                                hexagonCurrent = jQuery('#{{ app.request.get('slug') }}'),
+                                hexagonCurrentSvg = hexagonCurrent.find('.wrap-svg').html(),
+                                hexagonCurrentCardContent = hexagonCurrent.find('.card__content').html();
+                        /**
+                         *  Обработка нажатия стрелок для переключения между направлениями компании
+                         */
+                        var nvClickLeft = function(){
+                            var hexagonPrev = hexagonCurrent.parent().parent().prev().find('.hexagon');
+
+                            if(hexagonPrev.html() == undefined){
+                                hexagonPrev = jQuery('.hexagon').eq(jQuery('.hexagon').length - 1);
+                            }
+                            if(hexagonPrev.parent().parent().index() == hexagonOpen.parent().parent().index()){
+                                hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
+                                jQuery('.section-scroll').bind('click', sectionScroll2);
+                                hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
+                            }else{
+                                var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
+                                hexagonOpen.find('.wrap-svg').html(hexagonPrev.find('.wrap-svg').html());
+                                hexagonOpen.find('.card__content').html(hexagonPrev.find('.card__content').html());
+                                navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+                                initToggleMenu();
+                                jQuery('.section-scroll').bind('click', sectionScroll2);
+                            }
+
+                            hexagonOpen.find('.myScrollCompany').perfectScrollbar({
+                                wheelSpeed: 2,
+                                wheelPropagation: true,
+                                minScrollbarLength: 20,
+                                suppressScrollX: true
+                            });
+
+                            hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
+                            hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
+                            hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
+                            hexagonCurrent = hexagonPrev;
+                            if (window.history.pushState) {
+                                window.history.pushState(null, null, hexagonCurrent.attr('data-href'));
+                            }
+                        };
+                        var nvClickRight = function(){
+                            var hexagonNext = hexagonCurrent.parent().parent().next().find('.hexagon');
+
+                            if(hexagonNext.html() == undefined){
+                                hexagonNext = jQuery('.hexagon').eq(0);
+                            }
+                            if(hexagonNext.parent().parent().index() == hexagonOpen.parent().parent().index()){
+                                hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
+                                hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
+                                jQuery('.section-scroll').bind('click', sectionScroll2);
+                            } else{
+                                var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
+                                hexagonOpen.find('.wrap-svg').html(hexagonNext.find('.wrap-svg').html());
+                                hexagonOpen.find('.card__content').html(hexagonNext.find('.card__content').html());
+                                navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+                                initToggleMenu();
+                                jQuery('.section-scroll').bind('click', sectionScroll2);
+                            }
+
+                            hexagonOpen.find('.myScrollCompany').perfectScrollbar({
+                                wheelSpeed: 2,
+                                wheelPropagation: true,
+                                minScrollbarLength: 20,
+                                suppressScrollX: true
+                            });
+
+                            hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
+                            hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
+                            hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
+                            hexagonCurrent = hexagonNext;
+                            if (window.history.pushState) {
+                                window.history.pushState(null, null, hexagonCurrent.attr('data-href'));
+                            }
+                        };
+                        /**
+                         *  Обработка нажатия ссылок для переключения между направлениями компании
+                         */
+                        var nvClickLink = function(e){
+                            e.preventDefault();
+
+                            var id = jQuery(this).attr('href'),
+                                hexagonNext = jQuery('.hexagon' + id);
+                            if(hexagonNext.parent().parent().index() == hexagonOpen.parent().parent().index()){
+                                hexagonOpen.find('.wrap-svg').html(hexagonCurrentSvg);
+                                jQuery('.section-scroll').bind('click', sectionScroll2);
+                                hexagonOpen.find('.card__content').html(hexagonCurrentCardContent);
+                            }else{
+                                var navMain = hexagonOpen.find('.wrap-svg .nav-main').clone();
+                                hexagonOpen.find('.wrap-svg').html(hexagonNext.find('.wrap-svg').html());
+                                hexagonOpen.find('.card__content').html(hexagonNext.find('.card__content').html());
+                                navMain.prependTo(hexagonOpen.find('.wrap-svg'));
+                                initToggleMenu();
+                                jQuery('.section-scroll').bind('click', sectionScroll2);
+                            }
+
+                            hexagonOpen.find('.myScrollCompany').perfectScrollbar({
+                                wheelSpeed: 2,
+                                wheelPropagation: true,
+                                minScrollbarLength: 20,
+                                suppressScrollX: true
+                            });
+
+                            hexagonOpen.find('.nv-left').unbind('click').click(nvClickLeft);
+                            hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
+                            hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
+                            hexagonCurrent = hexagonNext;
+                            if (window.history.pushState) {
+                                window.history.pushState(null, null, hexagonCurrent.attr('data-href'));
+                            }
+                        };
+                        jQuery('#{{ app.request.get('slug') }}').find('.nv-left').unbind('click').click(nvClickLeft);
+                        jQuery('#{{ app.request.get('slug') }}').find('.nv-right').unbind('click').click(nvClickRight);
+                        jQuery('#{{ app.request.get('slug') }}').find('.submenu ul li a').unbind('click').click(nvClickLink);
+                    {% endif %}
+                });
+            });
+        </script>
+    {% endif %}
+{% endblock %}

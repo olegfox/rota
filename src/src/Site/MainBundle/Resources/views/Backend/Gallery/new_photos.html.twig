@@ -1,0 +1,16 @@
+{% extends 'SiteMainBundle:Backend/Gallery:new.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/sitemain/backend/js/uploadify/uploadify.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block form -%}
+    {{ form(form, { 'style': 'horizontal', attr: {novalidate: 'novalidate'} }) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/backend/js/uploadify/jquery.uploadify.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/backend/js/init_uploadify.js') }}"></script>
+{% endblock %}

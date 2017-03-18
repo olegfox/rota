@@ -51,6 +51,10 @@ class CompanyType extends AbstractType
                 'required' => false,
                 'label' => 'backend.company.img'
             ))
+            ->add('link', 'text', array(
+                'required' => false,
+                'label' => 'backend.company.link'
+            ))
         ;
     }
     

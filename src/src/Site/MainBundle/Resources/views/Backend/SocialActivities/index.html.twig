@@ -1,0 +1,52 @@
+{% extends 'SiteMainBundle:Backend:layout.html.twig' %}
+
+{% block content -%}
+    <h1>{{ 'backend.social_activities.h1_list'|trans({}, 'menu') }}</h1>
+
+    {% if entities|length > 0 %}
+        <table class="records_list table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>{{ 'backend.social_activities.video'|trans({}, 'menu') }}</th>
+                <th>{{ 'backend.social_activities.img'|trans({}, 'menu') }}</th>
+                <th>{{ 'backend.social_activities.main'|trans({}, 'menu') }}</th>
+                <th>{{ 'backend.actions'|trans({}, 'menu') }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('backend_social_activities_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{% if entity.video|length > 0 %}<video src="{{ asset('uploads/social_activities/' ~ entity.video) }}" width="300px" controls></video>{% endif %}</td>
+                    <td>{% if entity.webPath|length > 0 %}<a href="{{ asset(entity.webPath) }}" target="_blank"><img src="{{ image(entity.webPath).resize(150) }}" alt="{{ image(entity.webPath).resize(150) }}" width="150px"/></a>{% endif %}</td>
+                    <td>{{ (entity.main ? 'backend.social_activities.main_yes' : 'backend.social_activities.main_no')|trans({}, 'menu') }}</td>
+                    <td>
+                        <ul class="nav nav-pills">
+                            <li>
+                                <a href="{{ path('backend_social_activities_show', { 'id': entity.id }) }}">{{ 'backend.show'|trans({}, 'menu') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('backend_social_activities_edit', { 'id': entity.id }) }}">{{ 'backend.edit'|trans({}, 'menu') }}</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {{ knp_pagination_render(entities) }}
+    {% else %}
+        <div class="alert alert-warning">
+            {{ 'backend.social_activities.empty_list'|trans({}, 'menu') }}
+        </div>
+    {% endif %}
+
+    <ul class="nav nav-pills">
+        <li class="active">
+            <a href="{{ path('backend_social_activities_new') }}">
+                {{ 'backend.create'|trans({}, 'menu') }}
+            </a>
+        </li>
+    </ul>
+{% endblock %}

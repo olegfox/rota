@@ -1,0 +1,10 @@
+<!-- Text -->
+<div class="text">
+    {% if page.img|length > 0 %}
+        <div class="image-block" style="background: url({{ asset(page.webPath) }}) 0 0 no-repeat; background-size: cover;"></div>
+    {% endif %}
+    <div class="content">
+        {{ page.text|raw }}
+    </div>
+</div>
+<!-- end Text -->

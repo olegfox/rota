@@ -1,0 +1,146 @@
+.gallery-block {
+    min-height: 100%;
+    background: #fff;
+}
+
+.gallery-block .inner-gallery-block {
+    max-width: 1260px;
+    padding: 115px;
+    margin: 0 auto;
+}
+
+.wrap-gallery {
+
+}
+
+.wrap-gallery .gallery {
+
+}
+
+.wrap-gallery .gallery .gallery-year {
+    font-size: 30px;
+    line-height: 45px;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+.wrap-gallery .gallery .gallery-month {
+    font-size: 24px;
+    line-height: 30px;
+    padding: 0 10px;
+    margin-bottom: 15px;
+}
+
+.wrap-gallery .gallery .gallery-day {
+
+}
+
+.wrap-gallery .gallery .wrap-gallery-element {
+    font-size: 0;
+}
+
+.wrap-gallery .gallery .wrap-gallery-element .gallery-element {
+    display: inline-block;
+    width: 20%;
+    margin-bottom: 15px;
+}
+
+.wrap-gallery .gallery .wrap-gallery-element .gallery-element.gallery-element-video .element a:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 7px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.wrap-gallery .gallery .wrap-gallery-element .gallery-element.gallery-element-video .element a:after {
+    position: absolute;
+    font-size: 16px;
+    color: #fff;
+    content: 'Видео';
+    display: inline-block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 47px;
+    height: 16px;
+}
+
+.wrap-gallery .gallery .wrap-gallery-element .gallery-element.gallery-element-video .element a {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.wrap-gallery .gallery .wrap-gallery-element .gallery-element.gallery-element-photos {
+    vertical-align: top;
+}
+
+.wrap-gallery .gallery .wrap-gallery-element .gallery-element.gallery-element-photos .element a {
+    display: none;
+}
+
+.wrap-gallery .gallery .wrap-gallery-element .gallery-element.gallery-element-photos .element a:first-child {
+    display: inline-block;
+    width: 100%;
+}
+
+.wrap-gallery .gallery .wrap-gallery-element .gallery-element .element{
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.wrap-gallery .gallery .wrap-gallery-element .gallery-element .element img {
+    margin-bottom: 7px;
+    width: 100%;
+}
+
+.wrap-gallery .gallery .wrap-gallery-element .date{
+    font-size: 16px;
+    line-height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
+
+.wrap-gallery .gallery .wrap-gallery-element .gallery-element-video .date{
+    margin-top: 0;    
+}
+
+@media screen and (max-width: 1024px) {
+    .gallery-block .inner-gallery-block {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 830px) {
+    .wrap-gallery .gallery .wrap-gallery-element .gallery-element {
+        width: 25%;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .wrap-gallery .gallery .wrap-gallery-element .gallery-element {
+        width: 33.33%;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .wrap-gallery .gallery .wrap-gallery-element .gallery-element {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .wrap-gallery .gallery .wrap-gallery-element .gallery-element {
+        width: 100%;
+    }
+}

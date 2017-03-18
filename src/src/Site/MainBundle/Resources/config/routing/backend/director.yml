@@ -1,0 +1,30 @@
+backend_director_index:
+    path:     /
+    defaults: { _controller: "SiteMainBundle:Backend/Director:index" }
+
+backend_director_show:
+    path:     /{id}/show
+    defaults: { _controller: "SiteMainBundle:Backend/Director:show" }
+
+backend_director_new:
+    path:     /new
+    defaults: { _controller: "SiteMainBundle:Backend/Director:new" }
+
+backend_director_create:
+    path:     /create
+    defaults: { _controller: "SiteMainBundle:Backend/Director:create" }
+    methods:  POST
+
+backend_director_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SiteMainBundle:Backend/Director:edit" }
+
+backend_director_update:
+    path:     /{id}/update
+    defaults: { _controller: "SiteMainBundle:Backend/Director:update" }
+    methods:  [POST, PUT]
+
+backend_director_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SiteMainBundle:Backend/Director:delete" }
+    methods:  [POST, DELETE]

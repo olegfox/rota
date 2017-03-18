@@ -1,0 +1,36 @@
+frontend_homepage:
+    path:     /
+    defaults: { _controller: "SiteMainBundle:Frontend/Main:index" }
+
+frontend_feedback:
+    path:     /feedback
+    defaults: { _controller: "SiteMainBundle:Frontend/Main:feedback" }
+    methods:  POST
+
+frontend_news:
+    resource: "@SiteMainBundle/Resources/config/routing/frontend/news.yml"
+    prefix: /novosti
+
+frontend_gallery:
+    resource: "@SiteMainBundle/Resources/config/routing/frontend/gallery.yml"
+    prefix: /gallery
+
+frontend_director:
+    resource: "@SiteMainBundle/Resources/config/routing/frontend/director.yml"
+    prefix: /rukovodstvo
+
+frontend_group_company:
+    resource: "@SiteMainBundle/Resources/config/routing/frontend/group_company.yml"
+    prefix: /struktura
+
+frontend_group_social_activities:
+    resource: "@SiteMainBundle/Resources/config/routing/frontend/social_activities.yml"
+    prefix: /sotsial-naia-dieiatiel-nost
+
+frontend_content_index:
+    path:     /page/{slug}
+    defaults: { _controller: "SiteMainBundle:Frontend/Page:index" }
+
+frontend_page_index:
+    path:     /{slug}
+    defaults: { _controller: "SiteMainBundle:Frontend/Main:index" }

@@ -1,0 +1,35 @@
+backend_dashboard:
+    path:     /
+    defaults: { _controller: "SiteMainBundle:Backend/Dashboard:index" }
+
+backend_page:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/page.yml"
+    prefix: /page
+
+backend_background:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/background.yml"
+    prefix: /background
+
+backend_social_activities:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/social_activities.yml"
+    prefix: /social_activities
+
+backend_news:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/news.yml"
+    prefix: /news
+
+backend_company:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/company.yml"
+    prefix: /company
+
+backend_group_company:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/group_company.yml"
+    prefix: /group_company
+
+backend_director:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/director.yml"
+    prefix: /director
+
+backend_gallery:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/gallery.yml"
+    prefix: /gallery

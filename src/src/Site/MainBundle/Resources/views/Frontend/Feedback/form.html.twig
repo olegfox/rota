@@ -1,0 +1,20 @@
+<div class="container-contacts wowload rotateIn">
+    <div class="inner">
+        <div class="form-block">
+            {{ form_start(feedbackForm, {'attr': {'novalidate': 'novalidate'}}) }}
+            <div class="form-caption-main"> Отправить сообщение</div>
+            {{ form_widget(feedbackForm.name) }}
+            {{ form_widget(feedbackForm.company) }}
+            {{ form_widget(feedbackForm.phone) }}
+            {{ form_widget(feedbackForm.email) }}
+            {{ form_widget(feedbackForm.message) }}
+            {{ form_widget(feedbackForm.save) }}
+            {{ form_end(feedbackForm) }}
+        </div><div class="address">
+            <div class="wrap">
+                <div class="form-caption">ООО «РОТА»</div>
+                {{ pages[6].text|raw }}
+            </div>
+        </div><div class="address"></div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+backend_company_index:
+    path:     /
+    defaults: { _controller: "SiteMainBundle:Backend/Company:index" }
+
+backend_company_show:
+    path:     /{id}/show
+    defaults: { _controller: "SiteMainBundle:Backend/Company:show" }
+
+backend_company_new:
+    path:     /new
+    defaults: { _controller: "SiteMainBundle:Backend/Company:new" }
+
+backend_company_create:
+    path:     /create
+    defaults: { _controller: "SiteMainBundle:Backend/Company:create" }
+    methods:  POST
+
+backend_company_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SiteMainBundle:Backend/Company:edit" }
+
+backend_company_update:
+    path:     /{id}/update
+    defaults: { _controller: "SiteMainBundle:Backend/Company:update" }
+    methods:  [POST, PUT]
+
+backend_company_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SiteMainBundle:Backend/Company:delete" }
+    methods:  [POST, DELETE]

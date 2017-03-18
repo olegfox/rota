@@ -1,0 +1,24 @@
+{% extends 'SiteMainBundle:Backend:layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content -%}
+    <h1>{{ 'backend.gallery.h1_create'|trans({}, 'menu') }}</h1>
+
+    {% block form %}
+    {% endblock %}
+
+    <ul class="record_actions nav nav-pills">
+        <li>
+            <a href="{{ path('backend_gallery_index') }}">
+                {{ 'backend.gallery.back_to_list'|trans({}, 'menu') }}
+            </a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

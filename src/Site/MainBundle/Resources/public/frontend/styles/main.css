@@ -678,22 +678,35 @@ a:focus {
   vertical-align: top;
 }
 /* line 421, ../sass/main.sass */
-.posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company .info h2 {
+.posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company .info h2,
+.posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company .info h2 a {
   font-size: 24px;
   font-weight: bold;
   color: #3eb5f1;
   padding-left: 15px;
   margin-bottom: 30px;
+  text-decoration: none;
+  display: inline;
+  letter-spacing: 0;
+  text-transform: initial;
+}
+.posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company .info h2 a {
+  padding-left: 0!important;
+}
+.posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company .info h2 a:before {
+  display: none;
 }
 @media screen and (max-width: 1024px) {
   /* line 421, ../sass/main.sass */
-  .posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company .info h2 {
+  .posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company .info h2,
+  .posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company .info h2 a {
     font-size: 22px;
   }
 }
 @media screen and (max-width: 600px) {
   /* line 421, ../sass/main.sass */
-  .posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company .info h2 {
+  .posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company .info h2,
+  .posts-block .hexagons > ul > li .hexagon .wrap-companies .companies .wrap-company .company .info h2 a {
     font-size: 20px;
   }
 }

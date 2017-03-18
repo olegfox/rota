@@ -159,9 +159,9 @@
                     {% elseif app.request.attributes.get('_route') == 'frontend_group_company_one' %}
                     	console.log();
                         jQuery('.nav-pills a[href="#struktura"]').parent().addClass('current');
-                        enable_scroll();
+                        //enable_scroll();
                         jQuery('.wrap-st-content').scrollTop(jQuery('#struktura').index() * jQuery('.wrap-st-content').height());
-                        disable_scroll(jQuery('.wrap-st-content').scrollTop());
+                        //disable_scroll(jQuery('.wrap-st-content').scrollTop());
                         {#$('#{{ app.request.get('slug') }}').find('.card__image').trigger('click');#}
                         jQuery('#{{ app.request.get('slug') }}').find('.card__container').removeClass('card__container--closed');
                         jQuery('.main').hide();
@@ -183,9 +183,9 @@
                                 });
                             }
                         });
-                        jQuery('.wrap-st-content').css({ 
-                        	'overflow-y': 'auto'
-                        });
+                        //jQuery('.wrap-st-content').css({ 
+                        //	'overflow-y': 'auto'
+                        //});
                         jQuery('.hexagon').parent().find('.info').hide();
                         jQuery('.hexagon').parent().find('.mediaOverlayIcon').hide();
                         jQuery('#{{ app.request.get('slug') }}').find('.card__container').switchClass('card__container_radius', 'card__container_no_radius', 0);
@@ -253,9 +253,15 @@
                             hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
                             hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
                             hexagonCurrent = hexagonPrev;
+                            hexagonCurrentSvg = hexagonCurrent.find('.wrap-svg').html(),
+                            hexagonCurrentCardContent = hexagonCurrent.find('.card__content').html();
                             if (window.history.pushState) {
                                 window.history.pushState(null, null, hexagonCurrent.attr('data-href'));
                             }
+
+                            jQuery('a[data-rel^=lightcase]').lightcase({
+                                swipe: true
+                            });
                         };
                         var nvClickRight = function(){
                             var hexagonNext = hexagonCurrent.parent().parent().next().find('.hexagon');
@@ -287,9 +293,14 @@
                             hexagonOpen.find('.nv-right').unbind('click').click(nvClickRight);
                             hexagonOpen.find('.submenu ul li a').unbind('click').click(nvClickLink);
                             hexagonCurrent = hexagonNext;
+                            hexagonCurrentSvg = hexagonCurrent.find('.wrap-svg').html(),
+                            hexagonCurrentCardContent = hexagonCurrent.find('.card__content').html();
                             if (window.history.pushState) {
                                 window.history.pushState(null, null, hexagonCurrent.attr('data-href'));
                             }
+                            jQuery('a[data-rel^=lightcase]').lightcase({
+                                swipe: true
+                            });
                         };
                         /**
                          *  Обработка нажатия ссылок для переключения между направлениями компании
@@ -326,6 +337,10 @@
                             if (window.history.pushState) {
                                 window.history.pushState(null, null, hexagonCurrent.attr('data-href'));
                             }
+
+                            jQuery('a[data-rel^=lightcase]').lightcase({
+                                swipe: true
+                            });
                         };
                         jQuery('#{{ app.request.get('slug') }}').find('.nv-left').unbind('click').click(nvClickLeft);
                         jQuery('#{{ app.request.get('slug') }}').find('.nv-right').unbind('click').click(nvClickRight);
