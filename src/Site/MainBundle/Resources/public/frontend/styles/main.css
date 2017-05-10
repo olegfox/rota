@@ -207,7 +207,6 @@ a:focus {
 .main .sticker h2 {
   color: #fff;
   font-size: 2.22222em;
-  font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 20px;
   text-shadow: rgba(0, 0, 0, 0.38) 2px 0px 4px, rgba(0, 0, 0, 0.38) 2px 0px 4px, rgba(0, 0, 0, 0.38) 2px 0px 4px;
@@ -216,8 +215,7 @@ a:focus {
 .main .sticker p {
   color: #fff;
   font-size: 1em;
-  font-weight: bold;
-  line-height: 30px;
+  line-height: 1.2em;
   text-shadow: rgba(0, 0, 0, 0.38) 2px 0px 4px, rgba(0, 0, 0, 0.38) 2px 0px 4px, rgba(0, 0, 0, 0.38) 2px 0px 4px;
 }
 /* line 125, ../sass/main.sass */
@@ -861,7 +859,7 @@ a:focus {
 .posts-block .hexagons > ul > li .hexagon .wrap-svg.wrap-svg-show .wrap-h1 h1 {
   color: #fff;
   font-size: 40px;
-  font-weight: bold;
+  font-weight: normal;
   text-transform: uppercase;
   display: block;
   text-shadow: rgba(0, 0, 0, 0.38) 2px 0px 4px, rgba(0, 0, 0, 0.38) 2px 0px 4px, rgba(0, 0, 0, 0.38) 2px 0px 4px;
@@ -884,7 +882,8 @@ a:focus {
   width: 50%;
   color: #fff;
   font-size: 18px;
-  line-height: 30px;
+  font-weight: normal;
+  line-height: 1em;
   display: inline-block;
   text-shadow: rgba(0, 0, 0, 0.38) 2px 0px 4px, rgba(0, 0, 0, 0.38) 2px 0px 4px, rgba(0, 0, 0, 0.38) 2px 0px 4px;
 }
@@ -1138,7 +1137,6 @@ a:focus {
   font-size: 18px;
   color: #000;
   margin-bottom: 10px;
-  font-weight: bold;
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -1216,7 +1214,15 @@ a:focus {
 }
 /* line 744, ../sass/main.sass */
 .text .image-block {
+    position: relative;
   height: 560px;
+}
+.text .image-block h1 {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    padding: 20px 115px;
+    margin: 0 auto;
 }
 /* line 746, ../sass/main.sass */
 .text .content {
@@ -1599,7 +1605,7 @@ footer {
 /* line 1049, ../sass/main.sass */
 .st-menu.st-menu-news h4 {
   color: #282828;
-  font-size: 1.11111em;
+  font-size: 1em;
   line-height: 24px;
   margin-bottom: 24px;
 }
@@ -1607,7 +1613,6 @@ footer {
 .st-menu.st-menu-news p {
   color: #000;
   font-size: 14px;
-  font-weight: bold;
   line-height: 1.5em;
 }
 /* line 1059, ../sass/main.sass */
@@ -2081,6 +2086,14 @@ footer {
     padding: 20px;
   }
 
+  .image-block {
+      position: absolute;
+      bottom: 0;
+      color: #fff;
+      padding: 20px;
+      margin: 0 auto;
+  }
+
   /* line 1383, ../sass/main.sass */
   .posts-block .hexagons > ul {
     padding: 35px 20px 40px;
@@ -2121,7 +2134,7 @@ footer {
   /* line 1406, ../sass/main.sass */
   .posts-block .hexagons > ul > li .hexagon .wrap-svg.wrap-svg-show .wrap-h1 p {
     width: 100%;
-    line-height: 24px;
+    line-height: 1em;
   }
 
   /* line 1411, ../sass/main.sass */
@@ -2175,6 +2188,7 @@ footer {
 
   /* line 1441, ../sass/main.sass */
   .text .image-block {
+      position: relative;
     height: 260px;
   }
 
@@ -2290,7 +2304,7 @@ footer {
   }
   /* line 1525, ../sass/main.sass */
   .main .sticker p {
-    line-height: 20px;
+    line-height: 1.2em;
   }
   /* line 1527, ../sass/main.sass */
   .main .sticker .wrap {

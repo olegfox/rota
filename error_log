@@ -19,3 +19,8 @@
 [02-Aug-2016 18:43:15 UTC] PHP Warning:  set_time_limit(): Cannot set time limit in safe mode in /var/www/u0133374/public_html/rota-group.ru/app/console on line 8
 [02-Aug-2016 22:43:17 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /var/www/u0133374/public_html/rota-group.ru/vendor/doctrine/common/lib/Doctrine/Common/Persistence/AbstractManagerRegistry.php on line 144
 [02-Aug-2016 22:43:17 Europe/Moscow] PHP Fatal error:  Call to undefined method Symfony\Component\Debug\FatalErrorHandler\UndefinedFunctionFatalErrorHandler::handleError() in /var/www/u0133374/public_html/rota-group.ru/vendor/symfony/symfony/src/Symfony/Component/Debug/ErrorHandler.php on line 495
+[18-Mar-2017 02:47:49 UTC] PHP Warning:  set_time_limit(): Cannot set time limit in safe mode in /var/www/u0133374/public_html/rota-group.ru/app/console on line 8
+[18-Mar-2017 06:47:49 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /var/www/u0133374/public_html/rota-group.ru/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 90
+[18-Mar-2017 03:01:26 UTC] PHP Warning:  set_time_limit(): Cannot set time limit in safe mode in /var/www/u0133374/public_html/rota-group.ru/app/console on line 8
+[18-Mar-2017 07:01:26 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /var/www/u0133374/public_html/rota-group.ru/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 90
+[10-May-2017 02:44:47 UTC] PHP Warning:  set_time_limit(): Cannot set time limit in safe mode in /var/www/u0133374/public_html/rota-group.ru/app/console on line 8

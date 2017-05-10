@@ -223,6 +223,12 @@ jQuery(function () {
             } else {
                 jQuery(this).find('#email').css('border-bottom', '1px solid #bdbdbd');
             }
+            if (jQuery(this).find('#message').val().length < 3) {
+                $fl = 1;
+                jQuery(this).find('#message').css('border-bottom', '1px solid red');
+            } else {
+                jQuery(this).find('#message').css('border-bottom', '1px solid #bdbdbd');
+            }
 
             if ($fl == 0) {
                 var $params = jQuery(this).serialize();

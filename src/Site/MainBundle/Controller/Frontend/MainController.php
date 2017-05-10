@@ -68,7 +68,7 @@ class MainController extends Controller
             $swift = \Swift_Message::newInstance()
                 ->setSubject('Рота (Обратная связь)')
                 ->setFrom(array('info@rota.ru' => "Рота"))
-                ->setTo(array('1991oleg22@gmail.com', 'olegmitin25011986@gmail.com'))
+                ->setTo(array('olegmitin25011986@gmail.com'))
                 ->setBody(
                     $this->renderView(
                         'SiteMainBundle:Frontend/Feedback:feedback_message.html.twig',

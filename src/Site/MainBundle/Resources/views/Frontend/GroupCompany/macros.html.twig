@@ -9,7 +9,8 @@
 
             <ul>
                 {% for g in groupCompanies %}
-                    <li>
+                    {% if g.slug != 'stroitiel-stvo-fiermy' %}
+                    <li>    
                         <div class="wrap">
                             <div class="hexagon card" id="{{ g.slug }}" data-href="{{ path('frontend_group_company_one', {slug: g.slug}) }}">
                                 <img src="{{ image(g.webPath).zoomCrop(350, 250).jpeg(50) }}" alt=""/>
@@ -26,9 +27,11 @@
                                         <div class="submenu">
                                             <ul>
                                                 {% for group in groupCompanies %}
+                                                    {% if group.slug != 'stroitiel-stvo-fiermy' %}
                                                     <li>
                                                         <a href="#{{ group.slug }}" {% if g.id == group.id %}class="current"{% endif %}>{{ group.title }}</a>
                                                     </li>
+                                                    {% endif %}
                                                 {% endfor %}
                                             </ul>
                                         </div>
@@ -78,11 +81,11 @@
                             </div>
                             <div class="info">
                                 <h5>{{ g.title }}</h5>
-                                <p>{{ g.description }}</p>
                                 {#<a href="#"><span>подробнее</span></a>#}
                             </div>
                         </div>
                     </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
         </div>

@@ -1,7 +1,9 @@
 <!-- Text -->
 <div class="text">
     {% if page.img|length > 0 %}
-        <div class="image-block" style="background: url({{ asset(page.webPath) }}) 0 0 no-repeat; background-size: cover;"></div>
+        <div class="image-block" style="background: url({{ asset(page.webPath) }}) 0 0 no-repeat; background-size: cover;">
+            <h1>О нас</h1>
+        </div>
     {% endif %}
     <div class="content">
         {{ page.text|raw }}

@@ -43,7 +43,7 @@ class FeedbackFormType extends AbstractType
                 )
             )
             ->add('message', 'text', array(
-                    'required' => false,
+                    'required' => true,
                     'label' => false,
                     'attr' => array(
                         'placeholder' => "Сообщение"
