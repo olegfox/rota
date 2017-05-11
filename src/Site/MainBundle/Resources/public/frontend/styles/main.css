@@ -2347,3 +2347,13 @@ footer {
     -pie-background: url('/uploads/background/shutterstock_153758471_small.jpg') no-repeat center center / cover;
     -ms-behavior: url("/bundles/sitemain/css/backgroundsize.min.htc");
 }
+
+.g-recaptcha {
+    width: 75%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.g-recaptcha > div {
+    display: inline-block;
+}
