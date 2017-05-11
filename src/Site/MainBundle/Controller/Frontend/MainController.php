@@ -66,7 +66,7 @@ class MainController extends Controller
         $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
 
         if (!$resp->isSuccess()) {
-            $message = "The reCAPTCHA wasn't entered correctly. Go back and try it again." . "(reCAPTCHA said: " . $resp->error . ")";
+            $message = "The reCAPTCHA wasn't entered correctly. Go back and try it again.";
             return new Response($message, 500);
         }else{
             $form->handleRequest($request);

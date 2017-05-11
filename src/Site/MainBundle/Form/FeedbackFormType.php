@@ -4,6 +4,7 @@ namespace Site\MainBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FeedbackFormType extends AbstractType
 {
@@ -51,6 +52,14 @@ class FeedbackFormType extends AbstractType
                 )
             )
             ->add('save', 'submit', array('label' => 'ОТПРАВИТЬ'));
+    }
+
+    public function getDefaultOptions(array $options)
+    {
+        $options = parent::getDefaultOptions($options);
+        $options['csrf_protection'] = false;
+
+        return $options;
     }
 
     public function getName()
