@@ -211,6 +211,12 @@ jQuery(function () {
             } else {
                 jQuery(this).find('#name').css('border-bottom', '1px solid #bdbdbd');
             }
+            if (jQuery(this).find('#company').val().length < 3) {
+                $fl = 1;
+                jQuery(this).find('#company').css('border-bottom', '1px solid red');
+            } else {
+                jQuery(this).find('#company').css('border-bottom', '1px solid #bdbdbd');
+            }
             if (jQuery(this).find('#phone').val().length < 3) {
                 $fl = 1;
                 jQuery(this).find('#phone').css('border-bottom', '1px solid red');

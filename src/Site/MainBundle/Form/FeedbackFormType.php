@@ -20,7 +20,7 @@ class FeedbackFormType extends AbstractType
                 )
             )
             ->add('company', 'text', array(
-                    'required' => false,
+                    'required' => true,
                     'label' => false,
                     'attr' => array(
                         'placeholder' => "Компания"
