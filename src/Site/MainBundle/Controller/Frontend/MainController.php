@@ -7,6 +7,7 @@ use Site\MainBundle\Form\FeedbackFormType;
 use Site\MainBundle\Form\Feedback;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use ReCaptcha\ReCaptcha;
 include_once("Mobile_Detect.php");
 
 class MainController extends Controller
@@ -61,26 +62,34 @@ class MainController extends Controller
             'method' => 'POST',
         ));
 
-        $form->handleRequest($request);
+        $recaptcha = new ReCaptcha('6LdB1CAUAAAAAHZUc1nqbDwEFU17PWdA2kp7BLV5');
+        $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
 
-        if($form->isValid()){
+        if (!$resp->isSuccess()) {
+            $message = "The reCAPTCHA wasn't entered correctly. Go back and try it again." . "(reCAPTCHA said: " . $resp->error . ")";
+            return new Response($message, 500);
+        }else{
+            $form->handleRequest($request);
 
-            $swift = \Swift_Message::newInstance()
-                ->setSubject('Рота (Обратная связь)')
-                ->setFrom(array('info@rota.ru' => "Рота"))
-                ->setTo(array('olegmitin25011986@gmail.com'))
-                ->setBody(
-                    $this->renderView(
-                        'SiteMainBundle:Frontend/Feedback:feedback_message.html.twig',
-                        array(
-                            'feedbackForm' => $feedbackForm
+            if($form->isValid()){
+
+                $swift = \Swift_Message::newInstance()
+                    ->setSubject('Рота (Обратная связь)')
+                    ->setFrom(array('info@rota.ru' => "Рота"))
+                    ->setTo(array('olegmitin25011986@gmail.com'))
+                    ->setBody(
+                        $this->renderView(
+                            'SiteMainBundle:Frontend/Feedback:feedback_message.html.twig',
+                            array(
+                                'feedbackForm' => $feedbackForm
+                            )
                         )
-                    )
-                    , 'text/html'
-                );
-            $this->get('mailer')->send($swift);
+                        , 'text/html'
+                    );
+                $this->get('mailer')->send($swift);
 
-            return new Response('', 200);
+                return new Response('', 200);
+            }
         }
 
         return new Response('', 500);

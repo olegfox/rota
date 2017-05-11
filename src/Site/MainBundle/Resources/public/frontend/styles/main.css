@@ -1223,10 +1223,11 @@ a:focus {
     color: #fff;
     padding: 20px 115px;
     margin: 0 auto;
+    font-size: 2.22em;
 }
 /* line 746, ../sass/main.sass */
 .text .content {
-  padding: 115px;
+  padding: 20px 115px;
   margin: 0 auto;
 }
 /* line 749, ../sass/main.sass */
@@ -1785,7 +1786,6 @@ footer {
 
 /* line 1181, ../sass/main.sass */
 .st-menu > .close {
-  display: none;
   position: absolute;
   top: 10px;
   right: 10px;
@@ -2339,12 +2339,11 @@ footer {
 #kontakty {
       position: relative;
     min-height: 100%;
-    margin-bottom: -64px;
-    background: url('https://api-maps.yandex.ru/services/constructor/1.0/static/?sid=urjbjAuazWoHRW6dEbW3ZQjl3ds0Zqt9&width=600&height=450&lang=ru_RU&sourceType=constructor') center center no-repeat;
+    background: url('/uploads/background/shutterstock_153758471_small.jpg') center center no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    -pie-background: url('https://api-maps.yandex.ru/services/constructor/1.0/static/?sid=urjbjAuazWoHRW6dEbW3ZQjl3ds0Zqt9&width=600&height=450&lang=ru_RU&sourceType=constructor') no-repeat center center / cover;
+    -pie-background: url('/uploads/background/shutterstock_153758471_small.jpg') no-repeat center center / cover;
     -ms-behavior: url("/bundles/sitemain/css/backgroundsize.min.htc");
 }
